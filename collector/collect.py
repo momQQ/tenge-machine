@@ -18,6 +18,7 @@ import csv
 import datetime as dt
 import json
 import re
+import statistics
 import sys
 import time
 from collections import Counter
@@ -30,10 +31,16 @@ DATA = ROOT / "data"
 PRODUCTS = ROOT / "collector" / "products.json"
 PRICES_CSV = DATA / "prices.csv"
 RATES_CSV = DATA / "rates.csv"
+RATES_DAILY_CSV = DATA / "rates_daily.csv"
+IMAGES_JSON = DATA / "images.json"          # ссылки на фото моделей со страниц магазинов
+REJECTED_CSV = DATA / "rejected.csv"        # сюда попадают отсеченные подозрительные цены
+NBK_URL = "https://nationalbank.kz/rss/get_rates.cfm?fdate={d}"   # официальный курс Нацбанка РК на дату ДД.ММ.ГГГГ
+RATE_BACKFILL_DAYS = 45
 DATA_JS = DATA / "data.js"
 
 USER_AGENT = "Mozilla/5.0 (compatible; tenge-machine-price-tracker; personal project)"
 PRICE_MIN, PRICE_MAX = 100_000, 3_000_000   # цена вне этих границ считается ошибкой чтения
+LOW_K, HIGH_K = 0.6, 1.5                    # цена ниже 60% или выше 150% медианы по модели считается ошибкой
 MAX_JUMP = 0.35                             # скачок цены больше 35% за раз считаем подозрительным
 
 
@@ -156,6 +163,124 @@ def read_usd_rates():
     return sorted(out)
 
 
+
+# ---------- фото модели со страницы магазина ----------
+
+def extract_image(html):
+    """Ссылка на главное фото товара (метка og:image). Только https."""
+    for pat in (r'<meta[^>]+property=["\']og:image["\'][^>]*content=["\']([^"\']+)',
+                r'<meta[^>]+content=["\']([^"\']+)["\'][^>]*property=["\']og:image["\']'):
+        m = re.search(pat, html, re.I)
+        if m and m.group(1).startswith("https://"):
+            return m.group(1).replace("&amp;", "&")
+    return None
+
+
+def read_images():
+    if IMAGES_JSON.exists():
+        try:
+            return json.loads(IMAGES_JSON.read_text(encoding="utf-8"))
+        except ValueError:
+            pass
+    return {}
+
+
+# ---------- проверка цены на здравый смысл ----------
+
+def check_price(rows, model_id, store, price, today, seen):
+    """Возвращает причину отказа или None, если цена выглядит правдоподобно.
+    1) скачок к собственной вчерашней цене больше MAX_JUMP;
+    2) цена сильно ниже/выше медианы по этой модели (все магазины за 30 дней, сегодняшние и официальная цена старта)."""
+    prev = last_price(rows, model_id, store, today)
+    if prev and abs(price / prev - 1) > MAX_JUMP:
+        return f"скачок {prev} -> {price}"
+    cutoff = (dt.date.fromisoformat(today) - dt.timedelta(days=30)).isoformat()
+    official = [int(float(r["price_kzt"])) for r in rows
+                if r["model_id"] == model_id and r["store"].startswith("Официальная") and r["date"] < today]
+    ref = [int(float(r["price_kzt"])) for r in rows
+           if r["model_id"] == model_id and cutoff <= r["date"] < today
+           and not r["store"].startswith("Официальная")] + official + seen.get(model_id, [])
+    if len(ref) >= 3 or official:   # официальная цена старта служит опорой даже в первые дни
+        med = statistics.median(ref)
+        if price < med * LOW_K:
+            return f"слишком низкая цена {price}, медиана по модели {med:.0f}"
+        if price > med * HIGH_K:
+            return f"слишком высокая цена {price}, медиана по модели {med:.0f}"
+    return None
+
+
+def log_rejected(today, model_id, store, price, reason):
+    new = not REJECTED_CSV.exists()
+    with open(REJECTED_CSV, "a", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        if new:
+            w.writerow(["date", "model_id", "store", "price_kzt", "reason"])
+        w.writerow([today, model_id, store, price, reason])
+
+
+# ---------- курс доллара (Нацбанк РК) ----------
+
+def parse_nbk_usd(xml):
+    """Достает курс USD из XML Нацбанка. Возвращает число тенге за 1 доллар или None."""
+    for m in re.finditer(r"<item>(.*?)</item>", xml, re.S | re.I):
+        block = m.group(1)
+        if not re.search(r"<title>\s*USD\s*</title>", block, re.I):
+            continue
+        d = re.search(r"<description>\s*([\d.,]+)\s*</description>", block, re.I)
+        q = re.search(r"<quant>\s*(\d+)\s*</quant>", block, re.I)
+        if not d:
+            continue
+        rate = float(d.group(1).replace(",", ".")) / (int(q.group(1)) if q else 1)
+        if 200 <= rate <= 2000:
+            return round(rate, 4)
+    return None
+
+
+def read_daily_rates():
+    out = {}
+    if RATES_DAILY_CSV.exists():
+        with open(RATES_DAILY_CSV, encoding="utf-8", newline="") as f:
+            for r in csv.DictReader(f):
+                out[r["date"]] = float(r["kzt"])
+    return out
+
+
+def write_daily_rates(daily):
+    with open(RATES_DAILY_CSV, "w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(["date", "currency", "kzt"])
+        for d in sorted(daily):
+            w.writerow([d, "USD", daily[d]])
+
+
+def update_daily_rates(today):
+    """Докачивает недостающие дни за последние RATE_BACKFILL_DAYS дней (включая сегодня)."""
+    daily = read_daily_rates()
+    day0 = dt.date.fromisoformat(today)
+    added = failed = 0
+    for back in range(RATE_BACKFILL_DAYS, -1, -1):
+        d = day0 - dt.timedelta(days=back)
+        key = d.isoformat()
+        if key in daily and key != today:
+            continue
+        try:
+            xml = fetch(NBK_URL.format(d=d.strftime("%d.%m.%Y")), tries=2)
+            rate = parse_nbk_usd(xml)
+            if rate is None:
+                raise RuntimeError("в ответе Нацбанка нет курса USD")
+            daily[key] = rate
+            added += 1
+        except Exception as e:
+            failed += 1
+            if key == today or failed <= 2:
+                print(f"    курс на {key}: ОШИБКА: {e}")
+        time.sleep(0.3)
+    write_daily_rates(daily)
+    print(f"Курс доллара: добавлено {added}, ошибок {failed}, всего дней {len(daily)}"
+          + (f", сегодня {daily[today]} ₸" if today in daily else ", на сегодня курса нет"))
+    return daily
+
+
 def build_data_js(config, rows, today):
     families = []
     for fam in config["families"]:
@@ -171,8 +296,16 @@ def build_data_js(config, rows, today):
         })
     prices = [[r["date"], r["model_id"], r["store"], int(float(r["price_kzt"]))]
               for r in sorted(rows, key=lambda r: (r["date"], r["store"]))]
+    daily = read_daily_rates()
+    monthly = dict(read_usd_rates())
+    by_month = {}
+    for d, v in daily.items():
+        by_month.setdefault(d[:7], []).append(v)
+    for m, vals in by_month.items():          # месяцы без официального среднего считаем по дням
+        monthly.setdefault(m, round(sum(vals) / len(vals), 2))
     payload = {"updated": today, "categories": config["categories"], "families": families,
-               "prices": prices, "rates": read_usd_rates()}
+               "prices": prices, "rates": sorted(monthly.items()), "images": read_images(),
+               "daily": sorted(daily.items())}
     DATA_JS.write_text("// Файл создается автоматически скриптом collect.py, руками не править.\n"
                        "window.TM = " + json.dumps(payload, ensure_ascii=False) + ";\n", encoding="utf-8")
 
@@ -196,6 +329,13 @@ def main():
     today = today_almaty()
     rows = read_prices()
     ok = fail = 0
+    seen = {}   # цены, принятые сегодня, по моделям
+    images = read_images()
+    img_done = set()
+    try:
+        update_daily_rates(today)
+    except Exception as e:   # курс не должен ломать сбор цен
+        print(f"Курс доллара не обновлен: {e}")
 
     for fam, model, st in iter_targets(config):
         print(f'- {fam["name"]} {model["memory"]} / {st["store"]}')
@@ -204,9 +344,16 @@ def main():
             price, how = PARSERS[st.get("parser", "generic")](html)
             if price is None:
                 raise RuntimeError("цена на странице не найдена")
-            prev = last_price(rows, model["id"], st["store"], today)
-            if prev and abs(price / prev - 1) > MAX_JUMP:
-                raise RuntimeError(f"подозрительный скачок {prev} -> {price}, строка не записана")
+            why = check_price(rows, model["id"], st["store"], price, today, seen)
+            if why:
+                log_rejected(today, model["id"], st["store"], price, why)
+                raise RuntimeError(f"ОТСЕЧЕНО, строка не записана: {why}")
+            seen.setdefault(model["id"], []).append(price)
+            if fam["id"] not in img_done:           # фото берем с первой успешно прочитанной страницы семейства
+                img = extract_image(html)
+                if img:
+                    images[fam["id"]] = img
+                    img_done.add(fam["id"])
             rows = [r for r in rows if not (r["date"] == today and r["model_id"] == model["id"]
                                              and r["store"] == st["store"])]
             rows.append({"date": today, "model_id": model["id"], "store": st["store"], "price_kzt": str(price)})
@@ -217,6 +364,7 @@ def main():
             fail += 1
         time.sleep(1)   # не торопимся: один запрос в секунду
 
+    IMAGES_JSON.write_text(json.dumps(images, ensure_ascii=False, indent=1), encoding="utf-8")
     write_prices(rows)
     build_data_js(config, rows, today)
     print(f"Готово: успешно {ok}, с ошибкой {fail}. Дата: {today}")
