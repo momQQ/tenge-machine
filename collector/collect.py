@@ -157,10 +157,22 @@ def read_usd_rates():
 
 
 def build_data_js(config, rows, today):
-    models = [{"id": m["id"], "name": m["name"], "events": m.get("events", [])} for m in config["models"]]
+    families = []
+    for fam in config["families"]:
+        families.append({
+            "id": fam["id"],
+            "category": fam["category"],
+            "name": fam["name"],
+            "status": fam.get("status", "on_sale"),
+            "group": fam.get("group", "current"),
+            "note": fam.get("note", ""),
+            "events": fam.get("events", []),
+            "variants": [{"id": v["id"], "memory": v["memory"]} for v in fam.get("variants", [])],
+        })
     prices = [[r["date"], r["model_id"], r["store"], int(float(r["price_kzt"]))]
               for r in sorted(rows, key=lambda r: (r["date"], r["store"]))]
-    payload = {"updated": today, "models": models, "prices": prices, "rates": read_usd_rates()}
+    payload = {"updated": today, "categories": config["categories"], "families": families,
+               "prices": prices, "rates": read_usd_rates()}
     DATA_JS.write_text("// Файл создается автоматически скриптом collect.py, руками не править.\n"
                        "window.TM = " + json.dumps(payload, ensure_ascii=False) + ";\n", encoding="utf-8")
 
@@ -171,32 +183,39 @@ def today_almaty():
     return dt.datetime.now(dt.timezone(dt.timedelta(hours=5))).date().isoformat()
 
 
+def iter_targets(config):
+    """Все пары (вариант товара, магазин), которые нужно опросить."""
+    for fam in config["families"]:
+        for var in fam.get("variants", []):
+            for st in var.get("stores", []):
+                yield fam, var, st
+
+
 def main():
     config = json.loads(PRODUCTS.read_text(encoding="utf-8"))
     today = today_almaty()
     rows = read_prices()
     ok = fail = 0
 
-    for model in config["models"]:
-        for st in model.get("stores", []):
-            tag = f'{model["name"]} / {st["store"]}'
-            print(f"- {tag}")
-            try:
-                html = fetch(st["url"])
-                price, how = PARSERS[st.get("parser", "generic")](html)
-                if price is None:
-                    raise RuntimeError("цена на странице не найдена")
-                prev = last_price(rows, model["id"], st["store"], today)
-                if prev and abs(price / prev - 1) > MAX_JUMP:
-                    raise RuntimeError(f"подозрительный скачок {prev} -> {price}, строка не записана")
-                rows = [r for r in rows if not (r["date"] == today and r["model_id"] == model["id"]
-                                                 and r["store"] == st["store"])]
-                rows.append({"date": today, "model_id": model["id"], "store": st["store"], "price_kzt": str(price)})
-                print(f"    OK: {price} ₸ ({how})")
-                ok += 1
-            except Exception as e:  # один магазин не должен ломать остальные
-                print(f"    ОШИБКА: {e}")
-                fail += 1
+    for fam, model, st in iter_targets(config):
+        print(f'- {fam["name"]} {model["memory"]} / {st["store"]}')
+        try:
+            html = fetch(st["url"])
+            price, how = PARSERS[st.get("parser", "generic")](html)
+            if price is None:
+                raise RuntimeError("цена на странице не найдена")
+            prev = last_price(rows, model["id"], st["store"], today)
+            if prev and abs(price / prev - 1) > MAX_JUMP:
+                raise RuntimeError(f"подозрительный скачок {prev} -> {price}, строка не записана")
+            rows = [r for r in rows if not (r["date"] == today and r["model_id"] == model["id"]
+                                             and r["store"] == st["store"])]
+            rows.append({"date": today, "model_id": model["id"], "store": st["store"], "price_kzt": str(price)})
+            print(f"    OK: {price} ₸ ({how})")
+            ok += 1
+        except Exception as e:  # один магазин не должен ломать остальные
+            print(f"    ОШИБКА: {e}")
+            fail += 1
+        time.sleep(1)   # не торопимся: один запрос в секунду
 
     write_prices(rows)
     build_data_js(config, rows, today)

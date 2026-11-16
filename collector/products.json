@@ -1,23 +1,274 @@
 {
-  "models": [
+  "categories": [
     {
-      "id": "iphone18pro-256",
-      "name": "iPhone 18 Pro 256 ГБ",
-      "events": [["2026-09-25", "старт продаж в Казахстане"]],
-      "stores": [
-        {"store": "iSpace", "parser": "ispace", "url": "https://ispace.kz/product/iphone-18-pro-256-gb-serebristyi-mjrq4af-a"},
-        {"store": "Sulpak", "parser": "sulpak", "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-256gb-silver-mjrq4hxa"}
+      "id": "smartphones",
+      "name": "Смартфоны"
+    }
+  ],
+  "families": [
+    {
+      "id": "iphone18pro",
+      "category": "smartphones",
+      "name": "iPhone 18 Pro",
+      "status": "on_sale",
+      "group": "current",
+      "note": "",
+      "events": [
+        [
+          "2026-09-25",
+          "старт продаж в Казахстане"
+        ]
+      ],
+      "variants": [
+        {
+          "id": "iphone18pro-256",
+          "memory": "256 ГБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-18-pro-256-gb-serebristyi-mjrq4af-a"
+            },
+            {
+              "store": "Sulpak",
+              "parser": "sulpak",
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-256gb-silver-mjrq4hxa"
+            }
+          ]
+        },
+        {
+          "id": "iphone18pro-512",
+          "memory": "512 ГБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-18-pro-512-gb-serebristyi-mjrv4af-a"
+            },
+            {
+              "store": "Sulpak",
+              "parser": "sulpak",
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-512gb-silver-mjrv4hxa"
+            }
+          ]
+        },
+        {
+          "id": "iphone18pro-1tb",
+          "memory": "1 ТБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-18-pro-1-tb-cernyi-mjry4af-a"
+            },
+            {
+              "store": "Sulpak",
+              "parser": "sulpak",
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-1tb-black-mjry4hxa"
+            }
+          ]
+        },
+        {
+          "id": "iphone18pro-2tb",
+          "memory": "2 ТБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-18-pro-2-tb-serebristyi-mjt44af-a"
+            },
+            {
+              "store": "Sulpak",
+              "parser": "sulpak",
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-2tb-silver-mjt44hxa"
+            }
+          ]
+        }
       ]
     },
     {
-      "id": "iphone16-128",
-      "name": "iPhone 16 128 ГБ",
+      "id": "iphone18promax",
+      "category": "smartphones",
+      "name": "iPhone 18 Pro Max",
+      "status": "on_sale",
+      "group": "current",
+      "note": "",
       "events": [
-        ["2024-09-20", "выход iPhone 16"],
-        ["2025-09-19", "выход iPhone 17"],
-        ["2026-09-25", "старт продаж iPhone 18 Pro"]
+        [
+          "2026-09-25",
+          "старт продаж в Казахстане"
+        ]
       ],
-      "stores": []
+      "variants": [
+        {
+          "id": "iphone18promax-256",
+          "memory": "256 ГБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-18-pro-max-256-gb-cernyi-mjxn4af-a"
+            },
+            {
+              "store": "Sulpak",
+              "parser": "sulpak",
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-max-256gb-black-mjxn4hxa"
+            }
+          ]
+        },
+        {
+          "id": "iphone18promax-512",
+          "memory": "512 ГБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-18-pro-max-512-gb-cernyi-mjxt4af-a"
+            },
+            {
+              "store": "Sulpak",
+              "parser": "sulpak",
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-max-512gb-black-mjxt4hxa"
+            }
+          ]
+        },
+        {
+          "id": "iphone18promax-1tb",
+          "memory": "1 ТБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-18-pro-max-1-tb-burgundy-mjy04af-a"
+            },
+            {
+              "store": "Sulpak",
+              "parser": "sulpak",
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-max-1tb-burgundy-mjy04hxa"
+            }
+          ]
+        },
+        {
+          "id": "iphone18promax-2tb",
+          "memory": "2 ТБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-18-pro-max-2-tb-glacier-mjy54af-a"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "iphone18",
+      "category": "smartphones",
+      "name": "iPhone 18",
+      "status": "soon",
+      "group": "current",
+      "note": "По сообщениям СМИ, обычная модель iPhone 18 отложена и выйдет весной 2027 года. Пока в продаже ее нет, поэтому цен и вариантов памяти на сайте нет. Как только она появится в магазинах, мы добавим ее сюда.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "iphoneduo",
+      "category": "smartphones",
+      "name": "iPhone Duo",
+      "status": "limited",
+      "group": "current",
+      "note": "Это новая складная модель. На iSpace у большинства вариантов вместо кнопки покупки стоит \"Уведомить меня\", поэтому показанная цена справочная: купить прямо сейчас можно не все варианты.",
+      "events": [
+        [
+          "2026-10-23",
+          "старт продаж в Казахстане"
+        ]
+      ],
+      "variants": [
+        {
+          "id": "iphoneduo-256",
+          "memory": "256 ГБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-duo-256-gb-night-sky-mk2e4af-a"
+            },
+            {
+              "store": "Sulpak",
+              "parser": "sulpak",
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-duo-256gb-night-sky-mk2e4hxa"
+            }
+          ]
+        },
+        {
+          "id": "iphoneduo-512",
+          "memory": "512 ГБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-duo-512-gb-night-sky-mk2g4af-a"
+            }
+          ]
+        },
+        {
+          "id": "iphoneduo-1tb",
+          "memory": "1 ТБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-duo-1-tb-night-sky-mk2j4af-a"
+            }
+          ]
+        },
+        {
+          "id": "iphoneduo-2tb",
+          "memory": "2 ТБ",
+          "stores": [
+            {
+              "store": "iSpace",
+              "parser": "ispace",
+              "url": "https://ispace.kz/product/iphone-duo-2-tb-star-white-mk2k4af-a"
+            },
+            {
+              "store": "Sulpak",
+              "parser": "sulpak",
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-duo-2tb-star-white-mk2k4hxa"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "iphone16",
+      "category": "smartphones",
+      "name": "iPhone 16",
+      "status": "archive",
+      "group": "archive",
+      "note": "Историю цен по этой модели мы используем как образец, чтобы понимать, как дешевеют iPhone со временем. Данные за прошлые периоды взяты из публикаций СМИ.",
+      "events": [
+        [
+          "2024-09-20",
+          "выход iPhone 16"
+        ],
+        [
+          "2025-09-19",
+          "выход iPhone 17"
+        ],
+        [
+          "2026-09-25",
+          "старт продаж iPhone 18 Pro"
+        ]
+      ],
+      "variants": [
+        {
+          "id": "iphone16-128",
+          "memory": "128 ГБ",
+          "stores": []
+        }
+      ]
     }
   ]
 }
