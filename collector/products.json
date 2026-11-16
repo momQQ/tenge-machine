@@ -1,0 +1,23 @@
+{
+  "models": [
+    {
+      "id": "iphone18pro-256",
+      "name": "iPhone 18 Pro 256 ГБ",
+      "events": [["2026-09-25", "старт продаж в Казахстане"]],
+      "stores": [
+        {"store": "iSpace", "parser": "ispace", "url": "https://ispace.kz/product/iphone-18-pro-256-gb-serebristyi-mjrq4af-a"},
+        {"store": "Sulpak", "parser": "sulpak", "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-256gb-silver-mjrq4hxa"}
+      ]
+    },
+    {
+      "id": "iphone16-128",
+      "name": "iPhone 16 128 ГБ",
+      "events": [
+        ["2024-09-20", "выход iPhone 16"],
+        ["2025-09-19", "выход iPhone 17"],
+        ["2026-09-25", "старт продаж iPhone 18 Pro"]
+      ],
+      "stores": []
+    }
+  ]
+}

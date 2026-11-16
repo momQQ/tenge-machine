@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Цены на iPhone в Казахстане</title>
+<style>
+:root{--bg:#eef2f4;--ink:#1b2a33;--mute:#5b6b75;--ev:#b07a0d;--card:#fff;--grid:#d5dde1;--rate:#5b6b75;
+--s0:#0e7c86;--s1:#b0475e;--s2:#4b6fd0;--s3:#8a6a00}
+@media (prefers-color-scheme:dark){:root{--bg:#14181b;--ink:#e6eef2;--mute:#9aabb5;--ev:#e0a83a;--card:#1c2226;--grid:#2b353b;--rate:#9aabb5;
+--s0:#3fc1cc;--s1:#ee8aa0;--s2:#8eaaf2;--s3:#d9b24a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Segoe UI",Roboto,Arial,sans-serif}
+main{max-width:780px;margin:0 auto;padding:28px 16px 48px}
+h1{font-size:clamp(26px,5vw,38px);line-height:1.15;margin:0 0 8px}
+.sub{color:var(--mute);margin:0 0 18px;max-width:62ch}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.tabs button{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid var(--grid);background:var(--card);color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed="true"]{border-color:var(--s0);outline:2px solid var(--s0);font-weight:600}
+.tabs button:focus-visible{outline:2px solid var(--s0);outline-offset:2px}
+.card{background:var(--card);border-radius:10px;padding:16px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0 0 10px;font-size:14px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+svg{width:100%;height:auto;display:block;cursor:crosshair;touch-action:pan-y}
+.t{font-size:11px;fill:var(--mute)}
+.pt{font-size:12px;font-weight:600;fill:var(--ink)}
+#tip{min-height:24px;margin:8px 0 0;font-weight:600;font-size:15px}
+.verdict{margin:20px 0;font-size:17px;max-width:64ch}
+.verdict p{margin:0 0 10px}
+details{margin-top:16px}
+summary{cursor:pointer;color:var(--s0);font-weight:600}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+td,th{padding:6px 8px;border-bottom:1px solid var(--grid);text-align:left}
+td:nth-child(n+3),th:nth-child(n+3){text-align:right}
+.note{color:var(--mute);font-size:13px;margin-top:24px}
+@media (max-width:560px){.t{font-size:16px}.pt{font-size:18px}}
+</style>
+</head>
+<body>
+<main>
+  <h1>Цены на iPhone в Казахстане</h1>
+  <p class="sub" id="upd"></p>
+  <div class="tabs" id="tabs" role="group" aria-label="Модель"></div>
+
+  <div class="card">
+    <div class="legend" id="legend"></div>
+    <svg id="chart" viewBox="0 0 720 552" role="img" aria-label="Три графика: цена в тенге по магазинам, курс доллара и цена в долларах"></svg>
+    <div id="tip">Наведите курсор на график</div>
+  </div>
+
+  <div class="verdict" id="verdict"></div>
+
+  <details>
+    <summary>Показать данные</summary>
+    <table id="tbl"><thead><tr><th>Дата</th><th>Магазин</th><th>Цена, ₸</th><th>Курс, ₸</th><th>Цена, $</th></tr></thead><tbody></tbody></table>
+  </details>
+
+  <p class="note">Это ориентир на основе прошлых цен, а не гарантия и не финансовый совет. Цены в магазинах собираются раз в день автоматически, цены за прошлые периоды взяты из публикаций СМИ.
+  Курс доллара: средний за месяц по данным Национального банка РК; для месяца, по которому курса еще нет, берется курс последнего известного месяца (в таблице отмечен звездочкой).
+  Цена в долларах = цена в тенге / курс.</p>
+</main>
+
+<script src="data/data.js"></script>
+<script>
+const T=window.TM;
+const MON=["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"];
+const dnum=s=>Date.UTC(+s.slice(0,4),+s.slice(5,7)-1,+s.slice(8,10))/864e5;
+const dstr=d=>new Date(d*864e5).toISOString().slice(0,10);
+const dlab=s=>{const p=s.split("-");return (+p[2])+" "+MON[+p[1]-1]+" "+p[0]};
+const num=n=>Math.round(n).toLocaleString("ru-RU");
+const dec=(n,k)=>n.toFixed(k).replace(".",",");
+const f1=n=>(n>0?"+":"")+dec(n,1)+"%";
+const pct=(a,b)=>(b/a-1)*100;
+const col=i=>`var(--s${i%4})`;
+
+const RATE=T.rates.map(r=>({m:r[0],d:dnum(r[0]+"-15"),v:r[1]})).sort((a,b)=>a.d-b.d);
+const rateByM={}; RATE.forEach(r=>rateByM[r.m]=r.v);
+function rateAt(date){
+  const m=date.slice(0,7);
+  if(rateByM[m]!==undefined) return {v:rateByM[m],fb:false};
+  let best=null; RATE.forEach(r=>{if(r.m<m)best=r});
+  return {v:(best||RATE[0]).v,fb:true};
+}
+
+const W=720,L=72,R=16,PH=130,TG=30,GAP=18,TOP=8;
+const y0=k=>TOP+k*(TG+PH+GAP)+TG;
+let cur=(T.models.find(m=>T.prices.some(p=>p[1]===m.id))||T.models[0]).id;
+let view=null;
+
+document.getElementById("upd").textContent="Последнее обновление: "+dlab(T.updated)+". Цены собираются каждый день.";
+
+const tabs=document.getElementById("tabs");
+T.models.filter(m=>T.prices.some(p=>p[1]===m.id)).forEach(m=>{
+  const b=document.createElement("button");
+  b.textContent=m.name; b.dataset.id=m.id;
+  b.addEventListener("click",()=>{cur=m.id;render()});
+  tabs.appendChild(b);
+});
+
+function render(){
+  [...tabs.children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.id===cur));
+  const model=T.models.find(m=>m.id===cur);
+  const rows=T.prices.filter(p=>p[1]===cur).sort((a,b)=>a[0]<b[0]?-1:1);
+  const names=[],ser={};
+  rows.forEach(p=>{
+    if(!ser[p[2]]){ser[p[2]]=[];names.push(p[2])}
+    const r=rateAt(p[0]);
+    ser[p[2]].push({date:p[0],d:dnum(p[0]),price:p[3],rate:r.v,fb:r.fb,usd:p[3]/r.v});
+  });
+
+  const ev=(model.events||[]).map(e=>({d:dnum(e[0]),t:e[1]}));
+  const allD=rows.map(p=>dnum(p[0]));
+  const d0=Math.min(...allD,...(ev.length?[ev[0].d]:[]));
+  let d1=Math.max(...allD,dnum(T.updated)); if(d1<=d0)d1=d0+1;
+  const xo=d=>L+(d-d0)*(W-L-R)/(d1-d0);
+  view={d0,d1,xo,ser,names};
+
+  const rWin=RATE.filter(r=>r.d>=d0-35&&r.d<=d1+35);
+  const panels=[
+    {t:"Цена в тенге, по магазинам",vals:rows.map(p=>p[3]),fmt:v=>Math.round(v/1000)+" тыс",key:"price"},
+    {t:"Курс доллара, ₸",vals:(rWin.length?rWin:RATE).map(r=>r.v),fmt:v=>Math.round(v),key:"rate"},
+    {t:"Цена в долларах, по магазинам",vals:names.flatMap(n=>ser[n].map(q=>q.usd)),fmt:v=>"$"+Math.round(v),key:"usd"}
+  ];
+  let s="";
+  panels.forEach((p,k)=>{
+    const lo=Math.min(...p.vals),hi=Math.max(...p.vals);
+    const pad=Math.max((hi-lo)*0.15,hi*0.03)||1;
+    const min=lo-pad,max=hi+pad;
+    const yy=v=>y0(k)+PH-(v-min)*PH/(max-min);
+    s+=`<clipPath id="c${k}"><rect x="${L}" y="${y0(k)-4}" width="${W-L-R}" height="${PH+8}"/></clipPath>`;
+    s+=`<text x="${L}" y="${y0(k)-12}" class="pt">${p.t}</text>`;
+    for(let g=0;g<=3;g++){
+      const v=min+(max-min)*g/3;
+      s+=`<line x1="${L}" x2="${W-R}" y1="${yy(v)}" y2="${yy(v)}" stroke="var(--grid)"/>`+
+         `<text x="${L-8}" y="${yy(v)+4}" text-anchor="end" class="t">${p.fmt(v)}</text>`;
+    }
+    if(p.key==="rate"){
+      const pts=(rWin.length?rWin:RATE).map(r=>xo(r.d)+","+yy(r.v)).join(" ");
+      s+=`<g clip-path="url(#c${k})"><polyline fill="none" stroke="var(--rate)" stroke-width="2.4" points="${pts}"/></g>`;
+    }else{
+      names.forEach((n,i)=>{
+        const arr=ser[n], v=q=>p.key==="price"?q.price:q.usd;
+        if(arr.length>1) s+=`<polyline fill="none" stroke="${col(i)}" stroke-width="1.8" stroke-dasharray="5 4" points="${arr.map(q=>xo(q.d)+","+yy(v(q))).join(" ")}"/>`;
+        // радиус убывает с номером ряда: при одинаковой цене в разных магазинах видны все точки
+        arr.forEach(q=>{s+=`<circle cx="${xo(q.d)}" cy="${yy(v(q))}" r="${Math.max(3,8-2*i)}" fill="${col(i)}" stroke="var(--card)" stroke-width="1"/>`});
+      });
+    }
+  });
+  const bottom=y0(2)+PH;
+
+  // подписи месяцев по оси времени
+  let ticks=[];
+  const sd=new Date(d0*864e5); let yr=sd.getUTCFullYear(),mo=sd.getUTCMonth();
+  let first=Date.UTC(yr,mo,1)/864e5; if(first<d0){mo++;first=Date.UTC(yr,mo,1)/864e5}
+  while(first<=d1){ticks.push(first);mo++;first=Date.UTC(yr,mo,1)/864e5}
+  const step=Math.max(1,Math.ceil(ticks.length/(window.innerWidth<560?4:7)));
+  if(ticks.length<2){
+    s+=`<text x="${xo(d0)}" y="${bottom+18}" text-anchor="start" class="t">${dlab(dstr(d0))}</text>`+
+       `<text x="${xo(d1)}" y="${bottom+18}" text-anchor="end" class="t">${dlab(dstr(d1))}</text>`;
+  }else{
+    ticks.forEach((d,i)=>{ if(i%step===0){const dt=new Date(d*864e5);
+      s+=`<text x="${xo(d)}" y="${bottom+18}" text-anchor="middle" class="t">${MON[dt.getUTCMonth()]} ${dt.getUTCFullYear()}</text>`;}});
+  }
+  ev.filter(e=>e.d>=d0&&e.d<=d1).forEach(e=>{
+    const late=xo(e.d)>W-150;
+    s+=`<line x1="${xo(e.d)}" x2="${xo(e.d)}" y1="${y0(0)}" y2="${bottom}" stroke="var(--ev)" stroke-dasharray="4 3"/>`+
+       `<text x="${xo(e.d)+(late?-5:5)}" y="${y0(0)+PH-6}" text-anchor="${late?"end":"start"}" class="t" style="fill:var(--ev)">${e.t}</text>`;
+  });
+  s+=`<line id="cross" x1="-10" x2="-10" y1="${y0(0)}" y2="${bottom}" stroke="var(--ink)" stroke-opacity=".35"/>`;
+  document.getElementById("chart").innerHTML=s;
+
+  document.getElementById("legend").innerHTML=names.map((n,i)=>`<span><i style="background:${col(i)}"></i>${n}</span>`).join("")+
+    `<span><i style="background:var(--rate)"></i>курс доллара</span>`;
+  document.getElementById("tip").textContent="Наведите курсор на график";
+
+  // вывод простыми словами
+  let h="";
+  const latest=names.map(n=>{const q=ser[n][ser[n].length-1];return `${n} ${num(q.price)} ₸ (${dlab(q.date)})`});
+  h+=`<p>Последние цены: ${latest.join(", ")}.</p>`;
+  let any=false;
+  names.forEach(n=>{
+    const a=ser[n];
+    if(a.length>1){
+      any=true;const f=a[0],l=a[a.length-1];
+      h+=`<p>${n}: с ${dlab(f.date)} по ${dlab(l.date)} цена в тенге ${f1(pct(f.price,l.price))}, в долларах ${f1(pct(f.usd,l.usd))}.</p>`;
+    }
+  });
+  if(!any) h+=`<p>История только начала копироваться: график заполнится по мере ежедневных замеров.</p>`;
+  h+=`<p>Это ориентир, а не прогноз.</p>`;
+  document.getElementById("verdict").innerHTML=h;
+
+  const tb=document.querySelector("#tbl tbody"); tb.innerHTML="";
+  rows.forEach(p=>{
+    const r=rateAt(p[0]);
+    tb.insertAdjacentHTML("beforeend",`<tr><td>${dlab(p[0])}</td><td>${p[2]}</td><td>${num(p[3])}</td><td>${dec(r.v,2)}${r.fb?"*":""}</td><td>$${num(p[3]/r.v)}</td></tr>`);
+  });
+}
+
+const svg=document.getElementById("chart");
+function showAt(clientX){
+  if(!view)return;
+  const r=svg.getBoundingClientRect();
+  const px=(clientX-r.left)*W/r.width;
+  const d=Math.max(view.d0,Math.min(view.d1,view.d0+(px-L)*(view.d1-view.d0)/(W-L-R)));
+  const c=document.getElementById("cross");
+  c.setAttribute("x1",view.xo(d)); c.setAttribute("x2",view.xo(d));
+  const ds=dstr(Math.round(d));
+  const tol=Math.max((view.d1-view.d0)*0.04,3);
+  const parts=[];
+  view.names.forEach(n=>{
+    let best=null;
+    view.ser[n].forEach(q=>{if(!best||Math.abs(q.d-d)<Math.abs(best.d-d))best=q});
+    if(best&&Math.abs(best.d-d)<=tol) parts.push(`${n} ${num(best.price)} ₸`+(best.date!==ds?` (${dlab(best.date)})`:""));
+  });
+  document.getElementById("tip").textContent=dlab(ds)+": "+(parts.length?parts.join("; "):"цен рядом нет")+"; курс "+dec(rateAt(ds).v,2)+" ₸";
+}
+svg.addEventListener("pointermove",e=>showAt(e.clientX));
+svg.addEventListener("pointerdown",e=>showAt(e.clientX));
+render();
+</script>
+</body>
+</html>
