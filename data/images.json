@@ -1,5 +1,17 @@
 {
- "iphone18pro": "https://prod-cdn.prod.asbis.io/s3/cms/product/13/80/1380844efa310402322615442537a74f/261014100025022763.webp",
- "iphone18promax": "https://prod-cdn.prod.asbis.io/s3/cms/product/a5/d8/a5d80bd5e664060a1d1cd024fb3848c8/261014100023295696.webp",
- "iphoneduo": "https://prod-cdn.prod.asbis.io/s3/cms/product/6b/87/6b874433b8df33f318ebcee18cc0c782/261026170010365029.webp"
+ "iphone18pro": {
+  "url": "https://prod-cdn.prod.asbis.io/s3/cms/product/13/80/1380844efa310402322615442537a74f/261014100025022763.webp",
+  "title": "iPhone 18 Pro, 256 ГБ, Серебристый",
+  "page": "https://ispace.kz/product/iphone-18-pro-256-gb-serebristyi-mjrq4af-a"
+ },
+ "iphone18promax": {
+  "url": "https://prod-cdn.prod.asbis.io/s3/cms/product/fc/fd/fcfde3c641f9ea636639f1764ab97283/261014100020013643.webp",
+  "title": "iPhone 18 Pro Max, 256 ГБ, Burgundy",
+  "page": "https://ispace.kz/product/iphone-18-pro-max-256-gb-burgundy-mjxq4af-a"
+ },
+ "iphoneduo": {
+  "url": "https://prod-cdn.prod.asbis.io/s3/cms/product/8c/ed/8cedd097eb2e136b02d54b6f0fdb0e4b/261013120012372767.webp",
+  "title": "iPhone Duo, 256 ГБ, Star White",
+  "page": "https://ispace.kz/product/iphone-duo-256-gb-star-white-mk2d4af-a"
+ }
 }

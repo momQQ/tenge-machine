@@ -176,6 +176,26 @@ def extract_image(html):
     return None
 
 
+def extract_title(html):
+    """Название товара со страницы (og:title или title), без хвоста 'купить ...'."""
+    m = re.search(r'<meta[^>]+property=["\']og:title["\'][^>]*content=["\']([^"\']+)', html, re.I) \
+        or re.search(r"<title[^>]*>(.*?)</title>", html, re.I | re.S)
+    if not m:
+        return None
+    t = re.sub(r"\s+", " ", m.group(1)).strip().replace("&amp;", "&")
+    return re.split(r"\s+(?:купить|по цене)\b", t, flags=re.I)[0].strip(" ,-")[:120] or None
+
+
+def model_matches(fam_name, all_names, title):
+    """Фото принимаем, только если в названии страницы есть имя семейства и нет более длинного
+    имени (например, для 'iPhone 18 Pro' страница 'iPhone 18 Pro Max' не подходит)."""
+    t = (title or "").lower()
+    me = fam_name.lower()
+    if me not in t:
+        return False
+    return not any(n.lower() != me and n.lower().startswith(me) and n.lower() in t for n in all_names)
+
+
 def read_images():
     if IMAGES_JSON.exists():
         try:
@@ -292,7 +312,9 @@ def build_data_js(config, rows, today):
             "group": fam.get("group", "current"),
             "note": fam.get("note", ""),
             "events": fam.get("events", []),
-            "variants": [{"id": v["id"], "memory": v["memory"]} for v in fam.get("variants", [])],
+            "variants": [{"id": v["id"], "memory": v["memory"],
+                          "stores": [{"store": st["store"], "url": st["url"]} for st in v.get("stores", [])]}
+                         for v in fam.get("variants", [])],
         })
     prices = [[r["date"], r["model_id"], r["store"], int(float(r["price_kzt"]))]
               for r in sorted(rows, key=lambda r: (r["date"], r["store"]))]
@@ -331,6 +353,7 @@ def main():
     ok = fail = 0
     seen = {}   # цены, принятые сегодня, по моделям
     images = read_images()
+    names = [f["name"] for f in config["families"]]
     img_done = set()
     try:
         update_daily_rates(today)
@@ -350,10 +373,12 @@ def main():
                 raise RuntimeError(f"ОТСЕЧЕНО, строка не записана: {why}")
             seen.setdefault(model["id"], []).append(price)
             if fam["id"] not in img_done:           # фото берем с первой успешно прочитанной страницы семейства
-                img = extract_image(html)
-                if img:
-                    images[fam["id"]] = img
+                img, title = extract_image(html), extract_title(html)
+                if img and model_matches(fam["name"], names, title):
+                    images[fam["id"]] = {"url": img, "title": title, "page": st["url"]}
                     img_done.add(fam["id"])
+                elif img:
+                    print(f"    фото не принято: страница называется {title!r}, ждали {fam['name']}")
             rows = [r for r in rows if not (r["date"] == today and r["model_id"] == model["id"]
                                              and r["store"] == st["store"])]
             rows.append({"date": today, "model_id": model["id"], "store": st["store"], "price_kzt": str(price)})

@@ -7,20 +7,19 @@
 <style>
 :root{
   --bg:#f1f4f7;--bg2:#e6ecf1;--ink:#14232c;--mute:#5d6f7a;--card:#ffffff;--line:#dbe3e8;--grid:#e7edf0;
-  --acc:#0b7a86;--acc-soft:#e2f3f5;--ev:#b07a0d;--rate:#6b7c87;--ok:#1d7a46;--warn:#a8700a;
+  --acc:#0b7a86;--acc-soft:#e2f3f5;--ev:#b07a0d;--rate:#6b7c87;--ok:#1d7a46;--ok-soft:#e3f4ea;--warn:#a8700a;--warn-soft:#fbf0d9;--bad:#b3392f;
   --s0:#0b7a86;--s1:#c2455f;--s2:#4666d6;--s3:#a37a00;
   --shadow:0 1px 2px rgba(20,35,44,.06),0 6px 20px rgba(20,35,44,.05);
 }
 @media (prefers-color-scheme:dark){:root{
   --bg:#0f1417;--bg2:#141b1f;--ink:#e8f0f3;--mute:#93a6b0;--card:#182025;--line:#26323a;--grid:#212c33;
-  --acc:#45c3cf;--acc-soft:#14343a;--ev:#e2ab3d;--rate:#93a6b0;--ok:#5bc487;--warn:#e2ab3d;
+  --acc:#45c3cf;--acc-soft:#14343a;--ev:#e2ab3d;--rate:#93a6b0;--ok:#5bc487;--ok-soft:#153324;--warn:#e2ab3d;--warn-soft:#352b12;--bad:#f0877d;
   --s0:#45c3cf;--s1:#ee8aa0;--s2:#92abf3;--s3:#dcbc4e;
   --shadow:0 1px 2px rgba(0,0,0,.4),0 6px 20px rgba(0,0,0,.25);
 }}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:linear-gradient(180deg,var(--bg2),var(--bg) 320px) no-repeat,var(--bg);color:var(--ink);
-  font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+body{margin:0;background:linear-gradient(180deg,var(--bg2),var(--bg) 320px) no-repeat,var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 a{color:var(--acc)}
 button{font:inherit;color:inherit}
 .top{max-width:900px;margin:0 auto;padding:16px 16px 0;display:flex;align-items:center;gap:10px}
@@ -29,11 +28,11 @@ button{font:inherit;color:inherit}
 .logo svg{width:18px;height:18px;color:#fff}
 main{max-width:900px;margin:0 auto;padding:18px 16px 64px}
 h1{font-size:clamp(28px,5.2vw,40px);line-height:1.12;margin:6px 0 8px;letter-spacing:-.02em}
-h2{font-size:18px;margin:30px 0 12px;letter-spacing:-.01em}
+h2{font-size:20px;margin:34px 0 4px;letter-spacing:-.01em}
+h2+.lead{color:var(--mute);margin:0 0 12px;font-size:14px}
 .sub{color:var(--mute);margin:0 0 22px;max-width:60ch}
 .crumbs{font-size:14px;margin:6px 0 0;color:var(--mute)}
-.crumbs a{text-decoration:none}
-.crumbs a:hover{text-decoration:underline}
+.crumbs a{text-decoration:none}.crumbs a:hover{text-decoration:underline}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
 .tile{display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .15s,border-color .15s}
 a.tile:hover,a.tile:focus-visible{transform:translateY(-2px);border-color:var(--acc);outline:none}
@@ -47,58 +46,83 @@ a.tile:hover,a.tile:focus-visible{transform:translateY(-2px);border-color:var(--
 .badge{display:inline-block;font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;background:var(--grid);color:var(--mute);margin-top:8px}
 .badge.ok{color:var(--ok)}.badge.warn{color:var(--warn)}
 .price{font-size:21px;font-weight:700;margin-top:8px;letter-spacing:-.01em}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px}
-.chip{border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:8px 14px;text-decoration:none;color:var(--ink);min-width:108px;box-shadow:var(--shadow)}
-.chip b{display:block;font-size:17px}
-.chip span{font-size:13px;color:var(--mute)}
-.chip.on{border-color:var(--acc);background:var(--acc-soft)}
-.chip.nodata{opacity:.55}
+.art{display:grid;place-items:center;background:#fff;border-radius:14px;height:150px;margin-bottom:12px;padding:6px}
+.art{overflow:hidden}
+.art img{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;display:block;min-height:0;min-width:0}
+.art svg{height:112px;width:auto;display:block}
+.art.ill{background:var(--bg2)}
+.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+.hero .ph{flex:none;width:176px;text-align:center}
+.hero .art{height:176px;margin:0}
+.hero small{display:block;color:var(--mute);font-size:12px;line-height:1.3;margin-top:6px}
+.hero small a{color:var(--mute)}
+.ok-tick{color:var(--ok);font-weight:700}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 6px}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:12px;padding:9px 18px;text-decoration:none;color:var(--ink);font-weight:700;font-size:16px;box-shadow:var(--shadow)}
+.chip.on{border-color:var(--acc);background:var(--acc-soft);color:var(--acc)}
+.chip.nodata{opacity:.5}
 .note-box{border-left:4px solid var(--ev);background:var(--card);padding:10px 14px;margin:14px 0 0;font-size:14px;border-radius:0 10px 10px 0}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--shadow)}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:0 0 14px}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow)}
-.stat small{display:block;color:var(--mute);font-size:13px}
-.stat b{display:block;font-size:22px;letter-spacing:-.01em;line-height:1.25}
-.stat em{display:block;font-style:normal;color:var(--mute);font-size:13px}
-.ctl{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-bottom:12px}
+.best{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px;background:var(--ok-soft);border-radius:14px;padding:14px 16px;margin-bottom:12px}
+.best small{display:block;color:var(--mute);font-size:13px}
+.best b.big{display:block;font-size:30px;line-height:1.15;letter-spacing:-.02em}
+.best .who{font-size:15px}
+.btn{display:inline-block;background:var(--acc);color:#fff;text-decoration:none;font-weight:700;border-radius:11px;padding:10px 18px;font-size:15px;white-space:nowrap}
+.btn:hover{filter:brightness(1.08)}
+.btn.sec{background:transparent;color:var(--acc);border:1.5px solid var(--acc);padding:7px 14px;font-size:14px}
+table.t2{width:100%;border-collapse:collapse;font-size:15px}
+table.t2 td,table.t2 th{padding:10px 8px;border-bottom:1px solid var(--grid);text-align:left;vertical-align:middle}
+table.t2 th{font-size:12px;color:var(--mute);font-weight:600}
+table.t2 td.r,table.t2 th.r{text-align:right}
+table.t2 tr.min td{background:var(--ok-soft)}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:8px}
+.tag{display:inline-block;font-size:11px;font-weight:700;color:var(--ok);margin-left:6px}
+table.t2 td.r{white-space:nowrap}
+.diff{color:var(--mute)}
+.muted{color:var(--mute);font-size:13px}
+.ctl{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-bottom:10px}
 .seg{display:inline-flex;background:var(--bg2);border-radius:11px;padding:3px;gap:2px;max-width:100%;overflow-x:auto}
 .seg button{border:0;background:transparent;border-radius:8px;padding:6px 12px;cursor:pointer;white-space:nowrap;font-size:14px;color:var(--mute)}
 .seg button.on{background:var(--card);color:var(--ink);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.15)}
-.custom{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:14px;color:var(--mute);margin-bottom:10px}
+.custom{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;font-size:14px;color:var(--mute);margin:6px 0 4px}
 .custom input[type=date]{font:inherit;font-size:14px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:9px;padding:4px 8px}
 .custom label{display:flex;align-items:center;gap:6px}
-.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px;margin:0 0 6px}
+details.cd summary{font-size:14px;font-weight:500;color:var(--mute)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:14px;margin:6px 0}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
-.cw{position:relative}
+.readout{background:var(--bg2);border-radius:11px;padding:8px 12px;font-size:14px;margin:6px 0 4px;min-height:40px}
+.readout b{font-weight:700}
 .cw svg{display:block;width:100%;touch-action:pan-y;cursor:crosshair}
 .tick{font-size:12px;fill:var(--mute)}
 .unit{font-size:12px;font-weight:600;fill:var(--mute)}
-.tt{position:absolute;pointer-events:none;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 11px;font-size:13px;line-height:1.45;box-shadow:0 6px 24px rgba(0,0,0,.18);min-width:150px;z-index:2;display:none}
-.tt b{display:block;margin-bottom:2px}
-.tt .r{display:flex;justify-content:space-between;gap:14px}
-.tt .r i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
-.tt .m{color:var(--mute)}
 .empty{padding:40px 8px;text-align:center;color:var(--mute)}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px}
+.mini div{background:var(--bg2);border-radius:12px;padding:10px 12px}
+.mini small{display:block;color:var(--mute);font-size:12px}
+.mini b{display:block;font-size:17px}
+.mini em{display:block;font-style:normal;color:var(--mute);font-size:12px}
+.sig{display:grid;gap:10px}
+.sig .row{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:var(--bg2)}
+.sig .row i{flex:none;font-style:normal;font-weight:800;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:14px;color:#fff}
+.sig .dn i{background:var(--ok)}.sig .up i{background:var(--bad)}.sig .go i{background:var(--acc)}
+.sig b{display:block}
+.cal td:first-child{white-space:nowrap;font-weight:600;padding-right:14px}
+.cal td{font-size:14px}
+.cal tr.past td{opacity:.55}
 .verdict p{margin:0 0 10px;max-width:64ch}
 details{margin-top:16px}
 summary{cursor:pointer;color:var(--acc);font-weight:600}
-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
-td,th{padding:7px 8px;border-bottom:1px solid var(--grid);text-align:left}
-td:nth-child(n+3),th:nth-child(n+3){text-align:right}
+table.d{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+table.d td,table.d th{padding:7px 8px;border-bottom:1px solid var(--grid);text-align:left}
+table.d td:nth-child(n+3),table.d th:nth-child(n+3){text-align:right}
 .foot{color:var(--mute);font-size:13px;margin-top:30px;max-width:70ch}
-.art{display:grid;place-items:center;background:var(--bg2);border-radius:14px;height:132px;margin-bottom:12px}
-.art svg{height:112px;width:auto;display:block}
-.art img{height:112px;width:auto;max-width:100%;object-fit:contain;display:block}
-.art.hasimg{background:#fff}
-.art.hasimg svg{display:none}
-.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
-.hero .art{height:auto;background:transparent;margin:0;flex:none}
-.hero .art svg,.hero .art img{height:170px}
-.hero small{display:block;color:var(--mute);font-size:11px;text-align:center;margin-top:2px}
-@media (max-width:560px){.hero .art svg,.hero .art img{height:120px}.art{height:112px}.art svg,.art img{height:92px}}
+.src{color:var(--mute);font-size:12px;margin-top:10px}
 @media (max-width:560px){
-  .grid{grid-template-columns:1fr 1fr;gap:10px}.tile{padding:14px}
-  .stat b{font-size:19px}.panel{padding:12px}
+  .grid{grid-template-columns:1fr 1fr;gap:10px}.tile{padding:14px}.panel{padding:12px}
+  .hero .ph{width:128px}.hero .art{height:128px}.art{height:120px}
+  .best b.big{font-size:26px}.btn{padding:10px 14px}
+  table.t2 .diff,table.t2 th.dh{display:none}table.t2 td,table.t2 th{padding:10px 4px}.tag{display:block;margin:2px 0 0}
+  .btn.sec{padding:7px 10px}
   .tick{font-size:11px}
 }
 </style>
@@ -124,20 +148,39 @@ const dnum=d=>Date.parse(d+"T00:00:00Z")/DAY;
 const dstr=n=>new Date(n*DAY).toISOString().slice(0,10);
 const dlab=d=>{const p=d.split("-");return +p[2]+" "+MON[+p[1]-1]+" "+p[0]};
 const dshort=n=>{const x=new Date(n*DAY);return x.getUTCDate()+" "+MON[x.getUTCMonth()]};
+// сегодняшняя дата по Алматы (UTC+5), всегда не раньше последних данных
+const TODAY=(()=>{const t=new Date(Date.now()+5*36e5).toISOString().slice(0,10);return t>D.updated?t:D.updated})();
+const TN=dnum(TODAY);
 
-// ----- данные -----
+// ----- курс -----
 const rates={}; D.rates.forEach(r=>rates[r[0]]=r[1]);
-const rateKeys=Object.keys(rates).sort();
-const lastRateKey=rateKeys[rateKeys.length-1];
+const rateKeys=Object.keys(rates).sort(), lastRateKey=rateKeys[rateKeys.length-1];
 const daily={}; (D.daily||[]).forEach(r=>daily[r[0]]=r[1]);
 function rateFor(date){if(date in daily)return [daily[date],false];const k=date.slice(0,7);return k in rates?[rates[k],false]:[rates[lastRateKey],true]}
+
+// ----- магазины: приоритет iSpace, затем Sulpak -----
+const ORDER=["iSpace","Sulpak"];
+const isOff=n=>/^Официальная цена/.test(n);
+const rank=n=>{const i=ORDER.indexOf(n);return i>=0?i:(isOff(n)?30:/^Маркетплейс/.test(n)?20:10)};
+const COLS={"iSpace":"var(--s0)","Sulpak":"var(--s1)"};
+const colorOf=(n,i)=>COLS[n]||(isOff(n)?"var(--mute)":["var(--s2)","var(--s3)"][i%2]);
+
+// ----- данные -----
 const byVar={}; D.prices.forEach(p=>{(byVar[p[1]]=byVar[p[1]]||[]).push({d:p[0],t:dnum(p[0]),s:p[2],v:p[3]})});
 const famById=id=>D.families.find(f=>f.id===id);
 const brandOf=f=>f.brand||"apple";
 const memKey=(f,v)=>v.id.slice(f.id.length+1);
-function latest(varId){const m={};(byVar[varId]||[]).forEach(p=>{if(!m[p.s]||m[p.s].t<=p.t)m[p.s]=p});const a=Object.values(m),mx=Math.max(...a.map(p=>p.t));return a.filter(p=>p.t>=mx-14).sort((x,y)=>x.v-y.v||y.t-x.t)}
-function minNow(varId){const l=latest(varId);return l.length?Math.min(...l.map(p=>p.v)):null}
-function famFrom(f){const a=f.variants.map(v=>minNow(v.id)).filter(x=>x!==null);return a.length?Math.min(...a):null}
+// последняя запись каждого магазина (кроме официальной цены старта), только свежие, по цене и приоритету
+function latest(varId){
+  const m={};(byVar[varId]||[]).forEach(p=>{if(!isOff(p.s)&&(!m[p.s]||m[p.s].t<=p.t))m[p.s]=p});
+  const a=Object.values(m); if(!a.length)return [];
+  const mx=Math.max(...a.map(p=>p.t));
+  return a.filter(p=>p.t>=mx-14).sort((x,y)=>x.v-y.v||rank(x.s)-rank(y.s));
+}
+const officialOf=varId=>(byVar[varId]||[]).filter(p=>isOff(p.s)).sort((a,b)=>b.t-a.t)[0];
+function minNow(varId){const l=latest(varId);return l.length?l[0].v:null}
+function famFrom(f){const a=f.variants.map(v=>{const m=minNow(v.id);if(m!==null)return m;const o=officialOf(v.id);return o?o.v:null}).filter(x=>x!==null);return a.length?Math.min(...a):null}
+const imgOf=f=>{const x=D.images&&D.images[f.id];return x?(typeof x==="string"?{url:x}:x):null};
 
 const BRANDS=[
   {id:"apple",name:"Apple",ready:true,ch:"A",logo:"logos/apple.svg"},
@@ -149,38 +192,32 @@ const ICON_PHONE='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" str
 const ICON_CLOCK='<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M24 14v10l7 4"/></svg>';
 const STATUS={on_sale:["В продаже","ok"],soon:["Скоро","warn"],limited:["Ограниченно","warn"],archive:["Архив",""]};
 const brandIc=b=>b.logo?'<div class="ic img"><img src="'+b.logo+'" alt="" onerror="var p=this.parentNode;p.classList.remove(\'img\');p.textContent=\''+b.ch+'\'"></div>':'<div class="ic">'+b.ch+'</div>';
-
-// условные иллюстрации телефонов (не фотографии и не изображения реальных устройств)
-const ART={
-  iphone18pro:{lens:3,w:62,c1:"#35597f",c2:"#6f93bd"},
-  iphone18promax:{lens:3,w:70,c1:"#9a5b34",c2:"#d89a6a"},
-  iphone18:{lens:2,w:62,c1:"#4f8a6a",c2:"#93c7a8"},
-  iphoneduo:{lens:2,w:54,c1:"#7a52b3",c2:"#b69be0",tag:"Duo"},
-  iphone16:{lens:2,w:62,c1:"#3a4650",c2:"#7d8b96"}
-};
-const imgOf=f=>(D.images&&D.images[f.id])||"";
-function artInner(f){
-  const u=imgOf(f);
-  return (u?'<img src="'+esc(u)+'" alt="'+esc(f.name)+'" loading="lazy" referrerpolicy="no-referrer" onload="this.parentNode.classList.add(\'hasimg\')" onerror="this.remove()">':'')+phoneArt(f);
-}
-let artN=0;
-function phoneArt(f){
-  const a=ART[f.id]||{lens:2,w:62,c1:"#4a5a66",c2:"#8fa0ab"}, id="g"+(++artN), H=130, W=a.w, cx=W/2+6, x0=6, y0=6;
-  const lens=n=>{const pos=n===3?[[0,0],[1,0],[0.5,1]]:[[0,0],[1,0]];return pos.map(q=>'<circle cx="'+(x0+10+q[0]*13+(n===2?0:0))+'" cy="'+(y0+10+q[1]*13)+'" r="5" fill="#101820" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>').join("")};
-  return '<svg viewBox="0 0 '+(W+12)+' '+(H+12)+'" role="img" aria-label="Условная иллюстрация: '+esc(f.name)+'">'+
-    '<defs><linearGradient id="'+id+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+a.c2+'"/><stop offset="1" stop-color="'+a.c1+'"/></linearGradient></defs>'+
-    '<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" rx="12" fill="url(#'+id+')"/>'+
-    '<rect x="'+(x0+3)+'" y="'+(y0+3)+'" width="'+(W-6)+'" height="'+(H-6)+'" rx="9.5" fill="none" stroke="rgba(255,255,255,.28)"/>'+
-    '<rect x="'+(x0+6)+'" y="'+(y0+6)+'" width="'+(a.lens===3?34:34)+'" height="'+(a.lens===3?36:22)+'" rx="8" fill="rgba(0,0,0,.28)"/>'+lens(a.lens)+
-    (a.tag?'<text x="'+cx+'" y="'+(y0+H-14)+'" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.08em">'+a.tag.toUpperCase()+'</text>':'')+
-  '</svg>';
-}
 const plural=(n,a,b,c)=>{const m=n%10,k=n%100;return n+" "+(k>10&&k<20?c:m===1?a:m>1&&m<5?b:c)};
 
-function crumbs(parts){return '<p class="crumbs">'+parts.map(p=>p[1]?'<a href="'+p[1]+'">'+esc(p[0])+'</a>':esc(p[0])).join(" / ")+'</p>'}
-const FOOT='<p class="foot">Это ориентир на основе прошлых цен, а не гарантия и не финансовый совет. Показана цена с карточки товара в магазине, наличие товара не отслеживается. Курс доллара: средний за месяц по данным Национального банка РК, цена в долларах = цена в тенге / курс месяца. Данные обновлены: '+esc(D.updated)+'.</p>';
+// запасная иллюстрация, если фото магазина нет (не изображение реального устройства)
+const ART={iphone18pro:{lens:3,w:62,c1:"#35597f",c2:"#6f93bd"},iphone18promax:{lens:3,w:70,c1:"#9a5b34",c2:"#d89a6a"},iphone18:{lens:2,w:62,c1:"#4f8a6a",c2:"#93c7a8"},iphoneduo:{lens:2,w:54,c1:"#7a52b3",c2:"#b69be0",tag:"Duo"},iphone16:{lens:2,w:62,c1:"#3a4650",c2:"#7d8b96"}};
+let artN=0;
+function phoneArt(f){
+  const a=ART[f.id]||{lens:2,w:62,c1:"#4a5a66",c2:"#8fa0ab"},id="g"+(++artN),H=130,W=a.w,x0=6,y0=6;
+  const pos=a.lens===3?[[0,0],[1,0],[0.5,1]]:[[0,0],[1,0]];
+  return '<svg viewBox="0 0 '+(W+12)+' '+(H+12)+'" role="img" aria-label="Условная иллюстрация: '+esc(f.name)+'"><defs><linearGradient id="'+id+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+a.c2+'"/><stop offset="1" stop-color="'+a.c1+'"/></linearGradient></defs>'+
+  '<rect x="'+x0+'" y="'+y0+'" width="'+W+'" height="'+H+'" rx="12" fill="url(#'+id+')"/><rect x="'+(x0+3)+'" y="'+(y0+3)+'" width="'+(W-6)+'" height="'+(H-6)+'" rx="9.5" fill="none" stroke="rgba(255,255,255,.28)"/>'+
+  '<rect x="'+(x0+6)+'" y="'+(y0+6)+'" width="34" height="'+(a.lens===3?36:22)+'" rx="8" fill="rgba(0,0,0,.28)"/>'+
+  pos.map(q=>'<circle cx="'+(x0+16+q[0]*13)+'" cy="'+(y0+16+q[1]*13)+'" r="5" fill="#101820" stroke="rgba(255,255,255,.35)" stroke-width="1.2"/>').join("")+
+  (a.tag?'<text x="'+(W/2+6)+'" y="'+(y0+H-14)+'" text-anchor="middle" style="font-size:11px;font-weight:700;fill:#fff;letter-spacing:.08em">'+a.tag.toUpperCase()+'</text>':'')+'</svg>';
+}
+window.__artFb=function(el){const f=famById(el.dataset.f);if(!f)return;const p=el.parentNode;p.classList.add("ill");p.innerHTML=phoneArt(f)};
+// фото (если есть и проверено) либо иллюстрация; одновременно никогда не показываются
+function artBox(f){
+  const im=imgOf(f);
+  if(im&&im.url)return '<div class="art"><img src="'+esc(im.url)+'" alt="'+esc(f.name)+'" loading="lazy" referrerpolicy="no-referrer" data-f="'+esc(f.id)+'" onerror="__artFb(this)"></div>';
+  return '<div class="art ill">'+phoneArt(f)+'</div>';
+}
 
-// ----- страницы каталога -----
+function crumbs(parts){return '<p class="crumbs">'+parts.map(p=>p[1]?'<a href="'+p[1]+'">'+esc(p[0])+'</a>':esc(p[0])).join(" / ")+'</p>'}
+const FOOT='<p class="foot">Это ориентир на основе прошлых цен, а не гарантия и не финансовый совет. Показана цена с карточки товара в магазине, наличие товара не отслеживается. Курс доллара: официальный курс Национального банка РК, цена в долларах = цена в тенге / курс дня (если дня нет, то среднего за месяц). Данные обновлены: '+esc(D.updated)+'.</p>';
+
+// ----- каталог -----
 function home(){
   app.innerHTML='<h1>Когда станет дешевле?</h1><p class="sub">История цен в Казахстане в тенге и в долларах. Выберите раздел.</p>'+
   '<div class="grid">'+D.categories.map(c=>'<a class="tile" href="#/'+esc(c.id)+'"><div class="ic">'+ICON_PHONE+'</div><b>'+esc(c.name)+'</b><span class="s">Apple, скоро Samsung и другие</span></a>').join("")+
@@ -189,75 +226,112 @@ function home(){
 function brands(catId){
   const c=D.categories.find(x=>x.id===catId); if(!c)return notFound();
   app.innerHTML=crumbs([["Главная","#/"],[c.name]])+'<h1>'+esc(c.name)+'</h1><p class="sub">Выберите бренд.</p><div class="grid">'+
-  BRANDS.map(b=>{
-    const n=D.families.filter(f=>f.category===catId&&brandOf(f)===b.id).length;
+  BRANDS.map(b=>{const n=D.families.filter(f=>f.category===catId&&brandOf(f)===b.id).length;
     return b.ready?'<a class="tile" href="#/'+catId+'/'+b.id+'">'+brandIc(b)+'<b>'+b.name+'</b><span class="s">'+plural(n,"модель","модели","моделей")+'</span></a>'
-                  :'<div class="tile off">'+brandIc(b)+'<b>'+b.name+'</b><span class="s">Скоро</span></div>';
-  }).join("")+'</div>'+FOOT;
+                  :'<div class="tile off">'+brandIc(b)+'<b>'+b.name+'</b><span class="s">Скоро</span></div>'}).join("")+'</div>'+FOOT;
 }
 function models(catId,brandId){
   const c=D.categories.find(x=>x.id===catId), b=BRANDS.find(x=>x.id===brandId);
   if(!c||!b||!b.ready)return notFound();
   const fams=D.families.filter(f=>f.category===catId&&brandOf(f)===brandId);
   const card=f=>{const st=STATUS[f.status]||["",""],from=famFrom(f);
-    return '<a class="tile" href="#/'+catId+'/'+brandId+'/'+esc(f.id)+'"><div class="art">'+artInner(f)+'</div><b style="font-size:19px">'+esc(f.name)+'</b><span class="badge '+st[1]+'">'+st[0]+'</span>'+
+    return '<a class="tile" href="#/'+catId+'/'+brandId+'/'+esc(f.id)+'">'+artBox(f)+'<b style="font-size:19px">'+esc(f.name)+'</b><span class="badge '+st[1]+'">'+st[0]+'</span>'+
     (from?'<div class="price">от '+num(from)+' ₸</div>':'<span class="s">'+(f.status==="soon"?"Цен пока нет":"Нет данных")+'</span>')+'</a>'};
   const cur=fams.filter(f=>f.group!=="archive"),old=fams.filter(f=>f.group==="archive");
   app.innerHTML=crumbs([["Главная","#/"],[c.name,"#/"+catId],[b.name]])+'<h1>'+b.name+'</h1><p class="sub">Выберите модель, затем объем памяти.</p>'+
-   '<div class="grid">'+cur.map(card).join("")+'</div>'+(old.length?'<h2>Прошлые модели</h2><div class="grid">'+old.map(card).join("")+'</div>':'')+FOOT;
+   '<div class="grid">'+cur.map(card).join("")+'</div>'+(old.length?'<h2>Прошлые модели</h2><div class="grid" style="margin-top:12px">'+old.map(card).join("")+'</div>':'')+FOOT;
 }
 
 // ----- страница модели -----
 const ST={period:"all",cur:"kzt",rate:false,from:"",to:""};
 let redraw=null;
 
+function heroHtml(f,st){
+  const im=imgOf(f);
+  const cap=im&&im.url?(im.title?'<span class="ok-tick">✓</span> Фото со страницы магазина:<br>"'+esc(im.title)+'"'+(im.page?'<br><a href="'+esc(im.page)+'" target="_blank" rel="noopener noreferrer">открыть страницу</a>':''):'фото: сайт магазина')
+              :'условная иллюстрация';
+  return '<div class="hero"><div><h1>'+esc(f.name)+'</h1><span class="badge '+st[1]+'" style="margin-top:0">'+st[0]+'</span>'+(f.note?'<div class="note-box">'+esc(f.note)+'</div>':'')+'</div>'+
+         '<div class="ph">'+artBox(f)+'<small>'+cap+'</small></div></div>';
+}
+
 function famPage(catId,brandId,f,memk){
-  const c=D.categories.find(x=>x.id===catId), b=BRANDS.find(x=>x.id===brandId);
-  const st=STATUS[f.status]||["",""];
-  let h=crumbs([["Главная","#/"],[c.name,"#/"+catId],[b.name,"#/"+catId+"/"+brandId],[f.name]])+'<div class="hero"><div><h1>'+esc(f.name)+'</h1><span class="badge '+st[1]+'" style="margin-top:0">'+st[0]+'</span></div><div class="art">'+artInner(f)+'<small>'+(imgOf(f)?'фото: сайт магазина':'условная иллюстрация')+'</small></div></div>';
-  if(f.note)h+='<div class="note-box">'+esc(f.note)+'</div>';
-  if(!f.variants.length){app.innerHTML=h+'<p class="sub" style="margin-top:16px">Здесь появятся цены, когда модель поступит в продажу.</p>'+FOOT;return}
+  const c=D.categories.find(x=>x.id===catId), b=BRANDS.find(x=>x.id===brandId), st=STATUS[f.status]||["",""];
+  let h=crumbs([["Главная","#/"],[c.name,"#/"+catId],[b.name,"#/"+catId+"/"+brandId],[f.name]])+heroHtml(f,st);
+  if(!f.variants.length){
+    app.innerHTML=h+'<h2>Когда ждать цены</h2>'+'<div class="panel">'+analysisHtml(f,null)+'</div>'+FOOT;return;
+  }
   let v=f.variants.find(x=>memKey(f,x)===memk)||f.variants.find(x=>(byVar[x.id]||[]).length)||f.variants[0];
-  h+='<h2>Объем памяти</h2><div class="chips">'+f.variants.map(x=>{const m=minNow(x.id);
-    return '<a class="chip'+(x.id===v.id?' on':'')+(m===null?' nodata':'')+'" href="#/'+catId+'/'+brandId+'/'+esc(f.id)+'/'+esc(memKey(f,x))+'"><b>'+esc(x.memory)+'</b><span>'+(m===null?'нет данных':'от '+num(m)+' ₸')+'</span></a>'}).join("")+'</div>';
+  h+='<h2>Объем памяти</h2><div class="chips">'+f.variants.map(x=>
+    '<a class="chip'+(x.id===v.id?' on':'')+((byVar[x.id]||[]).length?'':' nodata')+'" href="#/'+catId+'/'+brandId+'/'+esc(f.id)+'/'+esc(memKey(f,x))+'">'+esc(x.memory)+'</a>').join("")+'</div>';
   const pts=(byVar[v.id]||[]).slice().sort((a,b)=>a.t-b.t);
   if(!pts.length){app.innerHTML=h+'<p class="sub">Для этой памяти цен пока нет.</p>'+FOOT;return}
 
-  app.innerHTML=h+
-  '<div class="stats" id="stats"></div>'+
-  '<div class="panel">'+
-   '<div class="ctl"><div class="seg" id="sp"><button data-p="30">1 мес</button><button data-p="90">3 мес</button><button data-p="180">6 мес</button><button data-p="365">1 год</button><button data-p="all">Все</button></div>'+
-   '<div class="seg" id="sc"><button data-c="kzt">₸ тенге</button><button data-c="usd">$ доллары</button></div></div>'+
-   '<div class="custom"><label>С <input type="date" id="df"></label><label>По <input type="date" id="dt"></label><label><input type="checkbox" id="cr"> показать курс доллара</label></div>'+
-   '<div class="legend" id="legend"></div>'+
-   '<div class="cw" id="cw"><div id="chart"></div><div class="tt" id="tt"></div></div>'+
-  '</div>'+
-  '<h2>Что это значит</h2><div class="panel verdict" id="verdict"></div>'+
-  '<details><summary>Показать данные</summary><table id="tbl"><thead><tr><th>Дата</th><th>Магазин</th><th>Цена, ₸</th><th>Цена, $</th></tr></thead><tbody></tbody></table></details>'+FOOT;
+  h+='<h2>1. Где дешевле всего</h2><p class="lead">Цены магазинов на '+esc(v.memory)+'. Сначала iSpace, затем Sulpak.</p><div class="panel" id="buy"></div>';
+  h+='<h2>2. Какие цены были раньше</h2><p class="lead">История по дням. Зеленым обведена самая низкая цена за период.</p>'+
+  '<div class="panel"><div class="ctl"><div class="seg" id="sp"><button data-p="30">1 мес</button><button data-p="90">3 мес</button><button data-p="180">6 мес</button><button data-p="365">1 год</button><button data-p="all">Все</button></div>'+
+  '<div class="seg" id="sc"><button data-c="kzt">₸ тенге</button><button data-c="usd">$ доллары</button></div></div>'+
+  '<div class="legend" id="legend"></div><div class="readout" id="ro"></div><div class="cw" id="cw"><div id="chart"></div></div>'+
+  '<div class="mini" id="mini"></div>'+
+  '<div class="custom"><label><input type="checkbox" id="cr"> показать курс доллара</label><details class="cd"><summary>Свой период</summary><div class="custom"><label>С <input type="date" id="df"></label><label>По <input type="date" id="dt"></label></div></details></div></div>'+
+  '<h2>3. Когда цена может снизиться</h2><p class="lead">Ориентир по прошлым данным и календарю распродаж. Это не прогноз и не гарантия.</p><div class="panel">'+analysisHtml(f,v)+'</div>'+
+  '<details><summary>Показать данные</summary><table class="d" id="tbl"><thead><tr><th>Дата</th><th>Магазин</th><th>Цена, ₸</th><th>Цена, $</th></tr></thead><tbody></tbody></table></details>'+FOOT;
+  app.innerHTML=h;
+  buyBlock(f,v,pts);
   setupChart(f,v,pts);
 }
 
+// ----- блок "где купить" -----
+function buyBlock(f,v,pts){
+  const lat=latest(v.id), el=document.getElementById("buy");
+  const money=n=>num(n)+" ₸", usd=p=>p.v/rateFor(p.d)[0];
+  const lastBy={}; pts.forEach(p=>{if(!isOff(p.s)&&(!lastBy[p.s]||lastBy[p.s].t<=p.t))lastBy[p.s]=p});
+  const rows=(v.stores&&v.stores.length?v.stores.map(s=>({store:s.store,url:s.url})):Object.keys(lastBy).map(s=>({store:s,url:""})))
+            .sort((a,b)=>rank(a.store)-rank(b.store));
+  const minV=lat.length?lat[0].v:null;
+  let h="";
+  if(lat.length){
+    const winners=lat.filter(p=>p.v===minV).sort((a,b)=>rank(a.s)-rank(b.s));
+    const first=winners[0], url=(rows.find(r=>r.store===first.s)||{}).url;
+    h+='<div class="best"><div><small>Самая низкая цена сегодня</small><b class="big">'+money(minV)+'</b><span class="who">'+winners.map(w=>esc(w.s)).join(" и ")+(winners.length>1?' (одинаково)':'')+' · около $'+num(usd(first))+'</span></div>'+
+       (url?'<a class="btn" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">Купить в '+esc(first.s)+' →</a>':'')+'</div>';
+  }
+  h+='<table class="t2"><thead><tr><th>Магазин</th><th class="r">Цена</th><th class="r dh">Отличие</th><th></th></tr></thead><tbody>';
+  rows.forEach((r,i)=>{
+    const p=lastBy[r.store], isMin=p&&minV!==null&&p.v===minV&&lat.some(x=>x.s===r.store);
+    const old=p&&p.t<TN-3;
+    h+='<tr class="'+(isMin?'min':'')+'"><td><span class="dot" style="background:'+colorOf(r.store,i)+'"></span><b>'+esc(r.store)+'</b>'+(isMin?'<span class="tag">ДЕШЕВЛЕ ВСЕГО</span>':'')+'</td>'+
+      '<td class="r">'+(p?'<b>'+money(p.v)+'</b><br><span class="muted">'+dlab(p.d)+(old?' (давно)':'')+'</span>':'<span class="muted">нет данных</span>')+'</td>'+
+      '<td class="r diff">'+(p&&minV!==null?(p.v===minV?'—':'+'+money(p.v-minV)):'')+'</td>'+
+      '<td class="r">'+(r.url?'<a class="btn'+(isMin?'':' sec')+'" href="'+esc(r.url)+'" target="_blank" rel="noopener noreferrer">В магазин</a>':'')+'</td></tr>';
+  });
+  h+='</tbody></table>';
+  const off=officialOf(v.id);
+  if(off&&minV!==null){const d=minV-off.v;h+='<p class="muted" style="margin:10px 0 0">Официальная цена на старте продаж ('+dlab(off.d)+'): '+money(off.v)+'. Сейчас '+(d===0?'цена такая же':d<0?'ниже на '+money(-d):'выше на '+money(d))+'.</p>'}
+  h+='<p class="muted" style="margin:8px 0 0">Цена с карточки товара. Наличие, рассрочка и скидки по картам могут отличаться, проверяйте на странице магазина.</p>';
+  el.innerHTML=h;
+}
+
+// ----- график -----
 function setupChart(f,v,pts){
-  const stores=[...new Set(pts.map(p=>p.s))];
-  const col=i=>"var(--s"+(i%4)+")";
-  const dmin=pts[0].t, dmax=pts[pts.length-1].t;
+  const stores=[...new Set(pts.map(p=>p.s))].sort((a,b)=>rank(a)-rank(b));
+  const col=s=>colorOf(s,stores.indexOf(s));
+  const dmin=pts[0].t;
   const usdOf=p=>p.v/rateFor(p.d)[0];
   const val=p=>ST.cur==="kzt"?p.v:usdOf(p);
   const $=id=>document.getElementById(id);
-  const ln=latest(v.id),bestSet=ln.filter(p=>p.v===ln[0].v).map(p=>p.s);
-  $("legend").innerHTML=stores.map((s,i)=>'<span><i style="background:'+col(i)+'"></i>'+esc(s)+(bestSet.includes(s)?' <b style="color:var(--ok)">дешевле сейчас</b>':'')+'</span>').join("");
-  $("df").min=$("dt").min=dstr(dmin); $("df").max=$("dt").max=dstr(dmax);
+  const bestNow=latest(v.id), minNowV=bestNow.length?bestNow[0].v:null;
+  $("legend").innerHTML=stores.map(s=>'<span><i style="background:'+col(s)+'"></i>'+esc(s)+(bestNow.some(p=>p.s===s&&p.v===minNowV)?' <b style="color:var(--ok)">дешевле сейчас</b>':'')+'</span>').join("");
+  $("df").min=$("dt").min=dstr(dmin); $("df").max=$("dt").max=TODAY;
 
   function range(){
-    let t0,t1;
-    if(ST.period==="custom"){t0=ST.from?dnum(ST.from):dmin;t1=ST.to?dnum(ST.to):dmax;if(t0>t1){const x=t0;t0=t1;t1=x}}
-    else if(ST.period==="all"){t0=dmin;t1=dmax}
-    else{t1=dmax;t0=dmax-(+ST.period)}
+    let t0,t1=TN;
+    if(ST.period==="custom"){t0=ST.from?dnum(ST.from):dmin;t1=ST.to?Math.min(dnum(ST.to),TN):TN;if(t0>t1){const x=t0;t0=t1;t1=x}}
+    else if(ST.period==="all")t0=dmin;
+    else t0=TN-(+ST.period);
     return [t0,t1];
   }
   function niceAxis(lo,hi){
-    if(hi-lo<1e-9){lo=lo*0.98;hi=hi*1.02}
-    else{const p=(hi-lo)*0.12;lo-=p;hi+=p}
+    if(hi-lo<1e-9){lo=lo*0.98;hi=hi*1.02}else{const p=(hi-lo)*0.14;lo-=p;hi+=p}
     const raw=(hi-lo)/4,pw=Math.pow(10,Math.floor(Math.log10(raw))),m=raw/pw;
     const st=(m<=1?1:m<=2?2:m<=2.5?2.5:m<=5?5:10)*pw;
     const mn=Math.floor(lo/st)*st,mx=Math.ceil(hi/st)*st,ticks=[];
@@ -265,190 +339,200 @@ function setupChart(f,v,pts){
     return {mn,mx,ticks};
   }
   const fmtY=z=>ST.cur==="kzt"?num(z):"$"+num(z);
+  const money=p=>ST.cur==="kzt"?num(p.v)+" ₸":"$"+num(usdOf(p));
+
+  function xTicks(d0,d1,x,W,L,R,H,B){
+    const maxT=Math.max(2,Math.floor((W-L-R)/78)),span=d1-d0;let out="";
+    const tk=(t,label)=>'<text class="tick" x="'+x(t)+'" y="'+(H-6)+'" text-anchor="middle">'+label+'</text><line x1="'+x(t)+'" x2="'+x(t)+'" y1="'+(H-B)+'" y2="'+(H-B+4)+'" stroke="var(--mute)" opacity=".6"/>';
+    if(span/maxT>20){
+      const a=new Date(d0*DAY),b=new Date(d1*DAY);
+      const total=(b.getUTCFullYear()-a.getUTCFullYear())*12+b.getUTCMonth()-a.getUTCMonth()+1;
+      const k=[1,2,3,6,12].find(q=>total/q<=maxT)||12;
+      let y=a.getUTCFullYear(),m=a.getUTCMonth()+1; if(m%k)m+=k-m%k; if(k===1)m=a.getUTCMonth()+1;
+      for(;;){const yy=y+Math.floor(m/12),mm=m%12,t=Date.UTC(yy,mm,1)/DAY;if(t>d1)break;if(t>=d0)out+=tk(t,MON[mm]+" "+yy);m+=k}
+    }else{
+      const k=[1,2,3,7,14,30].find(q=>span/q<=maxT)||30;
+      for(let t=Math.ceil(d0/k)*k;t<=d1;t+=k)out+=tk(t,dshort(t));
+    }
+    return out;
+  }
+
+  function readoutAt(t){
+    const rows=stores.map(s=>{let best=null;pts.filter(p=>p.s===s&&p.t<=t).forEach(p=>{if(!best||p.t>=best.t)best=p});return best}).filter(Boolean);
+    const exact=pts.some(p=>p.t===t);
+    const ds=dstr(t),rt=rateFor(ds);
+    $("ro").innerHTML='<b>'+(ds===TODAY?'Сегодня, '+dlab(ds):dlab(ds))+'</b>'+(exact?'':' <span class="muted">(последние известные цены)</span>')+'<br>'+
+      rows.filter(p=>isOff(p.s)?p.t===t:(t-p.t<=(exact?0:30)||ds===TODAY)).map(p=>'<span style="white-space:nowrap"><span class="dot" style="background:'+col(p.s)+'"></span>'+esc(p.s)+' <b>'+money(p)+'</b></span>').join(" &nbsp; ")+
+      ' &nbsp; <span class="muted">курс '+dec(rt[0],2)+(rt[1]?'*':'')+' ₸</span>';
+  }
 
   function draw(){
-    const [t0,t1]=range();
-    const vis=pts.filter(p=>p.t>=t0&&p.t<=t1);
-    // кнопки и поля
+    const [t0,t1]=range(), vis=pts.filter(p=>p.t>=t0&&p.t<=t1);
     document.querySelectorAll("#sp button").forEach(b=>b.classList.toggle("on",b.dataset.p===ST.period));
     document.querySelectorAll("#sc button").forEach(b=>b.classList.toggle("on",b.dataset.c===ST.cur));
     $("cr").checked=ST.rate; $("df").value=dstr(t0); $("dt").value=dstr(t1);
-    const tt=$("tt"); tt.style.display="none";
+    fillTable(vis);
+    if(!vis.length){$("chart").innerHTML='<div class="empty">В выбранном периоде нет данных. Выберите "Все" или другие даты.</div>';$("mini").innerHTML="";$("ro").innerHTML="";return}
 
-    drawStats();
-    if(!vis.length){$("chart").innerHTML='<div class="empty">В выбранном периоде нет данных. Выберите "Все" или другие даты.</div>';fillTable([]);return}
-
-    const cw=$("cw"), W=Math.max(280,cw.clientWidth), narrow=W<520;
-    const L=narrow?62:74,R=narrow?12:18,T=26,H=narrow?250:320,B=26;
-    const span=Math.max(t1-t0,0), pad=span===0?7:Math.max(1,span*0.04);
+    const cw=$("cw"),W=Math.max(280,cw.clientWidth),narrow=W<520;
+    const L=narrow?62:74,R=narrow?14:20,T=28,H=narrow?260:330,B=26;
+    const span=Math.max(t1-t0,0),pad=span===0?7:Math.max(1,span*0.04);
     const d0=t0-pad,d1=t1+pad;
     const x=t=>L+(t-d0)/(d1-d0)*(W-L-R);
-    const vals=vis.map(val);
-    const ax=niceAxis(Math.min(...vals),Math.max(...vals));
+    const vals=vis.map(val),ax=niceAxis(Math.min(...vals),Math.max(...vals));
     const y=z=>T+(ax.mx-z)/(ax.mx-ax.mn)*(H-T-B);
-    let s='';
-    // горизонтальные линии и подписи
+    let s="";
     ax.ticks.forEach(z=>{s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(z)+'" y2="'+y(z)+'" stroke="var(--grid)"/><text class="tick" x="'+(L-8)+'" y="'+(y(z)+4)+'" text-anchor="end">'+fmtY(z)+'</text>'});
-    s+='<text class="unit" x="'+L+'" y="14">'+(ST.cur==="kzt"?"Цена, ₸":"Цена, $")+'</text>';
-    s+=xTicks(d0,d1,x,W,L,R,H,B);
-    // события
-    (f.events||[]).forEach(e=>{const t=dnum(e[0]);if(t<d0||t>d1)return;const late=x(t)>W-130;
-      s+='<line x1="'+x(t)+'" x2="'+x(t)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="var(--ev)" stroke-dasharray="4 4" opacity=".8"/>'+
-         '<text class="tick" x="'+(x(t)+(late?-5:5))+'" y="'+(T+12)+'" text-anchor="'+(late?'end':'start')+'" style="fill:var(--ev)">'+esc(e[1])+'</text>'});
-    // линии магазинов
-    stores.forEach((st,i)=>{
-      const sp=vis.filter(p=>p.s===st); if(!sp.length)return;
-      for(let k=1;k<sp.length;k++){
-        const a=sp[k-1],b=sp[k],gap=b.t-a.t>10;
-        s+='<line x1="'+x(a.t)+'" y1="'+y(val(a))+'" x2="'+x(b.t)+'" y2="'+y(val(b))+'" stroke="'+col(i)+'" stroke-width="2.2" stroke-linecap="round"'+(gap?' stroke-dasharray="2 6"':'')+'/>';
-      }
+    s+='<text class="unit" x="'+L+'" y="14">'+(ST.cur==="kzt"?"Цена, ₸":"Цена, $")+'</text>'+xTicks(d0,d1,x,W,L,R,H,B);
+    // события и сегодня
+    (f.events||[]).forEach(e=>{const t=dnum(e[0]);if(t<d0||t>d1)return;const late=x(t)>W-140;
+      s+='<line x1="'+x(t)+'" x2="'+x(t)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="var(--ev)" stroke-dasharray="4 4" opacity=".8"/><text class="tick" x="'+(x(t)+(late?-5:5))+'" y="'+(T+12)+'" text-anchor="'+(late?'end':'start')+'" style="fill:var(--ev)">'+esc(e[1])+'</text>'});
+    if(TN>=d0&&TN<=d1)s+='<line x1="'+x(TN)+'" x2="'+x(TN)+'" y1="'+T+'" y2="'+(H-B)+'" stroke="var(--ink)" stroke-opacity=".35"/><text class="tick" x="'+x(TN)+'" y="'+(T-8)+'" text-anchor="end" style="font-weight:700;fill:var(--ink)">сегодня, '+dshort(TN)+'</text>';
+    // линии магазинов (рисуем в обратном порядке, чтобы iSpace был сверху)
+    const order=stores.slice().reverse();
+    order.forEach(st=>{
+      const sp=vis.filter(p=>p.s===st);if(!sp.length)return;const c=col(st);
+      for(let k=1;k<sp.length;k++){const a=sp[k-1],b=sp[k];
+        s+='<line x1="'+x(a.t)+'" y1="'+y(val(a))+'" x2="'+x(b.t)+'" y2="'+y(val(b))+'" stroke="'+c+'" stroke-width="2.6" stroke-linecap="round"'+(b.t-a.t>10?' stroke-dasharray="2 6"':'')+'/>'}
+      const last=sp[sp.length-1];   // цена, которая действует до сегодня, если данные свежие
+      if(last.t<t1&&t1-last.t<=3)s+='<line x1="'+x(last.t)+'" y1="'+y(val(last))+'" x2="'+x(t1)+'" y2="'+y(val(last))+'" stroke="'+c+'" stroke-width="2.6" stroke-dasharray="2 5" stroke-linecap="round" opacity=".7"/>';
     });
-    stores.forEach((st,i)=>{
-      const sp=vis.filter(p=>p.s===st);
-      sp.forEach((p,k)=>{const last=k===sp.length-1,r=Math.max(3,(last?7:5)-i*1.3);
-        s+='<circle cx="'+x(p.t)+'" cy="'+y(val(p))+'" r="'+r+'" fill="'+col(i)+'" stroke="var(--card)" stroke-width="1.5"/>'});
-    });
-    // акцент: самая низкая цена за период
-    let mp=vis[0];vis.forEach(p=>{if(val(p)<val(mp)||(val(p)===val(mp)&&p.t>mp.t))mp=p});
-    {const mx=x(mp.t),my=y(val(mp)),txt="Минимум "+(ST.cur==="kzt"?num(mp.v)+" ₸":"$"+num(usdOf(mp)))+" · "+mp.s,tw=txt.length*6.6+16;
-      const bx=Math.min(Math.max(mx-tw/2,L),W-R-tw),by=my-40<T+2?my+16:my-40;
-      s+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+my+'" y2="'+my+'" stroke="var(--ok)" stroke-dasharray="3 5" opacity=".6"/>'+
-         '<circle cx="'+mx+'" cy="'+my+'" r="11" fill="none" stroke="var(--ok)" stroke-width="2.5"/>'+
-         '<rect x="'+bx+'" y="'+by+'" width="'+tw+'" height="24" rx="12" fill="var(--ok)"/>'+
-         '<text x="'+(bx+tw/2)+'" y="'+(by+16)+'" text-anchor="middle" style="font-size:12px;font-weight:700;fill:#fff">'+esc(txt)+'</text>';}
-    s+='<line id="cross" x1="-10" x2="-10" y1="'+T+'" y2="'+(H-B)+'" stroke="var(--ink)" stroke-opacity=".3"/>';
-    s+='<rect id="hit" x="'+L+'" y="0" width="'+(W-L-R)+'" height="'+H+'" fill="transparent"/>';
+    order.forEach(st=>{const sp=vis.filter(p=>p.s===st),c=col(st),ri=stores.indexOf(st);
+      sp.forEach((p,k)=>{const lastp=k===sp.length-1,r=Math.max(3.5,(lastp?7.5:5)-ri*1.2);
+        s+='<circle cx="'+x(p.t)+'" cy="'+y(val(p))+'" r="'+r+'" fill="'+c+'" stroke="var(--card)" stroke-width="1.8"/>'})});
+    // акцент на минимальной цене
+    let mp=vis[0];vis.forEach(p=>{if(val(p)<val(mp)||(val(p)===val(mp)&&(p.t>mp.t||(p.t===mp.t&&rank(p.s)<rank(mp.s)))))mp=p});
+    {const mx=x(mp.t),my=y(val(mp)),txt="мин. "+(ST.cur==="kzt"?num(mp.v)+" ₸":"$"+num(usdOf(mp))),tw=txt.length*7+16;
+      const bx=Math.min(Math.max(mx-tw/2,L),W-R-tw),by=my-38<T+4?my+16:my-38;
+      s+='<circle cx="'+mx+'" cy="'+my+'" r="12" fill="none" stroke="var(--ok)" stroke-width="2.8"/>'+
+         '<rect x="'+bx+'" y="'+by+'" width="'+tw+'" height="24" rx="12" fill="var(--ok)"/><text x="'+(bx+tw/2)+'" y="'+(by+16)+'" text-anchor="middle" style="font-size:12px;font-weight:700;fill:#fff">'+txt+'</text>';}
+    // подсказка: курсор
+    s+='<line id="cross" x1="-10" x2="-10" y1="'+T+'" y2="'+(H-B)+'" stroke="var(--ink)" stroke-opacity=".3"/><rect id="hit" x="'+L+'" y="0" width="'+(W-L-R)+'" height="'+H+'" fill="transparent"/>';
     let svg='<svg id="svg1" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="График цены">'+s+'</svg>';
 
     // панель курса
     if(ST.rate){
-      const H2=150,T2=24,B2=26;
-      const mk=[];const dayMonths={};const dpts=Object.keys(daily).filter(k=>{const t=dnum(k);return t>=d0&&t<=d1}).sort();
-      Object.keys(daily).forEach(k=>dayMonths[k.slice(0,7)]=1);
-      for(let m=new Date(d0*DAY),mm=Date.UTC(m.getUTCFullYear(),m.getUTCMonth(),1)/DAY;mm<=d1;){
-        const dd=new Date(mm*DAY),key=dd.getUTCFullYear()+"-"+String(dd.getUTCMonth()+1).padStart(2,"0");
-        const next=Date.UTC(dd.getUTCFullYear(),dd.getUTCMonth()+1,1)/DAY;
-        if(key in rates&&!dayMonths[key])mk.push([Math.max(mm,d0),Math.min(next,d1),rates[key]]);
-        mm=next;
-      }
+      const H2=150,T2=24,B2=26,mk=[],dm={};
+      Object.keys(daily).forEach(k=>dm[k.slice(0,7)]=1);
+      const dpts=Object.keys(daily).filter(k=>{const t=dnum(k);return t>=d0&&t<=d1}).sort();
+      for(let q=new Date(d0*DAY),mm=Date.UTC(q.getUTCFullYear(),q.getUTCMonth(),1)/DAY;mm<=d1;){
+        const dd=new Date(mm*DAY),key=dd.getUTCFullYear()+"-"+String(dd.getUTCMonth()+1).padStart(2,"0"),next=Date.UTC(dd.getUTCFullYear(),dd.getUTCMonth()+1,1)/DAY;
+        if(key in rates&&!dm[key])mk.push([Math.max(mm,d0),Math.min(next,d1),rates[key]]);mm=next}
       if(mk.length||dpts.length){
-        const allv=mk.map(q=>q[2]).concat(dpts.map(k=>daily[k]));
-        const ax2=niceAxis(Math.min(...allv),Math.max(...allv));
+        const allv=mk.map(q=>q[2]).concat(dpts.map(k=>daily[k])),ax2=niceAxis(Math.min(...allv),Math.max(...allv));
         const y2=z=>T2+(ax2.mx-z)/(ax2.mx-ax2.mn)*(H2-T2-B2);
         let s2='<text class="unit" x="'+L+'" y="14">Курс доллара, ₸</text>';
         ax2.ticks.forEach(z=>{s2+='<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y2(z)+'" y2="'+y2(z)+'" stroke="var(--grid)"/><text class="tick" x="'+(L-8)+'" y="'+(y2(z)+4)+'" text-anchor="end">'+num(z)+'</text>'});
         let path="";mk.forEach((q,i)=>{path+=(i?"L":"M")+x(q[0])+" "+y2(q[2])+"L"+x(q[1])+" "+y2(q[2])});
         s2+='<path d="'+path+'" fill="none" stroke="var(--rate)" stroke-width="2.2" stroke-linejoin="round"/>';
-        if(dpts.length){let dp="";dpts.forEach((k,i)=>{dp+=(i?"L":"M")+x(dnum(k))+" "+y2(daily[k])});
-          s2+='<path d="'+dp+'" fill="none" stroke="var(--rate)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'+(dpts.length<40?dpts.map(k=>'<circle cx="'+x(dnum(k))+'" cy="'+y2(daily[k])+'" r="2.5" fill="var(--rate)"/>').join(""):"");}
+        if(dpts.length){let dp="";dpts.forEach((k,i)=>{dp+=(i?"L":"M")+x(dnum(k))+" "+y2(daily[k])});s2+='<path d="'+dp+'" fill="none" stroke="var(--rate)" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>'}
         s2+=xTicks(d0,d1,x,W,L,R,H2,B2);
         svg+='<svg width="'+W+'" height="'+H2+'" viewBox="0 0 '+W+' '+H2+'" role="img" aria-label="Курс доллара" style="cursor:default">'+s2+'</svg>';
       }
     }
     $("chart").innerHTML=svg;
 
-    // подсказка
-    const svgEl=$("svg1"), hit=$("hit"), cross=$("cross");
-    const dates=[...new Set(vis.map(p=>p.t))].sort((a,b)=>a-b);
-    function showAt(cx){
-      const r=svgEl.getBoundingClientRect(), px=(cx-r.left)*W/r.width;
+    // итоги под графиком (без повторения текущей цены)
+    const byD={};vis.forEach(p=>{if(isOff(p.s)&&vis.some(q=>!isOff(q.s)))return;if(!byD[p.t]||val(p)<val(byD[p.t]))byD[p.t]=p});
+    const ks=Object.keys(byD).map(Number).sort((a,b)=>a-b);
+    let hi=vis[0];vis.forEach(p=>{if(val(p)>val(hi))hi=p});
+    const F=p=>ST.cur==="kzt"?num(p.v)+" ₸":"$"+num(usdOf(p));
+    let ch;
+    if(ks.length>1&&ks[ks.length-1]-ks[0]>=7){const c=pct(val(byD[ks[0]]),val(byD[ks[ks.length-1]]));
+      ch='<div><small>Изменение за период</small><b>'+(Math.abs(c)<0.05?'Цена не менялась':f1(c))+'</b><em>с '+dshort(ks[0])+' по '+dshort(ks[ks.length-1])+'</em></div>'}
+    else ch='<div><small>Изменение за период</small><b>мало данных</b><em>нужна история от недели</em></div>';
+    $("mini").innerHTML=ch+'<div><small>Самая низкая</small><b>'+F(mp)+'</b><em>'+dlab(mp.d)+', '+esc(mp.s)+'</em></div><div><small>Самая высокая</small><b>'+F(hi)+'</b><em>'+dlab(hi.d)+', '+esc(hi.s)+'</em></div>';
+
+    // курсор и строка значений
+    readoutAt(Math.min(TN,t1));
+    const svgEl=$("svg1"),hit=$("hit"),cross=$("cross"),dates=[...new Set(vis.map(p=>p.t))].sort((a,b)=>a-b);
+    function showAt(cx){const r=svgEl.getBoundingClientRect(),px=(cx-r.left)*W/r.width;
       let best=dates[0],bd=1e9;dates.forEach(t=>{const d=Math.abs(x(t)-px);if(d<bd){bd=d;best=t}});
-      const xx=x(best);cross.setAttribute("x1",xx);cross.setAttribute("x2",xx);
-      const rows=vis.filter(p=>p.t===best).sort((a,b)=>a.v-b.v);
-      const ds=dstr(best),rt=rateFor(ds);
-      tt.innerHTML='<b>'+dlab(ds)+'</b>'+rows.map(p=>'<div class="r"><span><i style="background:'+col(stores.indexOf(p.s))+'"></i>'+esc(p.s)+'</span><span><b style="display:inline;margin:0">'+(ST.cur==="kzt"?num(p.v)+" ₸":"$"+num(usdOf(p)))+'</b></span></div>'+
-        '<div class="r m"><span></span><span>'+(ST.cur==="kzt"?"$"+num(usdOf(p)):num(p.v)+" ₸")+'</span></div>').join("")+
-        '<div class="r m"><span>Курс</span><span>'+dec(rt[0],2)+(rt[1]?"*":"")+' ₸</span></div>';
-      tt.style.display="block";
-      const wrap=cw.getBoundingClientRect(),w=tt.offsetWidth;
-      const left=xx>W/2?xx-w-12:xx+12;
-      tt.style.left=Math.max(0,left)+"px";tt.style.top="30px";
-    }
+      cross.setAttribute("x1",x(best));cross.setAttribute("x2",x(best));readoutAt(best)}
     hit.addEventListener("pointermove",e=>showAt(e.clientX));
     hit.addEventListener("pointerdown",e=>showAt(e.clientX));
-    hit.addEventListener("pointerleave",()=>{tt.style.display="none";cross.setAttribute("x1",-10);cross.setAttribute("x2",-10)});
-    fillTable(vis);
-  }
-
-  function xTicks(d0,d1,x,W,L,R,H,B){
-    const maxT=Math.max(2,Math.floor((W-L-R)/78)), span=d1-d0; let out="";
-    if(span/maxT>20){
-      const a=new Date(d0*DAY),b=new Date(d1*DAY);
-      const total=(b.getUTCFullYear()-a.getUTCFullYear())*12+b.getUTCMonth()-a.getUTCMonth()+1;
-      const k=[1,2,3,6,12].find(q=>total/q<=maxT)||12;
-      let y=a.getUTCFullYear(),m=a.getUTCMonth()+1;
-      if(m%k)m+=k-m%k; if(k===1)m=a.getUTCMonth()+1;
-      for(;;){const yy=y+Math.floor(m/12),mm=m%12,t=Date.UTC(yy,mm,1)/DAY;if(t>d1)break;
-        if(t>=d0)out+='<text class="tick" x="'+x(t)+'" y="'+(H-6)+'" text-anchor="middle">'+MON[mm]+" "+yy+'</text><line x1="'+x(t)+'" x2="'+x(t)+'" y1="'+(H-B)+'" y2="'+(H-B+4)+'" stroke="var(--mute)" opacity=".6"/>';
-        m+=k;}
-    }else{
-      const k=[1,2,3,7,14,30].find(q=>span/q<=maxT)||30;
-      for(let t=Math.ceil(d0/k)*k;t<=d1;t+=k)out+='<text class="tick" x="'+x(t)+'" y="'+(H-6)+'" text-anchor="middle">'+dshort(t)+'</text><line x1="'+x(t)+'" x2="'+x(t)+'" y1="'+(H-B)+'" y2="'+(H-B+4)+'" stroke="var(--mute)" opacity=".6"/>';
-    }
-    return out;
-  }
-
-  function drawStats(){
-    const [t0,t1]=range(), vis=pts.filter(p=>p.t>=t0&&p.t<=t1);
-    const now=latest(v.id).sort((a,b)=>a.v-b.v), best=now[0];
-    const money=p=>ST.cur==="kzt"?num(p.v)+" ₸":"$"+num(usdOf(p));
-    let h='<div class="stat"><small>'+(f.group==="archive"?"Последняя цена":"Сейчас дешевле всего")+'</small><b>'+money(best)+'</b><em>'+esc(best.s)+', '+dlab(best.d)+'</em></div>';
-    // изменение за период по минимальной цене на дату
-    const byD={};vis.forEach(p=>{byD[p.t]=Math.min(byD[p.t]??1e12,val(p))});
-    const ks=Object.keys(byD).map(Number).sort((a,b)=>a-b);
-    if(ks.length>1&&ks[ks.length-1]-ks[0]>=7){
-      const ch=pct(byD[ks[0]],byD[ks[ks.length-1]]);
-      h+='<div class="stat"><small>Изменение за период</small><b>'+f1(ch)+'</b><em>с '+dshort(ks[0])+' по '+dshort(ks[ks.length-1])+(ST.cur==="usd"?', в долларах':', в тенге')+'</em></div>';
-    }else h+='<div class="stat"><small>Изменение за период</small><b>мало данных</b><em>нужна история от недели</em></div>';
-    if(vis.length){const vs=vis.map(val),lo=Math.min(...vs),hi=Math.max(...vs),F=z=>ST.cur==="kzt"?num(z)+" ₸":"$"+num(z);
-      h+='<div class="stat"><small>Минимум и максимум</small><b>'+(hi-lo<1e-6?F(lo):F(lo)+" – "+F(hi))+'</b><em>за выбранный период</em></div>'}
-    $("stats").innerHTML=h;
+    hit.addEventListener("pointerleave",()=>{cross.setAttribute("x1",-10);cross.setAttribute("x2",-10);readoutAt(Math.min(TN,t1))});
   }
 
   function fillTable(rows){
     const tb=document.querySelector("#tbl tbody");tb.innerHTML="";
-    rows.slice().sort((a,b)=>b.t-a.t||a.s.localeCompare(b.s)).forEach(p=>tb.insertAdjacentHTML("beforeend",'<tr><td>'+dlab(p.d)+'</td><td>'+esc(p.s)+'</td><td>'+num(p.v)+'</td><td>$'+num(usdOf(p))+'</td></tr>'));
+    rows.slice().sort((a,b)=>b.t-a.t||rank(a.s)-rank(b.s)).forEach(p=>tb.insertAdjacentHTML("beforeend",'<tr><td>'+dlab(p.d)+'</td><td>'+esc(p.s)+'</td><td>'+num(p.v)+'</td><td>$'+num(usdOf(p))+'</td></tr>'));
   }
-
-  // вывод простыми словами по всей истории
-  (function verdict(){
-    const dates=[...new Set(pts.map(p=>p.d))].sort();
-    const ser=dates.map(d=>({d:d,t:dnum(d),v:Math.min(...pts.filter(p=>p.d===d).map(p=>p.v))}));
-    const U=q=>q.v/rateFor(q.d)[0];
-    let h="";const a=ser[0],b=ser[ser.length-1];
-    if(b.t-a.t>=30)h+='<p>С '+dlab(a.d)+' по '+dlab(b.d)+' лучшая цена в тенге изменилась на '+f1(pct(a.v,b.v))+', а в долларах на '+f1(pct(U(a),U(b)))+'. Разница между этими числами это влияние курса.</p>';
-    else h+='<p>История пока короткая: самая ранняя точка '+dlab(a.d)+'. С каждым днем график будет полнее.</p>';
-    const now=latest(v.id).sort((p,q)=>p.v-q.v);
-    if(now.length>1&&now[0].v!==now[now.length-1].v)h+='<p>Сейчас дешевле всего в магазине '+esc(now[0].s)+': '+num(now[0].v)+' ₸ (в '+esc(now[now.length-1].s)+' на '+num(now[now.length-1].v-now[0].v)+' ₸ дороже).</p>';
-    (f.events||[]).forEach(e=>{const ed=dnum(e[0]);
-      const post=ser.find(q=>q.t>=ed-10&&q.t<=ed+60),pre=ser.filter(q=>q.t<ed-10).pop();
-      if(post&&pre&&post!==pre)h+='<p>Вокруг события "'+esc(e[1])+'" (с '+dlab(pre.d)+' по '+dlab(post.d)+'): цена в тенге '+f1(pct(pre.v,post.v))+', курс '+f1(pct(rateFor(pre.d)[0],rateFor(post.d)[0]))+', цена в долларах '+f1(pct(U(pre),U(post)))+'.</p>'});
-    if(pts.some(p=>rateFor(p.d)[1]))h+='<p style="font-size:14px;color:var(--mute)">* За этот месяц курса еще нет, взят последний известный.</p>';
-    h+='<p style="color:var(--mute);font-size:14px">Точек мало, поэтому это ориентир, а не прогноз.</p>';
-    $("verdict").innerHTML=h;
-  })();
-
-  // управление
   $("sp").onclick=e=>{const b=e.target.closest("button");if(!b)return;ST.period=b.dataset.p;draw()};
   $("sc").onclick=e=>{const b=e.target.closest("button");if(!b)return;ST.cur=b.dataset.c;draw()};
   $("cr").onchange=e=>{ST.rate=e.target.checked;draw()};
   $("df").onchange=e=>{ST.period="custom";ST.from=e.target.value;ST.to=$("dt").value;draw()};
   $("dt").onchange=e=>{ST.period="custom";ST.to=e.target.value;ST.from=$("df").value;draw()};
-  redraw=draw; draw();
+  redraw=draw;draw();
+}
+
+// ----- анализ: когда ждать снижения -----
+// календарь на будущее (даты распродаж объявляются магазинами, поэтому это ориентир)
+const CAL=[
+ ["2026-11-27","Черная пятница","Главная дата ноябрьских распродаж в Казахстане, магазины могут начать раньше. Сравнивайте цену по таблице выше, а не процент скидки на ценнике: перед акциями бывает завышенная \"старая цена\"."],
+ ["2026-12-20","Новогодние распродажи","Конец декабря: праздничные акции и рассрочка. Условия по iPhone объявляют сами магазины."],
+ ["2027-02-15","Февраль - март","По iPhone 16 самое заметное снижение пришлось на 4-5 месяц после выхода (февраль 2025)."],
+ ["2027-03-08","8 марта и Наурыз (21-23 марта)","Праздничные акции магазинов электроники."],
+ ["2027-04-01","Весна 2027: iPhone 18 и 18e","По сообщениям СМИ, базовую модель Apple выпустит весной. Apple это официально не подтвердила."],
+ ["2027-09-15","Сентябрь 2027: новая линейка","Конец сезона: прошлогодние модели чаще дешевеют при выходе новых. Но у iPhone 16 при выходе iPhone 17 цена в долларах упала всего на 2,2%."]
+];
+function refCurve(){
+  const rel=dnum("2024-09-20"),a=(byVar["iphone16-128"]||[]).filter(p=>p.s==="Маркетплейсы").sort((x,y)=>x.t-y.t);
+  if(a.length<3)return null;
+  const base=a[0].v,pts=a.map(p=>[(p.t-rel)/30.4375,p.v/base]).filter(q=>q[0]<=6);
+  return pts.length>=3?pts:null;
+}
+function ratioAt(c,age){
+  if(age<=c[0][0])return c[0][1];
+  for(let i=1;i<c.length;i++)if(age<=c[i][0]){const k=(age-c[i-1][0])/(c[i][0]-c[i-1][0]);return c[i-1][1]+k*(c[i][1]-c[i-1][1])}
+  return null;
+}
+function analysisHtml(f,v){
+  const items=[];let out="";
+  const ev=(f.events||[])[0], age=ev&&f.group!=="archive"?(TN-dnum(ev[0]))/30.4375:null;
+  const cur=refCurve();
+  if(f.group==="archive"){
+    const a=(byVar[v?v.id:""]||[]).filter(p=>p.s==="Маркетплейсы").sort((x,y)=>x.t-y.t);
+    if(a.length>2){const lo=a.reduce((m,p)=>p.v<m.v?p:m,a[0]),first=a[0];
+      items.push(["dn","Что было в прошлом","Цена iPhone 16 на маркетплейсах: "+num(first.v)+" ₸ ("+dlab(first.d)+") → минимум "+num(lo.v)+" ₸ ("+dlab(lo.d)+"), это "+f1(pct(first.v,lo.v))+" за "+Math.round((lo.t-first.t)/30)+" мес. Дальше цена почти не менялась."])}
+  }else if(f.status==="soon"){
+    items.push(["go","Пока нет цен","Модель еще не в продаже. Сборщик начнет записывать цены, когда появятся страницы в магазинах. На старте цены обычно держатся на уровне официальных."]);
+  }else if(f.status==="limited"){
+    items.push(["up","Для Duo нет аналога в истории","Это новый тип устройства с ограниченной доступностью. В таких случаях цены в первые месяцы чаще держатся высокими, а не снижаются."]);
+  }else if(cur&&age!==null){
+    const r0=ratioAt(cur,age),ageEnd=cur[cur.length-1][0];
+    const res=[];
+    [[1,"через 1 месяц"],[2,"через 2 месяца"]].forEach(([h,lab])=>{const r=ratioAt(cur,age+h);if(r&&r0)res.push(lab+" около "+f1(pct(r0,r)))});
+    const rEnd=ratioAt(cur,Math.min(ageEnd,4.4));
+    const dEnd=new Date(dnum(ev[0])*DAY+Math.min(ageEnd,4.4)*30.4375*DAY);
+    items.push(["dn","Снижение вероятно, но постепенное","Модель вышла "+dlab(ev[0])+", сейчас ей "+dec(age,1)+" мес. У iPhone 16 на маркетплейсах цена снижалась ступенями: "+(res.length?res.join(", ")+" от нынешней; ":"")+
+      (rEnd&&r0?"к "+MON[dEnd.getUTCMonth()]+" "+dEnd.getUTCFullYear()+" примерно "+f1(pct(r0,rEnd))+". ":"")+"Это одна прошлая модель, ориентир не гарантия."]);
+    const m=(byVar["iphone16-128"]||[]),mk=m.filter(p=>p.s==="Маркетплейсы").sort((x,y)=>x.t-y.t)[0],rs=m.filter(p=>p.s==="Официальные реселлеры")[0];
+    if(mk&&rs)items.push(["go","У официальных партнеров снижения скромнее","У iPhone 16 в октябре 2024 официальные реселлеры держали "+num(rs.v)+" ₸, а маркетплейсы "+num(mk.v)+" ₸ (на "+dec(pct(mk.v,rs.v),0)+"% дороже). iSpace и Sulpak это официальные партнеры, поэтому их цена обычно стабильнее, чем на маркетплейсах вроде Kaspi."]);
+  }
+  // риски повышения: курс
+  const r1=rateFor(TODAY)[0],r0=rateFor(dstr(TN-30))[0],rc=pct(r0,r1);
+  items.push(["up","Что может поднять цену","Ослабление тенге: за последние 30 дней курс "+dec(r0,1)+" → "+dec(r1,1)+" ₸ ("+f1(rc)+(Math.abs(rc)<1.5?", почти без изменений":rc>0?", тенге слабеет, риск роста":", тенге укрепляется")+"). Также цену поддерживают дефицит нужных цветов и конфигураций на старте и предновогодний спрос."]);
+  out+='<div class="sig">'+items.map(i=>'<div class="row '+i[0]+'"><i>'+(i[0]==="dn"?"↓":i[0]==="up"?"↑":"i")+'</i><div><b>'+i[1]+'</b>'+i[2]+'</div></div>').join("")+'</div>';
+  // календарь
+  out+='<h3 style="font-size:16px;margin:18px 0 6px">Календарь возможных скидок</h3><table class="t2 cal"><tbody>'+
+    CAL.map(c=>{const past=dnum(c[0])<TN-1;return '<tr class="'+(past?'past':'')+'"><td>'+dlab(c[0])+'</td><td><b>'+esc(c[1])+'</b><br><span class="muted">'+esc(c[2])+'</span></td></tr>'}).join("")+'</tbody></table>';
+  out+='<p class="muted" style="margin:10px 0 0"><b>Kaspi Жұма</b> в этом году проходила 18-21 июня и 5-8 ноября. Даты объявляют за пару недель, следите за анонсами. Пример осторожности: покупатели сообщали, что iPhone 18 Pro Max 1 ТБ в Kaspi перед Жұма подорожал с 1 284 028 до 1 616 998 ₸ (это не доказывает умысел). Мы сохраняем цены каждый день, так что реальную скидку видно по графику выше.</p>';
+  out+='<p class="muted" style="margin:10px 0 0"><b>Что делать.</b> Нужен телефон сейчас: берите там, где дешевле в блоке 1. Можно подождать: ближайшие окна это Черная пятница, Новый год и февраль - март. Не верьте проценту на ценнике, сверяйте с этим графиком.</p>';
+  out+='<p class="src">Источники: <a href="https://bes.media/amp/kaspi-zhuma-proydet-5-8-noyabrya-chetyre-dnya-skidok-bonusov-i-vygodnoy-rassrochki/" target="_blank" rel="noopener noreferrer">bes.media (Kaspi Жұма)</a>, <a href="https://finratings.kz/news/17483-iphone-podorozhal-na-333-tysiachi-tenge-pered-kaspi-zhuma-kazakhstanka-vozmutilas-tsenami/" target="_blank" rel="noopener noreferrer">finratings.kz (цены перед Жұма)</a>, <a href="https://finance.kz/articles/black-friday-fake-discounts-internet-shops-kazakhstan-2026" target="_blank" rel="noopener noreferrer">finance.kz (Черная пятница 2026)</a>, данные digitalbusiness.kz по iPhone 16. Сроки выхода iPhone 18 в 2027 по сообщениям СМИ.</p>';
+  return out;
 }
 
 let rt=null;
 window.addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{if(redraw&&document.getElementById("chart"))redraw()},150)});
-
 function notFound(){app.innerHTML=crumbs([["Главная","#/"]])+'<h1>Страница не найдена</h1><p class="sub"><a href="#/">На главную</a></p>'}
-
 function route(){
   const p=location.hash.replace(/^#\/?/,"").split("/").filter(Boolean);
-  redraw=null; window.scrollTo(0,0);
+  redraw=null;window.scrollTo(0,0);
   if(!p.length)return home();
   if(p.length===1)return brands(p[0]);
   if(p.length===2)return models(p[0],p[1]);
-  const f=famById(p[2]); if(!f||f.category!==p[0]||brandOf(f)!==p[1])return notFound();
+  const f=famById(p[2]);if(!f||f.category!==p[0]||brandOf(f)!==p[1])return notFound();
   famPage(p[0],p[1],f,p[3]);
 }
 window.addEventListener("hashchange",route);
