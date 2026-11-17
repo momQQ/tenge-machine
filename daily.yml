@@ -1,0 +1,41 @@
+name: daily-prices
+
+on:
+  schedule:
+    # 03:17 по UTC = 08:17 по Казахстану. GitHub может запустить с опозданием.
+    - cron: "17 3 * * *"
+  workflow_dispatch:   # кнопка "Run workflow" для ручного запуска
+
+permissions:
+  contents: write      # чтобы сохранять обновленные данные в репозиторий
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Собрать цены
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT: ${{ secrets.TG_CHAT }}
+        run: python collector/collect.py
+
+      - name: Собрать курсы валют и золото
+        env:
+          TG_TOKEN: ${{ secrets.TG_TOKEN }}
+          TG_CHAT: ${{ secrets.TG_CHAT }}
+        run: python collector/fx.py
+
+      - name: Сохранить данные в репозитории
+        run: |
+          git config user.name "price-bot"
+          git config user.email "price-bot@users.noreply.github.com"
+          git add data
+          git diff --staged --quiet || git commit -m "Обновление цен $(date -u +%F)"
+          git pull --rebase
+          git push

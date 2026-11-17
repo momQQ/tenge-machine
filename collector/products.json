@@ -27,12 +27,43 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-18-pro-256-gb-serebristyi-mjrq4af-a"
+              "url": "https://ispace.kz/product/iphone-18-pro-256-gb-serebristyi-mjrq4af-a",
+              "inst": [
+                12,
+                24
+              ]
             },
             {
               "store": "Sulpak",
               "parser": "sulpak",
-              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-256gb-silver-mjrq4hxa"
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-256gb-silver-mjrq4hxa",
+              "inst": [
+                12,
+                24
+              ]
+            },
+            {
+              "store": "Mechta",
+              "parser": "none",
+              "url": "https://www.mechta.kz/section/smartfony/brend-apple/",
+              "note": "карточка iPhone 18 Pro на сайте не найдена"
+            },
+            {
+              "store": "Technodom",
+              "parser": "technodom",
+              "url": "https://www.technodom.kz/p/smartfon-apple-iphone-18-pro-12256gb6348-burgundy-302607",
+              "inst": [
+                24
+              ]
+            },
+            {
+              "store": "Kaspi",
+              "parser": "kaspi",
+              "url": "https://kaspi.kz/shop/p/apple-iphone-18-pro-256gb-nanosim-esim-chernyi-177317967/",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         },
@@ -43,12 +74,20 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-18-pro-512-gb-serebristyi-mjrv4af-a"
+              "url": "https://ispace.kz/product/iphone-18-pro-512-gb-serebristyi-mjrv4af-a",
+              "inst": [
+                12,
+                24
+              ]
             },
             {
               "store": "Sulpak",
               "parser": "sulpak",
-              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-512gb-silver-mjrv4hxa"
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-512gb-silver-mjrv4hxa",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         },
@@ -59,12 +98,20 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-18-pro-1-tb-cernyi-mjry4af-a"
+              "url": "https://ispace.kz/product/iphone-18-pro-1-tb-cernyi-mjry4af-a",
+              "inst": [
+                12,
+                24
+              ]
             },
             {
               "store": "Sulpak",
               "parser": "sulpak",
-              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-1tb-black-mjry4hxa"
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-1tb-black-mjry4hxa",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         },
@@ -75,16 +122,25 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-18-pro-2-tb-serebristyi-mjt44af-a"
+              "url": "https://ispace.kz/product/iphone-18-pro-2-tb-serebristyi-mjt44af-a",
+              "inst": [
+                12,
+                24
+              ]
             },
             {
               "store": "Sulpak",
               "parser": "sulpak",
-              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-2tb-silver-mjt44hxa"
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-2tb-silver-mjt44hxa",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         }
-      ]
+      ],
+      "brand": "apple"
     },
     {
       "id": "iphone18promax",
@@ -107,12 +163,20 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-18-pro-max-256-gb-cernyi-mjxn4af-a"
+              "url": "https://ispace.kz/product/iphone-18-pro-max-256-gb-cernyi-mjxn4af-a",
+              "inst": [
+                12,
+                24
+              ]
             },
             {
               "store": "Sulpak",
               "parser": "sulpak",
-              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-max-256gb-black-mjxn4hxa"
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-max-256gb-black-mjxn4hxa",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         },
@@ -123,12 +187,20 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-18-pro-max-512-gb-cernyi-mjxt4af-a"
+              "url": "https://ispace.kz/product/iphone-18-pro-max-512-gb-cernyi-mjxt4af-a",
+              "inst": [
+                12,
+                24
+              ]
             },
             {
               "store": "Sulpak",
               "parser": "sulpak",
-              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-max-512gb-black-mjxt4hxa"
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-max-512gb-black-mjxt4hxa",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         },
@@ -139,12 +211,20 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-18-pro-max-1-tb-burgundy-mjy04af-a"
+              "url": "https://ispace.kz/product/iphone-18-pro-max-1-tb-burgundy-mjy04af-a",
+              "inst": [
+                12,
+                24
+              ]
             },
             {
               "store": "Sulpak",
               "parser": "sulpak",
-              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-max-1tb-burgundy-mjy04hxa"
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-max-1tb-burgundy-mjy04hxa",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         },
@@ -155,11 +235,16 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-18-pro-max-2-tb-glacier-mjy54af-a"
+              "url": "https://ispace.kz/product/iphone-18-pro-max-2-tb-glacier-mjy54af-a",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         }
-      ]
+      ],
+      "brand": "apple"
     },
     {
       "id": "iphone18",
@@ -169,7 +254,8 @@
       "group": "current",
       "note": "По сообщениям СМИ, обычная модель iPhone 18 отложена и выйдет весной 2027 года. Пока в продаже ее нет, поэтому цен и вариантов памяти на сайте нет. Как только она появится в магазинах, мы добавим ее сюда.",
       "events": [],
-      "variants": []
+      "variants": [],
+      "brand": "apple"
     },
     {
       "id": "iphoneduo",
@@ -192,12 +278,20 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-duo-256-gb-night-sky-mk2e4af-a"
+              "url": "https://ispace.kz/product/iphone-duo-256-gb-night-sky-mk2e4af-a",
+              "inst": [
+                12,
+                24
+              ]
             },
             {
               "store": "Sulpak",
               "parser": "sulpak",
-              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-duo-256gb-night-sky-mk2e4hxa"
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-duo-256gb-night-sky-mk2e4hxa",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         },
@@ -208,7 +302,11 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-duo-512-gb-night-sky-mk2g4af-a"
+              "url": "https://ispace.kz/product/iphone-duo-512-gb-night-sky-mk2g4af-a",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         },
@@ -219,7 +317,11 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-duo-1-tb-night-sky-mk2j4af-a"
+              "url": "https://ispace.kz/product/iphone-duo-1-tb-night-sky-mk2j4af-a",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         },
@@ -230,16 +332,25 @@
             {
               "store": "iSpace",
               "parser": "ispace",
-              "url": "https://ispace.kz/product/iphone-duo-2-tb-star-white-mk2k4af-a"
+              "url": "https://ispace.kz/product/iphone-duo-2-tb-star-white-mk2k4af-a",
+              "inst": [
+                12,
+                24
+              ]
             },
             {
               "store": "Sulpak",
               "parser": "sulpak",
-              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-duo-2tb-star-white-mk2k4hxa"
+              "url": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-duo-2tb-star-white-mk2k4hxa",
+              "inst": [
+                12,
+                24
+              ]
             }
           ]
         }
-      ]
+      ],
+      "brand": "apple"
     },
     {
       "id": "iphone16",
@@ -268,7 +379,420 @@
           "memory": "128 ГБ",
           "stores": []
         }
-      ]
+      ],
+      "brand": "apple"
+    },
+    {
+      "id": "iphone17",
+      "category": "smartphones",
+      "brand": "apple",
+      "name": "iPhone 17",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в сентябре 2025. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "iphone17pro",
+      "category": "smartphones",
+      "brand": "apple",
+      "name": "iPhone 17 Pro",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в сентябре 2025. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "iphone17promax",
+      "category": "smartphones",
+      "brand": "apple",
+      "name": "iPhone 17 Pro Max",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в сентябре 2025. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "galaxys26ultra",
+      "category": "smartphones",
+      "brand": "samsung",
+      "name": "Galaxy S26 Ultra",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в феврале 2026. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "galaxys26",
+      "category": "smartphones",
+      "brand": "samsung",
+      "name": "Galaxy S26",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в феврале 2026. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "galaxyzfold8",
+      "category": "smartphones",
+      "brand": "samsung",
+      "name": "Galaxy Z Fold8",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в июле 2026. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "galaxyzflip8",
+      "category": "smartphones",
+      "brand": "samsung",
+      "name": "Galaxy Z Flip8",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в июле 2026. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "galaxya57",
+      "category": "smartphones",
+      "brand": "samsung",
+      "name": "Galaxy A57",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "galaxya17",
+      "category": "smartphones",
+      "brand": "samsung",
+      "name": "Galaxy A17",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в январе 2026. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "xiaomi17ultra",
+      "category": "smartphones",
+      "brand": "xiaomi",
+      "name": "Xiaomi 17 Ultra",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "xiaomi17",
+      "category": "smartphones",
+      "brand": "xiaomi",
+      "name": "Xiaomi 17",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "xiaomi17tpro",
+      "category": "smartphones",
+      "brand": "xiaomi",
+      "name": "Xiaomi 17T Pro",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в мае 2026. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "xiaomi17t",
+      "category": "smartphones",
+      "brand": "xiaomi",
+      "name": "Xiaomi 17T",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в мае 2026. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "xiaomi15tpro",
+      "category": "smartphones",
+      "brand": "xiaomi",
+      "name": "Xiaomi 15T Pro",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "redminote15pro",
+      "category": "smartphones",
+      "brand": "redmi",
+      "name": "Redmi Note 15 Pro",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "redminote15propl",
+      "category": "smartphones",
+      "brand": "redmi",
+      "name": "Redmi Note 15 Pro+",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "redminote15",
+      "category": "smartphones",
+      "brand": "redmi",
+      "name": "Redmi Note 15",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "redmi15",
+      "category": "smartphones",
+      "brand": "redmi",
+      "name": "Redmi 15",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "redmi15c",
+      "category": "smartphones",
+      "brand": "redmi",
+      "name": "Redmi 15C",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "pocof8pro",
+      "category": "smartphones",
+      "brand": "poco",
+      "name": "POCO F8 Pro",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "pocof8ultra",
+      "category": "smartphones",
+      "brand": "poco",
+      "name": "POCO F8 Ultra",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "pocof7",
+      "category": "smartphones",
+      "brand": "poco",
+      "name": "POCO F7",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "pocox7pro",
+      "category": "smartphones",
+      "brand": "poco",
+      "name": "POCO X7 Pro",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "pocom7pro",
+      "category": "smartphones",
+      "brand": "poco",
+      "name": "POCO M7 Pro",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "findx9ultra",
+      "category": "smartphones",
+      "brand": "oppo",
+      "name": "OPPO Find X9 Ultra",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "findx9pro",
+      "category": "smartphones",
+      "brand": "oppo",
+      "name": "OPPO Find X9 Pro",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "findx9",
+      "category": "smartphones",
+      "brand": "oppo",
+      "name": "OPPO Find X9",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "reno15pro",
+      "category": "smartphones",
+      "brand": "oppo",
+      "name": "OPPO Reno15 Pro",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в январе 2026. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "reno15",
+      "category": "smartphones",
+      "brand": "oppo",
+      "name": "OPPO Reno15",
+      "status": "nodata",
+      "group": "current",
+      "note": "Вышел в январе 2026. Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "pura80pro",
+      "category": "smartphones",
+      "brand": "huawei",
+      "name": "HUAWEI Pura 80 Pro",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "pura80ultra",
+      "category": "smartphones",
+      "brand": "huawei",
+      "name": "HUAWEI Pura 80 Ultra",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "mate80pro",
+      "category": "smartphones",
+      "brand": "huawei",
+      "name": "HUAWEI Mate 80 Pro",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "nova14",
+      "category": "smartphones",
+      "brand": "huawei",
+      "name": "HUAWEI nova 14",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
+    },
+    {
+      "id": "purax",
+      "category": "smartphones",
+      "brand": "huawei",
+      "name": "HUAWEI Pura X",
+      "status": "nodata",
+      "group": "current",
+      "note": "Модель добавлена в каталог. Цены и ссылки на магазины появятся после настройки сбора.",
+      "events": [],
+      "variants": []
     }
-  ]
+  ],
+  "stores": {
+    "iSpace": {
+      "type": "official",
+      "rank": 1,
+      "home": "https://ispace.kz",
+      "logo": "logos/ispace.svg",
+      "mono": "iS"
+    },
+    "Sulpak": {
+      "type": "official",
+      "rank": 2,
+      "home": "https://www.sulpak.kz",
+      "logo": "logos/sulpak.svg",
+      "mono": "Su"
+    },
+    "Mechta": {
+      "type": "official",
+      "rank": 3,
+      "home": "https://www.mechta.kz",
+      "logo": "logos/mechta.svg",
+      "mono": "Me"
+    },
+    "Technodom": {
+      "type": "official",
+      "rank": 4,
+      "home": "https://www.technodom.kz",
+      "logo": "logos/technodom.svg",
+      "mono": "Te"
+    },
+    "Kaspi": {
+      "type": "marketplace",
+      "rank": 9,
+      "home": "https://kaspi.kz",
+      "logo": "logos/kaspi.svg",
+      "mono": "Ka",
+      "note": "Площадка независимых продавцов"
+    }
+  }
 }
