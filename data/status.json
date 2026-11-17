@@ -1,0 +1,194 @@
+{
+ "iphone18pro-256|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 849990,
+  "avail": false
+ },
+ "iphone18pro-256|Sulpak": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "разметка страницы",
+  "last_ok": "2026-11-18",
+  "price": 849990,
+  "avail": false
+ },
+ "iphone18pro-256|Mechta": {
+  "state": "no_data",
+  "checked": "2026-11-18",
+  "note": "ссылка на карточку не указана",
+  "last_ok": null,
+  "price": null,
+  "avail": null
+ },
+ "iphone18pro-256|Technodom": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "разметка страницы",
+  "last_ok": "2026-11-18",
+  "price": 849990,
+  "avail": false
+ },
+ "iphone18pro-256|Kaspi": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "продавцов: 5",
+  "last_ok": "2026-11-18",
+  "price": 843935,
+  "avail": true
+ },
+ "iphone18pro-512|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 993990,
+  "avail": false
+ },
+ "iphone18pro-512|Sulpak": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "разметка страницы",
+  "last_ok": "2026-11-18",
+  "price": 993990,
+  "avail": false
+ },
+ "iphone18pro-1tb|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 1275990,
+  "avail": false
+ },
+ "iphone18pro-1tb|Sulpak": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "разметка страницы",
+  "last_ok": "2026-11-18",
+  "price": 1275990,
+  "avail": false
+ },
+ "iphone18pro-2tb|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 1698990,
+  "avail": false
+ },
+ "iphone18pro-2tb|Sulpak": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "разметка страницы",
+  "last_ok": "2026-11-18",
+  "price": 1698990,
+  "avail": false
+ },
+ "iphone18promax-256|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 909990,
+  "avail": false
+ },
+ "iphone18promax-256|Sulpak": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "разметка страницы",
+  "last_ok": "2026-11-18",
+  "price": 909990,
+  "avail": false
+ },
+ "iphone18promax-512|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 1063990,
+  "avail": false
+ },
+ "iphone18promax-512|Sulpak": {
+  "state": "no_data",
+  "checked": "2026-11-18",
+  "note": "цена на странице не найдена",
+  "last_ok": null,
+  "price": null,
+  "avail": null
+ },
+ "iphone18promax-1tb|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 1345990,
+  "avail": false
+ },
+ "iphone18promax-1tb|Sulpak": {
+  "state": "no_data",
+  "checked": "2026-11-18",
+  "note": "цена на странице не найдена",
+  "last_ok": null,
+  "price": null,
+  "avail": null
+ },
+ "iphone18promax-2tb|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 1769990,
+  "avail": false
+ },
+ "iphoneduo-256|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 1399990,
+  "avail": false
+ },
+ "iphoneduo-256|Sulpak": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "разметка страницы",
+  "last_ok": "2026-11-18",
+  "price": 1399990,
+  "avail": false
+ },
+ "iphoneduo-512|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 1564990,
+  "avail": false
+ },
+ "iphoneduo-1tb|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 1847990,
+  "avail": false
+ },
+ "iphoneduo-2tb|iSpace": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "заголовок страницы",
+  "last_ok": "2026-11-18",
+  "price": 2273990,
+  "avail": false
+ },
+ "iphoneduo-2tb|Sulpak": {
+  "state": "ok",
+  "checked": "2026-11-18",
+  "note": "разметка страницы",
+  "last_ok": "2026-11-18",
+  "price": 2273990,
+  "avail": false
+ }
+}
