@@ -140,7 +140,7 @@ const brandIc=b=>b.logo?'<div class="ic img"><img src="'+b.logo+'" alt="" onerro
 let SEARCH_Q="",onSearch=null,onEnter=null;
 function renderTop(){
   document.documentElement.lang=LANG==="kk"?"kk":"ru";
-  document.title=t("Тиімді сәт: когда брать и где дешевле","Тиімді сәт: қашан алған және қайда арзан");
+  if(!window.TM_STUB)document.title=t("Тиімді сәт: когда брать и где дешевле","Тиімді сәт: қашан алған және қайда арзан");
   const nf=cmpItems().length;
   topEl.innerHTML='<div class="topin">'+
   '<a class="logo" href="#/"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16 7v9l-6 4" fill="none" stroke="var(--time)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16a12 12 0 0 1 3-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M4.5 5.5V10H9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lt">Тиімді сәт<small>'+t("когда брать и где дешевле","қашан алған және қайда арзан")+'</small></span></a>'+
@@ -217,9 +217,11 @@ function verdict(f,v,pts){
   if(rc>2){buy+=1;R.push(["up",t("Тенге за месяц ослаб на "+dec(rc,1)+"%, цены могут вырасти.","Теңге бір айда "+dec(rc,1)+"% әлсіреді, бағалар өсуі мүмкін.")])}
   else R.push(["",t("Курс доллара за 30 дней "+f1(rc)+(Math.abs(rc)<1.5?", почти без изменений":", тенге крепнет")+": на цену это сейчас почти не давит.","Доллар бағамы 30 күнде "+f1(rc)+(Math.abs(rc)<1.5?", шамамен өзгермеді":", теңге нығайып жатыр")+": бағаға қазір ықпалы шамалы.")]);
   if(wait>0)R.push(["",t("У iSpace и Sulpak это официальные партнеры, их цены обычно снижаются скромнее, чем на маркетплейсах вроде Kaspi.","iSpace және Sulpak ресми серіктестер, олардың бағасы Kaspi сияқты маркетплейстерге қарағанда әдетте аз төмендейді.")]);
+  const hist=new Set(pts.map(p=>p.t)).size;
   const diff=wait-buy,tone=diff<0?"buy":diff===0?"mid":diff>=3?"wait":"slow";
   const title=tone==="buy"?t("Можно брать","Алуға болады"):tone==="mid"?t("Решайте сами","Өзіңіз шешіңіз"):tone==="slow"?t("Лучше не спешить","Асықпаған жөн"):t("Лучше подождать","Күткен жөн");
   if(tone==="mid"&&!R.some(r=>r[0]))R.unshift(["",t("Явных причин ждать или спешить нет: если телефон нужен, берите по лучшей цене.","Күтуге де, асығуға да нақты себеп жоқ: телефон керек болса, ең жақсы бағамен алыңыз.")]);
+  if(hist<2&&tone!=="buy"){return {tone:"mid",title:t("Мало истории","Тарих аз"),reasons:[["",t("Цену отслеживаем меньше двух дней, уверенный совет дать рано. Смотрите лучшую цену и сравнивайте магазины.","Бағаны екі күннен аз бақылап отырмыз, нақты кеңес беру ерте. Үздік баға мен дүкендерді салыстырыңыз.")]].concat(R.filter(r=>r[0]==="dn"&&/дн\./.test(r[1])))}}
   return {tone,title,reasons:R};
 }
 
@@ -495,7 +497,7 @@ function fxPage(cur){
       '<td class="fxu">'+esc(e.upd.slice(11))+'</td><td><a class="fxgo'+(i===0?" pri":"")+'" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+t("Сайт","Сайт")+' ↗</a></td></tr>'}).join("");
   }
   app.innerHTML=crumbs([[HOME(),"#/"],[t("Валюта","Валюта")]])+
-   '<h1>'+t("Курсы валют в Алматы","Алматыдағы валюта бағамдары")+'</h1><p class="sub">'+t("Сравниваем обменники и банки: валюты, золото и серебро. Показываем, где выгоднее купить и продать. Данные Нацбанка на ","Айырбастау пункттері мен банктерді салыстырамыз: валюта, алтын және күміс. Қайда сатып алу және сату тиімді екенін көрсетеміз. Ұлттық банк деректері: ")+esc(FX&&FX.updated||TODAY)+'.</p>'+
+   '<h1>'+t("Курсы валют в Алматы","Алматыдағы валюта бағамдары")+'</h1><p class="sub">'+t("Сравниваем обменники и банки: доллар, евро, рубль, юань и фунт. Показываем, где выгоднее купить и продать. Данные Нацбанка на ","Айырбастау пункттері мен банктерді салыстырамыз: валюта, алтын және күміс. Қайда сатып алу және сату тиімді екенін көрсетеміз. Ұлттық банк деректері: ")+esc(FX&&FX.updated||TODAY)+'.</p>'+
    (FX&&FX.demo?'<div class="demo">'+t("Демо-данные: обменники и курсы на странице выдуманы для макета. Реальные появятся после подключения источника.","Демо-деректер: беттегі айырбастау пункттері мен бағамдар макет үшін ойдан шығарылған. Нақтылары дереккөз қосылғаннан кейін шығады.")+'</div>':'')+
    '<section class="card fxpick" id="fxp"><div class="fxq"><span class="ql">'+t("1. Что хотите сделать","1. Не істегіңіз келеді")+'</span><div class="seg big" id="fxm"><button data-m="buy" class="'+(mode==="buy"?"on":"")+'">'+t("Хочу купить","Сатып алғым келеді")+'</button><button data-m="sell" class="'+(mode==="sell"?"on":"")+'">'+t("Хочу продать","Сатқым келеді")+'</button></div></div>'+
     '<div class="fxq"><span class="ql">'+t("2. Выберите валюту или металл","2. Валюта немесе металды таңдаңыз")+'</span><div class="fxt" role="tablist">'+fxAvail().map(k=>{const s2=fxStat(k);return '<button type="button" role="tab" aria-selected="'+(k===cur)+'" class="'+(k===cur?"on":"")+'" data-c="'+k+'"><span class="fxs">'+FXC[k].s+'</span><b>'+t(FXC[k].n[0],FXC[k].n[1])+'</b>'+(s2?'<span>'+dc(s2.last)+' ₸</span>':'')+'</button>'}).join("")+'</div></div>'+
@@ -515,7 +517,21 @@ function fxPage(cur){
    '<h3 class="fxh3">'+t("Ближайшие 6 месяцев","Алдағы 6 ай")+'</h3><div class="fxcal">'+next.map(([m,x])=>'<div class="card"><b>'+MN[m-1]+'</b><span class="mut">'+(M?t(FXGM[m][1],FXGM[m][2]):t(FXN[m][0],FXN[m][1]))+'</span>'+(M?'<em class="'+(FXGM[m][0]===2?"up":FXGM[m][0]===0?"dn":"")+'">'+t("спрос ","сұраныс ")+[t("ниже среднего","орташадан төмен"),t("средний","орташа"),t("выше среднего","орташадан жоғары")][FXGM[m][0]]+'</em>':x?'<em class="'+(x.v>=0?"up":"dn")+'">'+t("в прошлые годы ","өткен жылдары ")+f1(x.v)+'</em>':'')+'</div>').join("")+'</div>'+
    '<h3 class="fxh3">'+t(M?"Что влияет на цену":"Что влияет на курс",M?"Бағаға не әсер етеді":"Бағамға не әсер етеді")+'</h3><div class="fxfac">'+(M?FXGF.map(f=>'<div class="card'+(f[0].includes("серебр")&&cur==="XAU"?" dim":"")+'"><div class="fh"><b>'+t(f[0],f[1])+'</b><span class="ar '+f[2]+'">'+(f[2]==="up"?t("цена вверх","баға жоғары"):t("цена вниз","баға төмен"))+'</span></div><p>'+t(f[3],f[4])+'</p></div>'):FXF.map(f=>'<div class="card'+(f[2].includes(cur)?"":" dim")+'"><div class="fh"><b>'+t(f[0],f[1])+'</b><span class="ar '+f[3]+'">'+(f[3]==="up"?t("курс вверх","бағам жоғары"):t("курс вниз","бағам төмен"))+'</span></div><p>'+t(f[4],f[5])+'</p></div>')).join("")+'</div>'+
    '<p class="mut fxdis">'+t("Это ориентир по прошлым данным и типичным причинам, а не обещание и не финансовый совет. Курс может пойти в другую сторону из-за событий, которые заранее не видны.","Бұл өткен деректер мен әдеттегі себептерге негізделген бағдар, уәде де, қаржылық кеңес те емес. Бағам алдын ала көрінбейтін оқиғаларға байланысты басқа бағытқа кетуі мүмкін.")+'</p>'+FOOT();
-  const draw=()=>{document.getElementById("fxb").innerHTML=tbl();document.getElementById("fxth").textContent=mode==="buy"?t("Вы заплатите","Сіз төлейсіз"):t("Вы получите","Сіз аласыз")};
+  const MOB=innerWidth<=700;
+  function mcards(){
+    const rows=ex.slice().sort((a,b)=>mode==="buy"?a.rates[cur][1]-b.rates[cur][1]:b.rates[cur][0]-a.rates[cur][0]);
+    const val=e=>mode==="buy"?e.rates[cur][1]:e.rates[cur][0],best=rows[0];
+    return rows.slice(0,showAll?999:LIM).map((e,i)=>{const v=val(e),tot=amt*v,sav=best?Math.abs(val(best)-v)*amt:0;
+      return '<article class="mc'+(i===0?" best":"")+'"><div class="mc1"><span class="rk">'+(i+1)+'</span>'+avatar(e.name)+'<div class="mcn"><b>'+esc(e.name)+'</b><small>'+((e.type||"exchanger")==="bank"?t("Банк","Банк"):t("Обменник","Айырбастау"))+' · '+esc(e.upd.slice(11))+'</small></div><div class="mcr"><b>'+dc(v)+'</b><small>₸ / '+U+'</small></div></div>'+
+      '<div class="mc2"><span>'+(mode==="buy"?t("Вы заплатите","Сіз төлейсіз"):t("Вы получите","Сіз аласыз"))+' <b>'+num(Math.round(tot))+' ₸</b>'+(i>0&&sav>=1?' <em class="'+(mode==="buy"?"up":"dn")+'">'+(mode==="buy"?"+":"−")+num(Math.round(sav))+' ₸</em>':(i===0?' <em class="dn">'+t("лучший курс","үздік бағам")+'</em>':''))+'</span><a class="fxgo'+(i===0?" pri":"")+'" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+t("Перейти","Өту")+' ↗</a></div></article>'}).join("")}
+  if(MOB){
+    const pk=document.getElementById("fxp"),bx=document.querySelector(".fxbox");
+    const chips=fxAvail().map(k=>'<button type="button" data-c="'+k+'" class="mch'+(k===cur?" on":"")+'"><span>'+FXC[k].s+'</span>'+k+'</button>').join("");
+    const hero=st?'<div class="mh"><div class="mh1"><span>'+t("Официальный курс Нацбанка","Ұлттық банк бағамы")+'</span><em class="'+(st.ch>0?"up":"dn")+'">'+(st.ch>0?"▲ ":"▼ ")+f1(st.ch)+' · 30 '+t("дн.","күн")+'</em></div><b class="mh2">'+dc(st.last)+' ₸</b><div class="chrt">'+fxChart(st.h)+'</div><p class="mh3 '+vt+'">'+(vt==="buy"?t("Сейчас курс в нижней трети за 3 месяца: хороший момент покупать.","Қазір бағам 3 айдың төменгі үштен біріндe: сатып алуға жақсы сәт."):vt==="sell"?t("Курс в верхней трети за 3 месяца: выгоднее продавать, покупку отложите.","Бағам жоғарғы үштен бірінде: сату тиімді, сатып алуды кейінге қалдырыңыз."):t("Курс в середине диапазона за 3 месяца: явного преимущества нет.","Бағам диапазон ортасында: айқын артықшылық жоқ."))+'</p></div>':'';
+    if(pk)pk.outerHTML='<section class="mfx" id="fxp">'+hero+'<div class="mchs">'+chips+'</div><div class="seg big" id="fxm"><button data-m="buy" class="'+(mode==="buy"?"on":"")+'">'+t("Купить","Сатып алу")+'</button><button data-m="sell" class="'+(mode==="sell"?"on":"")+'">'+t("Продать","Сату")+'</button></div><div class="seg" id="fxg">'+[["all",t("Все","Барлығы")],["exchanger",t("Обменники","Айырбастау")],["bank",t("Банки","Банктер")]].map(g=>'<button data-g="'+g[0]+'" class="'+(FXGRP===g[0]?"on":"")+'">'+g[1]+'</button>').join("")+'</div><label class="mamt">'+t("Сумма","Сома")+', '+U+'<input id="fxa" inputmode="numeric" value="'+amt+'" aria-label="'+t("Сумма в валюте","Валюта сомасы")+'"></label></section>';
+    if(bx)bx.outerHTML='<section class="mlist"><div id="fxcards"></div>'+(ex.length>LIM&&!showAll?'<button type="button" class="fxmore" id="fxmore">'+t("Показать все ("+ex.length+")","Барлығын көрсету ("+ex.length+")")+'</button>':'')+'<p class="mut fxnote">'+t("Источники: ifin.kz, сайт ЦентрКредит. Курсы меняются в течение дня, перед визитом проверьте на сайте. Мы не проводим операции, только сравниваем.","Дереккөздер: ifin.kz, ЦентрКредит сайты. Бағамдар күн ішінде өзгереді, барар алдында сайттан тексеріңіз. Біз операция жасамаймыз, тек салыстырамыз.")+'</p></section>';
+  }
+  const draw=()=>{if(MOB){document.getElementById("fxcards").innerHTML=mcards();return}document.getElementById("fxb").innerHTML=tbl();document.getElementById("fxth").textContent=mode==="buy"?t("Вы заплатите","Сіз төлейсіз"):t("Вы получите","Сіз аласыз")};
   draw();
   document.getElementById("fxp").onclick=e=>{const m=e.target.closest("[data-m]"),c=e.target.closest("[data-c]");
     const g=e.target.closest("[data-g]");
@@ -528,6 +544,8 @@ function fxPage(cur){
 }
 
 // ---------- квартиры ----------
+const QEND={I:3,II:6,III:9,IV:12};
+function dpast(d){const m=/(IV|III|II|I) кв\. (\d{4})/.exec(d);if(!m||/Сдан|Построен/.test(d))return d;const e=new Date(+m[2],QEND[m[1]],0);return e<new Date()?d+" ("+t("срок прошел, уточняйте","мерзімі өтті, нақтылаңыз")+")":d}
 const APT=()=>window.TM_APT||{developers:[],complexes:[]};
 const mln=x=>(x/1e6).toFixed(1).replace(".",",")+" "+t("млн ₸","млн ₸");
 const aptMonthly=(P,rate,years)=>{const r=rate/1200,n=years*12;return P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1)};
@@ -573,7 +591,7 @@ function aptCard(c){
   const instPay=c.inst?Math.round(P*(1-c.inst.pct/100)/c.inst.months/1000)*1000:0;
   const keys=kf(t("Ипотека","Ипотека"),c.mort?t("от ","бастап ")+c.mort.pct+'%':t("нет данных","дерек жоқ"),c.mort?c.mort.rate+'% · '+c.mort.years+' '+t("лет","жыл"):t("уточняйте","нақтылаңыз"),!c.mort)+
    kf(t("Рассрочка","Бөліп төлеу"),c.inst?c.inst.pct+'%':t("нет данных","дерек жоқ"),c.inst?c.inst.months+' '+mn:t("уточняйте","нақтылаңыз"),!c.inst)+
-   kf(t("Сдача","Тапсыру"),c.status==="done"?t("Сдан","Тапсырылған"):c.delivery[0].split(": ").pop(),c.status==="done"?"":(c.delivery.length>1?c.delivery.length+" "+t("очереди","кезек"):t("одна очередь","бір кезек")));
+   kf(t("Сдача","Тапсыру"),c.status==="done"?t("Сдан","Тапсырылған"):dpast(c.delivery[0].split(": ").pop()),c.status==="done"?"":(c.delivery.length>1?c.delivery.length+" "+t("очереди","кезек"):t("одна очередь","бір кезек")));
   const pay=(c.mort||c.inst)?'<div class="apay">'+(c.mort?'<div><small>'+t("Ипотека, взнос ≈ ","Ипотека, жарна ≈ ")+mln(P*c.mort.pct/100)+'</small><b>≈ '+num(mortPay)+' ₸/'+mn+'</b></div>':'')+(c.inst?'<div><small>'+t("Рассрочка, взнос ≈ ","Бөліп төлеу, жарна ≈ ")+mln(P*c.inst.pct/100)+'</small><b>≈ '+num(instPay)+' ₸/'+mn+'</b></div>':'')+'</div>':'<p class="mut anone">'+t("Условия взноса и рассрочки не указаны, уточняйте у застройщика.","Жарна мен бөліп төлеу шарттары көрсетілмеген, құрылысшыдан нақтылаңыз.")+'</p>';
   const sale=c.units[0]&&c.units[1]?'<div class="abar"><div><i style="width:'+Math.round(c.units[1]/c.units[0]*100)+'%"></i></div><span>'+t("в продаже ","сатылымда ")+c.units[1]+' '+t("из ","/ ")+c.units[0]+'</span></div>':(c.units[0]?'<div class="abar"><span>'+t("Квартир: ","Пәтер: ")+c.units[0]+'</span></div>':'');
   return '<article class="card aptc"><div class="aimg">'+aptArt(c)+(c.img?'<img class="aphoto" src="'+esc(c.img)+'" alt="'+esc(c.name)+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">':'')+'<span class="adev2 '+c.dev+'">'+esc(dev.name)+'</span><div class="atag"><span class="cl '+c.cls+'">'+t(CLSN[c.cls][0],CLSN[c.cls][1])+'</span><span class="st '+c.status+'">'+(c.status==="done"?t("Сдан","Тапсырылған"):t("Строится","Салынуда"))+'</span></div></div>'+
@@ -581,7 +599,7 @@ function aptCard(c){
    '<div class="ap"><div><small>'+(c.resale?t("от (не от застройщика)","бастап (құрылысшыдан емес)"):t("Цена от","Бағасы бастап"))+'</small><b>'+num(c.m2)+' ₸<i>/м²</i></b></div><div><small>'+APT_AREA+' м² '+t("от","бастап")+'</small><b>≈ '+mln(P)+'</b></div></div>'+
    '<div class="akf">'+keys+'</div>'+pay+
    (c.promos.length?'<div class="ach">'+c.promos.map(p=>'<span class="pr">'+esc(p)+'</span>').join("")+'</div>':'')+
-   '<details class="adet"><summary>'+t("Все очереди сдачи","Барлық тапсыру кезеңдері")+'</summary><ul>'+c.delivery.map(d=>'<li>'+esc(d)+'</li>').join("")+'</ul></details>'+sale+
+   '<details class="adet"><summary>'+t("Все очереди сдачи","Барлық тапсыру кезеңдері")+'</summary><ul>'+c.delivery.map(d=>'<li>'+esc(dpast(d))+'</li>').join("")+'</ul></details>'+sale+
    '<div class="afoot"><span class="mut">'+esc(c.upd)+'</span><span class="afl"><a class="fxgo" href="https://2gis.kz/almaty/search/'+encodeURIComponent(c.name+" ЖК")+'" target="_blank" rel="noopener noreferrer">'+t("На карте","Картада")+' ↗</a><a class="fxgo pri" href="'+esc(c.url)+'" target="_blank" rel="noopener noreferrer">'+t("Подробнее","Толығырақ")+' ↗</a></span></div>'+
    (c.stale?'<p class="mut astale">'+t("Данные могут быть устаревшими: источник не получает подробности от этого застройщика.","Деректер ескірген болуы мүмкін: дереккөз бұл құрылысшыдан толық мәлімет алмайды.")+'</p>':'')+'</div></article>';
 }
@@ -703,7 +721,7 @@ function home(){
    '<div class="fg"><b>'+t("Условия","Шарттар")+'</b><label class="fc"><input type="checkbox" id="fin"><span>'+t("Рассрочка 24 мес","24 айға бөліп төлеу")+'</span></label><label class="fc"><input type="checkbox" id="fdr"><span>'+t("Цена ниже пика","Баға шыңнан төмен")+'</span></label></div>'+
    '<button type="button" class="frs" id="frs">'+t("Сбросить фильтры","Сүзгілерді тазалау")+'</button>';
   app.innerHTML=
-  '<div id="bwrap">'+bannersHtml(sale,nBlack)+'</div>'+
+  '<div id="bwrap">'+''+'</div>'+
   '<div class="tick"><span><small>'+t("Доллар","Доллар")+'</small> <b>'+dec(rk,2)+' ₸</b> <em class="'+(rk>rp?"up":"dn")+'">'+f1(pct(rp,rk))+' '+t("за 30 дней","30 күнде")+'</em></span>'+
    (cheap?'<span><small>'+t("Самый дешевый","Ең арзан")+'</small> <b>'+num(cheap.best.v)+' ₸</b> <em>'+esc(cheap.f.name)+', '+esc(sn(cheap.best.s))+'</em></span>':'')+'</div>'+
   topHtml(items)+
@@ -1443,6 +1461,45 @@ function gsShow(){
   b.innerHTML=L.map(x=>'<a href="'+x[2]+'"><i>'+esc(x[0])+'</i><b>'+esc(x[1])+'</b></a>').join("");
 }
 
+
+// ---------- сравнение двух ЖК / двух машин ----------
+function duelPage(kind,a,b){
+  const isA=kind==="apt";
+  const L=isA?APT().complexes:CARS().brands.flatMap(br=>br.models.map(m=>Object.assign({},m,{brand:br.name,uid:br.id+"-"+m.id})));
+  const idf=x=>isA?x.id:x.uid,nm=x=>isA?x.name:x.brand+" "+x.name;
+  const A=L.find(x=>idf(x)===a)||L[0],B=L.find(x=>idf(x)===b)||L[1]||L[0];
+  const opt=sel=>L.map(x=>'<option value="'+esc(idf(x))+'"'+(idf(x)===sel?" selected":"")+'>'+esc(nm(x))+'</option>').join("");
+  const dev=x=>{const d=APT().developers.find(q=>q.id===x.dev);return d?d.name:"—"};
+  const usedTop=x=>x.used&&x.used[0]?x.used[0][1]:null;
+  const R=isA?[
+    [t("Застройщик","Құрылысшы"),dev,null],
+    [t("Район","Аудан"),x=>x.district||"—",null],
+    [t("Цена за м²","м² бағасы"),x=>x.m2?num(x.m2)+" ₸":"—",x=>x.m2,-1],
+    [t("Класс","Сынып"),x=>({business:t("Бизнес","Бизнес"),comfort:t("Комфорт","Комфорт"),econom:t("Эконом","Эконом"),premium:t("Премиум","Премиум")}[x.cls]||x.cls||"—"),null],
+    [t("Ближайшая сдача","Жақын тапсыру"),x=>x.status==="done"?t("Сдан","Тапсырылған"):dpast((x.delivery||["—"])[0].split(": ").pop()),null],
+    [t("Рассрочка","Бөліп төлеу"),x=>x.inst?t("взнос ","жарна ")+x.inst.pct+"%, "+x.inst.months+t(" мес."," ай"):"—",x=>x.inst?x.inst.months:0,1],
+    [t("Ипотека","Ипотека"),x=>x.mort?t("от ","бастап ")+x.mort.rate+"%, взнос "+x.mort.pct+"%":"—",x=>x.mort?x.mort.rate:null,-1],
+    [t("Акции","Акциялар"),x=>(x.promos&&x.promos.length)?x.promos.join("; "):"—",null]
+  ]:[
+    [t("Новая, от","Жаңасы, бастап"),x=>num(x.price)+" ₸",x=>x.price,-1],
+    [t("Кузов","Кузов"),x=>x.body||"—",null],
+    [t("Версии","Нұсқалар"),x=>(x.trims&&x.trims.length)?x.trims.map(q=>q[0]+" "+num(q[1])+" ₸").join(", "):"—",null],
+    [t("Б/у 2020 и новее","Пробегімен 2020+"),x=>usedTop(x)?"~"+num(usedTop(x))+" ₸":"—",x=>usedTop(x),-1],
+    [t("Выгода б/у","Пробегімен үнемдеу"),x=>usedTop(x)?num(x.price-usedTop(x))+" ₸":"—",x=>usedTop(x)?x.price-usedTop(x):null,1],
+    [t("Объявлений на kolesa.kz","kolesa.kz хабарландырулары"),x=>x.listings?num(x.listings):"—",x=>x.listings,1],
+    [t("Плюсы / минусы в отзывах","Артықшылық / кемшілік"),x=>(x.pros?x.pros.length:0)+" / "+(x.cons?x.cons.length:0),null]
+  ];
+  const rows=R.map(r=>{const va=r[2]?r[2](A):null,vb=r[2]?r[2](B):null;let wa="",wb="";if(r[2]&&va!=null&&vb!=null&&va!==vb){const aw=r[3]>0?va>vb:va<vb;wa=aw?" win":"";wb=aw?"":" win"}
+    return '<div class="dr"><div class="dl">'+r[0]+'</div><div class="dv'+wa+'">'+esc(r[1](A))+'</div><div class="dv'+wb+'">'+esc(r[1](B))+'</div></div>'}).join("");
+  app.innerHTML='<div class="duel"><h1>'+(isA?t("Сравнить два ЖК","Екі ТК салыстыру"):t("Сравнить две машины","Екі көлікті салыстыру"))+'</h1><div class="dsel"><select id="da" aria-label="1">'+opt(idf(A))+'</select><select id="db" aria-label="2">'+opt(idf(B))+'</select></div><div class="dtab">'+rows+'</div><p class="dnote">'+t("Зеленым отмечено то, что выгоднее для покупателя. Данные ориентировочные, уточняйте у застройщика или дилера.","Жасылмен сатып алушыға тиімдісі белгіленген. Деректер шамамен, құрылысшыдан немесе дилерден нақтылаңыз.")+'</p></div>';
+  const go=()=>{location.hash="#/duel/"+kind+"/"+document.getElementById("da").value+"/"+document.getElementById("db").value};
+  document.getElementById("da").onchange=go;document.getElementById("db").onchange=go;
+  document.title=(isA?t("Сравнение ЖК Алматы","Алматы ТК салыстыру"):t("Сравнение машин в Алматы","Алматыдағы көліктерді салыстыру"))+" | Тиімді сәт";
+}
+function duelLink(kind){
+  const a=document.createElement("a");a.className="duelb";a.href="#/duel/"+kind;
+  a.textContent=kind==="apt"?t("Сравнить два ЖК","Екі ТК салыстыру"):t("Сравнить две машины","Екі көлікті салыстыру");
+  const h=app.querySelector("h1,h2");if(h)h.insertAdjacentElement("afterend",a);else app.prepend(a)}
 function route(){
   renderTop();bottomBar();
   const p=location.hash.replace(/^#\/?/,"").split("/").filter(Boolean);
@@ -1452,8 +1509,9 @@ function route(){
   if(p[0]==="about")return about();
   if(p[0]==="queries")return queries();
   if(p[0]==="compare")return compare();
-  if(p[0]==="apartments")return aptPage();
-  if(p[0]==="cars")return carPage(p[2]);
+  if(p[0]==="duel")return duelPage(p[1]==="car"?"car":"apt",p[2],p[3]);
+  if(p[0]==="apartments"){aptPage();duelLink("apt");return}
+  if(p[0]==="cars"){carPage(p[2]);if(!p[2])duelLink("car");return}
   if(p[0]==="catalog")return catalogPage();
   if(p[0]==="mine")return minePage();
   if(p[0]==="currency"){const k=(p[1]||"USD").toUpperCase();return fxPage(FXK.includes(k)?k:"USD")}
