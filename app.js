@@ -13,6 +13,8 @@ let CITY="Алматы";try{const c=localStorage.getItem("tm_city");if(c&&CITIES
 const cityN=c=>{const x=CITIES.find(q=>q[0]===c);return x?t(x[0],x[1]):c};
 function setCity(c){CITY=c;try{localStorage.setItem("tm_city",c)}catch(e){}}
 
+const AVC=["#3b5bdb","#d6336c","#0f9d8a","#e8590c","#7048e8","#1c7ed6","#2f9e44","#c2255c"];
+const avatar=n=>{n=String(n||"?");const c=AVC[[...n].reduce((a,ch)=>a+ch.charCodeAt(0),0)%AVC.length],m=n.match(/[A-Za-zА-Яа-яЁё0-9]/);return '<span class="av" style="background:'+c+'" aria-hidden="true">'+esc((m?m[0]:"?").toUpperCase())+'</span>'};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const MON_RU=["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"];
 const MON_KK=["қаң","ақп","нау","сәу","мам","мау","шіл","там","қыр","қаз","қар","жел"];
@@ -130,7 +132,7 @@ window.__artFb=function(el){
 function artBox(f,cls){
   return '<div class="art '+cls+'"><img src="photos/'+esc(f.id)+'.png" alt="'+esc(f.name)+'" loading="lazy" data-f="'+esc(f.id)+'" data-s="0" onerror="__artFb(this)"></div>';
 }
-const ICO={home2:'<rect x="6" y="6" width="15" height="15" rx="3"/><rect x="27" y="6" width="15" height="15" rx="3"/><rect x="6" y="27" width="15" height="15" rx="3"/><rect x="27" y="27" width="15" height="15" rx="3"/>',phone:'<rect x="14" y="4" width="20" height="40" rx="5"/><path d="M21 9h6"/>',car:'<path d="M6 30l4-12h28l4 12v8H6z"/><circle cx="14" cy="34" r="3"/><circle cx="34" cy="34" r="3"/>',home:'<path d="M6 24L24 8l18 16"/><path d="M12 22v18h24V22"/>',gold:'<path d="M8 34l6-12h20l6 12z"/><path d="M16 22l3-8h10l3 8"/>',cash:'<rect x="6" y="12" width="36" height="24" rx="4"/><circle cx="24" cy="24" r="6"/>'};
+const ICO={search:'<circle cx="21" cy="21" r="12"/><path d="M31 31l11 11"/>',heart:'<path d="M24 42S6 31 6 18c0-6 5-10 10-10 4 0 7 2 8 5 1-3 4-5 8-5 5 0 10 4 10 10 0 13-18 24-18 24z"/>',home2:'<rect x="6" y="6" width="15" height="15" rx="3"/><rect x="27" y="6" width="15" height="15" rx="3"/><rect x="6" y="27" width="15" height="15" rx="3"/><rect x="27" y="27" width="15" height="15" rx="3"/>',phone:'<rect x="14" y="4" width="20" height="40" rx="5"/><path d="M21 9h6"/>',car:'<path d="M6 30l4-12h28l4 12v8H6z"/><circle cx="14" cy="34" r="3"/><circle cx="34" cy="34" r="3"/>',home:'<path d="M6 24L24 8l18 16"/><path d="M12 22v18h24V22"/>',gold:'<path d="M8 34l6-12h20l6 12z"/><path d="M16 22l3-8h10l3 8"/>',cash:'<rect x="6" y="12" width="36" height="24" rx="4"/><circle cx="24" cy="24" r="6"/>'};
 const sv=k=>'<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="22" height="22" aria-hidden="true">'+ICO[k]+'</svg>';
 const brandIc=b=>b.logo?'<div class="ic img"><img src="'+b.logo+'" alt="" onerror="var p=this.parentNode;p.classList.remove(\'img\');p.textContent=\''+b.ch+'\'"></div>':'<div class="ic">'+b.ch+'</div>';
 
@@ -142,16 +144,16 @@ function renderTop(){
   const nf=cmpItems().length;
   topEl.innerHTML='<div class="topin">'+
   '<a class="logo" href="#/"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16 7v9l-6 4" fill="none" stroke="var(--time)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16a12 12 0 0 1 3-8" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M4.5 5.5V10H9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="lt">Тиімді сәт<small>'+t("когда брать и где дешевле","қашан алған және қайда арзан")+'</small></span></a>'+
-  '<div class="sbox2"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" value="'+esc(SEARCH_Q)+'" placeholder="'+t("Найти модель: iPhone 18 Pro, Galaxy S26...","Модельді іздеу: iPhone 18 Pro, Galaxy S26...")+'" autocomplete="off" aria-label="'+t("Поиск","Іздеу")+'"></div>'+
+  '<div class="sbox2"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" value="'+esc(SEARCH_Q)+'" placeholder="'+t("Поиск: iPhone, Toyota, доллар, ЖК","Іздеу: iPhone, Toyota, доллар, ТК")+'" autocomplete="off" aria-label="'+t("Поиск","Іздеу")+'"></div>'+
   '<div class="tact"><details class="city"><summary aria-label="'+t("Город","Қала")+'">'+cityN(CITY)+'</summary><div class="menu">'+CITIES.map(c=>'<div class="ci'+(c[0]===CITY?" cur":"")+'" data-city="'+c[0]+'" role="button" tabindex="0">'+t(c[0],c[1])+'</div>').join("")+'<small class="mut" style="padding:6px 12px 4px;display:block">'+t("Цены в магазинах пока по Алматы","Дүкендегі бағалар әзірге Алматы бойынша")+'</small></div></details>'+
   '<a class="favlink" href="#/smartphones" data-cmp aria-label="'+t("Избранное и сравнение","Таңдаулы және салыстыру")+'"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1.3 8.6 3 5.5 6.2 5.5c1.9 0 3.2 1 3.8 2 .6-1 1.9-2 3.8-2 3.200 0 4.900 3.100 3.700 6.300C19.500 16.400 12 21 12 21z"/></svg>'+(FAV.length?'<i class="fb">'+FAV.length+'</i>':'')+'</a>'+
   '<div class="lang" role="group" aria-label="Язык / Тіл"><button data-l="kk" class="'+(LANG==="kk"?"on":"")+'">ҚАЗ</button><button data-l="ru" class="'+(LANG==="ru"?"on":"")+'">РУС</button></div></div></div>'+
   '<nav class="catnav"><div class="topin"><a class="'+(location.hash.replace(/^#\/?/,"")===""?"on":"")+'" href="#/">'+sv("home2")+t("Главная","Басты бет")+'</a><a class="'+(/^#\/smartphones/.test(location.hash)?"on":"")+'" href="#/smartphones">'+sv("phone")+t("Телефоны","Телефондар")+'</a>'+
-   [["car",t("Машины","Көліктер")],["home",t("Квартиры","Пәтерлер")],["gold",t("Золото","Алтын")],["cash",t("Валюты","Валюталар")]].filter(x=>x[0]!=="cash"&&x[0]!=="gold"&&x[0]!=="home"&&x[0]!=="car").map(x=>'<span class="soon">'+sv(x[0])+x[1]+'<i>'+t("скоро","жақында")+'</i></span>').join("")+'<a class="'+(/^#\/cars/.test(location.hash)?"on":"")+'" href="#/cars">'+sv("car")+t("Машины","Көліктер")+'</a>'+'<a class="'+(/^#\/apartments/.test(location.hash)?"on":"")+'" href="#/apartments">'+sv("home")+t("Квартиры","Пәтерлер")+'</a><a class="'+(/^#\/currency/.test(location.hash)?"on":"")+'" href="#/currency">'+sv("cash")+t("Валюта и металлы","Валюта және металдар")+'</a>'+
+   [["car",t("Машины","Көліктер")],["home",t("Квартиры","Пәтерлер")],["cash",t("Валюты","Валюталар")]].filter(x=>x[0]!=="cash"&&x[0]!=="gold"&&x[0]!=="home"&&x[0]!=="car").map(x=>'<span class="soon">'+sv(x[0])+x[1]+'<i>'+t("скоро","жақында")+'</i></span>').join("")+'<a class="'+(/^#\/cars/.test(location.hash)?"on":"")+'" href="#/cars">'+sv("car")+t("Машины","Көліктер")+'</a>'+'<a class="'+(/^#\/apartments/.test(location.hash)?"on":"")+'" href="#/apartments">'+sv("home")+t("Квартиры","Пәтерлер")+'</a><a class="'+(/^#\/currency/.test(location.hash)?"on":"")+'" href="#/currency">'+sv("cash")+t("Валюта","Валюта")+'</a>'+
    '<a class="nl" href="#/about">'+t("Как мы считаем","Біз қалай есептейміз")+'</a></div></nav>';
   const qi=document.getElementById("q");
-  qi.oninput=e=>{SEARCH_Q=e.target.value;if(onSearch)onSearch()};
-  qi.onkeydown=e=>{if(e.key!=="Enter")return;if(onEnter)onEnter();else location.hash="#/smartphones"};
+  qi.oninput=e=>{SEARCH_Q=e.target.value;if(onSearch)onSearch();else gsShow()};qi.onblur=()=>setTimeout(()=>{const b=document.getElementById("gs");if(b)b.remove()},200);
+  qi.onkeydown=e=>{if(e.key!=="Enter")return;if(onEnter)onEnter();else{const L=gsList(SEARCH_Q);location.hash=L.length?L[0][2]:"#/smartphones"}};
   topEl.querySelectorAll("[data-city]").forEach(x=>x.onclick=()=>{setCity(x.dataset.city);renderTop()});
   const fl=topEl.querySelector(".favlink");
   fl.onclick=e=>{OPEN_CMP=true;if(location.hash==="#/smartphones"){e.preventDefault();route2()}};
@@ -386,21 +388,30 @@ function topHtml(items){
       '<div class="tps"><span class="mut">'+t("Где брать","Қайдан алу")+'</span>'+storeLogo(store)+'</div>'+
       (url?'<a class="bgo '+(hasCard?"":"alt")+'" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+(hasCard?t("Купить","Сатып алу"):t("Открыть","Ашу"))+' ↗</a>':'')+'</div></article>'}).join("")+'</div></section>';
 }
-function bannersHtml(sale,nBlack){
-  const art=(id,cls)=>{const f=famById(id)||D.families.find(x=>x.category==="smartphones");return f?'<div class="bart '+(cls||"")+'">'+phoneArt(f)+'</div>':""};
-  const sl=[];
-  sl.push({bg:"linear-gradient(120deg,#1d2f9f,#5b3fd6)",img:1,k:t("Сравнение цен","Бағаларды салыстыру"),h:t("Не переплачивайте за дорогие покупки","Қымбат сатып алуларға артық төлемеңіз"),p:t("Самая низкая цена в надежных магазинах и история цены","Сенімді дүкендердегі ең төмен баға және баға тарихы"),go:"catalog",btn:t("Смотреть цены","Бағаларды көру"),art:art("iphone18promax")+art("galaxys26ultra","b2")});
-  if(sale)sl.push({bg:"linear-gradient(120deg,#b4231a,#f2780c)",img:2,k:t("Скоро","Жақында"),h:t("До \""+sale.t.toLowerCase()+"\"","\""+sale.t+"\" дейін"),extra:cdHtml(sale.s),p:t("Время по Казахстану. Смотрите историю цены: скидка на ценнике не всегда скидка","Қазақстан уақыты бойынша. Баға тарихын қараңыз: бағалауыштағы жеңілдік әрдайым жеңілдік емес"),go:"catalog",btn:t("Проверить цены","Бағаларды тексеру"),art:art("iphoneduo")});
-  sl.push({bg:"linear-gradient(120deg,#8a5a00,#f2a200)",img:3,k:t("Рассрочка","Бөліп төлеу"),h:t("Рассрочка 12 и 24 месяца","12 және 24 айға бөліп төлеу"),p:t("Показываем, где она есть, и сколько платить в месяц","Қайда бар екенін және айына қанша төлейтінін көрсетеміз"),go:"inst",btn:t("Показать с рассрочкой","Бөліп төлеумен көрсету"),art:art("galaxyzflip8")});
-  sl.push({bg:"linear-gradient(120deg,#0b6b57,#1fb58f)",img:4,k:t("История цены","Баға тарихы"),h:t("Видно, когда было дешевле","Қашан арзан болғаны көрінеді"),p:t("График цены за все время в тенге и в долларах","Бүкіл уақыттағы баға графигі теңгемен және долларменен"),go:"catalog",btn:t("Открыть каталог","Каталогты ашу"),art:'<div class="bart chart"><svg viewBox="0 0 200 110" aria-hidden="true"><polyline fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" points="6,30 40,38 70,26 100,52 130,44 160,74 194,84"/><circle cx="194" cy="84" r="9" fill="#ffd37a"/></svg></div>'});
-  sl.push({bg:"linear-gradient(120deg,#32358f,#c2306e)",img:5,k:t("Сравнение","Салыстыру"),h:t("Сравните две модели","Екі модельді салыстырыңыз"),p:t("Цена, батарея, вес и отзывы рядом, вывод одной фразой","Баға, батарея, салмақ және пікірлер қатар, қорытынды бір сөйлеммен"),go:"cmp",btn:t("Выбрать и сравнить","Таңдап салыстыру"),art:art("iphone18promax")+art("iphoneduo","b2")});
-  return '<section class="bnr" aria-roledescription="carousel" aria-label="'+t("Главное","Басты")+'"><div class="btrack" id="btrack">'+sl.map(x=>'<article class="bs" style="background-image:url(banners/b'+x.img+'.jpg),'+x.bg+'"><div class="bt"><span class="pmk">'+x.k+'</span><h2>'+x.h+'</h2>'+(x.extra||'')+'<p>'+x.p+'</p><button type="button" class="bcta" data-go="'+x.go+'">'+x.btn+'</button></div>'+x.art+'</article>').join("")+'</div><button type="button" class="bnav prev" aria-label="'+t("Назад","Артқа")+'">‹</button><button type="button" class="bnav next" aria-label="'+t("Дальше","Алға")+'">›</button></section>';
+function fxArt(nb){
+  const v=nb.slice(-60).map(r=>r[1]);if(v.length<2)return'<i class="fxw">$</i>';
+  const mn=Math.min(...v),mx=Math.max(...v),W=400,H=110,p=v.map((y,i)=>[i*W/(v.length-1),H-8-(y-mn)/((mx-mn)||1)*(H-24)]);
+  const d=p.map((q,i)=>(i?"L":"M")+q[0].toFixed(1)+" "+q[1].toFixed(1)).join(" ");
+  return '<i class="fxw">$</i><svg class="fxs" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="fxg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f6bff" stop-opacity=".28"/><stop offset="1" stop-color="#2f6bff" stop-opacity="0"/></linearGradient></defs><path d="'+d+' L'+W+' '+H+' L0 '+H+'Z" fill="url(#fxg)"/><path d="'+d+'" fill="none" stroke="#2f6bff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/></svg>';
 }
+function bannersHtml(sale,nBlack){
+  const X=window.TM_FX||{},nb=(X.nbk&&X.nbk.USD)||[],usd=nb.length?nb[nb.length-1][1]:null,usd30=nb.length>30?nb[nb.length-31][1]:null;
+  const ch=usd&&usd30?((usd/usd30-1)*100):null;
+  const exs=(X.exchangers||[]).filter(e=>e.rates&&e.rates.USD);let best=null;exs.forEach(e=>{if(!best||e.rates.USD[1]<best.rates.USD[1])best=e});
+  const A=APT(),minm=A.complexes.length?Math.min(...A.complexes.map(c=>c.m2)):null,C=CARS().brands[0],camry=C&&C.models[0];
+  const sl=[];
+  if(usd)sl.push({c:"b1",k:t("Доллар сегодня","Бүгінгі доллар"),h:dc2(usd)+" ₸",p:(ch!=null?t("За 30 дней ","30 күнде ")+(ch>0?"+":"")+ch.toFixed(1).replace(".",",")+"%. ":"")+(best?t("Выгоднее всего купить: ","Ең тиімді сатып алу: ")+best.name+", "+dc2(best.rates.USD[1])+" ₸":""),href:"#/currency",art:fxArt(nb),btn:t("Где выгодно обменять","Қайда тиімді айырбастау")});
+  if(minm)sl.push({c:"b2",k:t("Квартиры","Пәтерлер"),h:t("от ","бастап ")+num(minm)+" ₸/м²",p:t("BI Group и BAZIS-A: первый взнос, рассрочка, ипотека и сроки сдачи","BI Group және BAZIS-A: алғашқы жарна, бөліп төлеу, ипотека және мерзімдер"),href:"#/apartments",btn:t("Смотреть ЖК на карте","ТК картада")});
+  if(camry)sl.push({c:"b3",k:t("Машины","Көліктер"),h:C.name+" "+camry.name+" "+t("от ","бастап ")+(camry.price/1e6).toFixed(2).replace(".",",")+" млн",p:t("Официальная цена, дилеры Алматы и насколько дешевле такая же с пробегом","Ресми баға, Алматы дилерлері және пробегпен қаншаға арзан"),href:"#/cars",btn:t("Цены и отзывы","Бағалар мен пікірлер")});
+  sl.push({c:"b4",k:t("Телефоны","Телефондар"),h:t("Где дешевле iPhone и Galaxy","iPhone және Galaxy қайда арзан"),p:t("Цены магазинов, история цены и подсказка, когда брать","Дүкен бағалары, баға тарихы және қашан алу керек"),href:"#/smartphones",btn:t("Сравнить цены","Бағаларды салыстыру")});
+  return '<section class="bnr" aria-roledescription="carousel" aria-label="'+t("Главное","Басты")+'"><div class="btrack" id="btrack">'+sl.map(x=>'<article class="bs '+x.c+'">'+(x.art||'')+'<div class="bt"><span class="pmk">'+x.k+'</span><h2>'+x.h+'</h2><p>'+x.p+'</p><a class="bcta" href="'+x.href+'">'+x.btn+'</a></div></article>').join("")+'</div></section>';
+}
+const dc2=x=>x>=10000?num(Math.round(x)):x.toFixed(2).replace(".",",");
 // ---------- главная ----------
 
 // ---------- валюты ----------
 const FXC={USD:{s:"$",n:["Доллар","Доллар"],f:"США"},EUR:{s:"€",n:["Евро","Еуро"],f:"Европа"},RUB:{s:"₽",n:["Рубль","Рубль"],f:"Россия"},CNY:{s:"¥",n:["Юань","Юань"],f:"Китай"},GBP:{s:"£",n:["Фунт стерлингов","Фунт стерлинг"],f:"Великобритания"},XAU:{s:"Au",n:["Золото","Алтын"],m:1},XAG:{s:"Ag",n:["Серебро","Күміс"],m:1}};
-const FXK=["USD","EUR","RUB","CNY","GBP"],FXA=[...FXK,"XAU","XAG"],isM=k=>k==="XAU"||k==="XAG",fxList=k=>isM(k)?((window.TM_FX&&TM_FX.banks)||[]):((window.TM_FX&&TM_FX.exchangers)||[]),fxAvail=()=>FXA.filter(k=>fxList(k).some(e=>e.rates&&e.rates[k])),fxDc=x=>x>=10000?num(Math.round(x)):dec(x,2);let FXMODE="buy",FXGRP="all",FXALL=false;
+const FXK=["USD","EUR","RUB","CNY","GBP"],FXA=[...FXK],isM=k=>k==="XAU"||k==="XAG",fxList=k=>isM(k)?((window.TM_FX&&TM_FX.banks)||[]):((window.TM_FX&&TM_FX.exchangers)||[]),fxAvail=()=>FXA.filter(k=>fxList(k).some(e=>e.rates&&e.rates[k])),fxDc=x=>x>=10000?num(Math.round(x)):dec(x,2);let FXMODE="buy",FXGRP="all",FXALL=false;
 const FXM_RU=["янв","фев","мар","апр","май","июн","июл","авг","сен","окт","ноя","дек"],FXM_KK=["қаң","ақп","нау","сәу","мам","мау","шіл","там","қыр","қаз","қар","жел"];
 const FXN={1:["Налоговые платежи и расчеты после праздников","Мерекеден кейінгі салық пен есеп айырысулар"],2:["Спрос на валюту спокойный","Валютаға сұраныс бәсең"],3:["Налоги за год (КПН), дивиденды компаний","Жылдық салықтар (КТС), компаниялар дивидендтері"],4:["Дивиденды иностранных компаний, спрос на валюту","Шетелдік компаниялардың дивидендтері, валютаға сұраныс"],5:["Дивиденды, начало сезона поездок","Дивидендтер, сапар маусымының басы"],6:["Летние поездки, спрос на валюту растет","Жазғы сапарлар, валютаға сұраныс өседі"],7:["Пик отпусков, много покупок валюты","Демалыс шыңы, валюта көп сатып алынады"],8:["Отпуска и подготовка к школе","Демалыс және мектепке дайындық"],9:["Спрос после отпусков спадает","Демалыстан кейін сұраныс бәсеңдейді"],10:["Спокойный период, налоги в конце месяца","Тыныш кезең, ай соңындағы салықтар"],11:["Налоги до 25 числа, затем спрос перед праздниками","25-ке дейін салықтар, содан кейін мерекеге дейінгі сұраныс"],12:["Новый год: поездки и подарки, спрос на валюту высокий","Жаңа жыл: сапарлар мен сыйлықтар, валютаға сұраныс жоғары"]};
 const FXF=[["Нефть Brent","Brent мұнайы",["USD"],"dn","Нефть дорожает: в страну приходит больше валюты, тенге крепче, валюта дешевле.","Мұнай қымбаттайды: елге валюта көп келеді, теңге нығаяды, валюта арзандайды."],
@@ -444,7 +455,7 @@ function fxChart(h){
 }
 function fxTop(){
   const E=fxList("USD");if(!E.length)return"";
-  return '<section class="fxtop"><div class="hsec"><h2>'+t("Где выгодно брать и продавать валюту и металлы сейчас","Валюта мен металдарды қазір қайдан алған және сатқан тиімді")+'</h2><span class="mut">'+t("Лучшие предложения среди обменников Алматы и банков","Алматы айырбастау пункттері мен банктер арасындағы үздік ұсыныстар")+'</span></div><div class="fxtg">'+fxAvail().map(k=>{
+  return '<section class="fxtop"><div class="hsec"><h2>'+t("Где выгодно купить и продать валюту сейчас","Валюта мен металдарды қазір қайдан алған және сатқан тиімді")+'</h2><span class="mut">'+t("Лучшие предложения среди обменников Алматы и банков","Алматы айырбастау пункттері мен банктер арасындағы үздік ұсыныстар")+'</span></div><div class="fxtg">'+fxAvail().map(k=>{
     const L=fxList(k).filter(e=>e.rates&&e.rates[k]);if(!L.length)return"";
     const b=L.slice().sort((a,c)=>a.rates[k][1]-c.rates[k][1])[0],s=L.slice().sort((a,c)=>c.rates[k][0]-a.rates[k][0])[0],st=fxStat(k);
     const row=(lab,e,v,cls)=>'<div class="fxo '+cls+'"><div><small>'+lab+'</small><b>'+fxDc(v)+' ₸</b><span>'+esc(e.name)+'</span></div><a class="fxgo" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+t("Сайт","Сайт")+' ↗</a></div>';
@@ -454,11 +465,11 @@ function fxTop(){
 
 function fxPage(cur){
   const FX=window.TM_FX,AV=fxAvail();
-  if(!AV.length){app.innerHTML=crumbs([[HOME(),"#/"],[t("Валюта и металлы","Валюта және металдар")]])+'<h1>'+t("Валюта и металлы","Валюта және металдар")+'</h1><div class="card"><p class="lead" style="margin:0">'+t("Курсы появятся после первого сбора данных. Он запускается каждое утро.","Бағамдар деректерді алғашқы жинаудан кейін пайда болады. Ол күн сайын таңертең іске қосылады.")+'</p></div>'+FOOT();return}
+  if(!AV.length){app.innerHTML=crumbs([[HOME(),"#/"],[t("Валюта","Валюта")]])+'<h1>'+t("Валюта","Валюта")+'</h1><div class="card"><p class="lead" style="margin:0">'+t("Курсы появятся после первого сбора данных. Он запускается каждое утро.","Бағамдар деректерді алғашқы жинаудан кейін пайда болады. Ол күн сайын таңертең іске қосылады.")+'</p></div>'+FOOT();return}
   if(!FX||!FXC[cur]||!AV.includes(cur))cur=AV[0];const M=isM(cur);
   const C=FXC[cur],MN=LANG==="kk"?FXM_KK:FXM_RU,dc=fxDc,U=M?t("г","г"):cur;
   const st=fxStat(cur),exAll=fxList(cur).filter(e=>e.rates&&e.rates[cur]),ex=exAll.filter(e=>FXGRP=="all"||(e.type||"exchanger")===FXGRP);
-  let mode=FXMODE,amt=M?10:1000,showAll=FXALL;
+  let mode=FXMODE,amt=M?10:1000,showAll=FXALL;const LIM=innerWidth<=700?5:10;
   const bestBuy=()=>ex.slice().sort((a,b)=>a.rates[cur][1]-b.rates[cur][1])[0],bestSell=()=>ex.slice().sort((a,b)=>b.rates[cur][0]-a.rates[cur][0])[0];
   const tabs='<div class="fxt" role="tablist">'+FXK.map(k=>{const s=fxStat(k);return '<a role="tab" aria-selected="'+(k===cur)+'" class="'+(k===cur?"on":"")+'" href="#/currency/'+k+'"><span class="fxs">'+FXC[k].s+'</span><b>'+t(FXC[k].n[0],FXC[k].n[1])+'</b>'+(s?'<span>'+dc(s.last)+' ₸</span><em class="'+(s.ch>0?"up":"dn")+'">'+f1(s.ch)+'</em>':'')+'</a>'}).join("")+'</div>';
   const seas=fxSeason(),now=new Date(TODAY+"T00:00:00"),m0=now.getMonth()+1;
@@ -477,24 +488,24 @@ function fxPage(cur){
     const bi=mode==="buy"?0:0,best=rows[0];
     const val=e=>mode==="buy"?e.rates[cur][1]:e.rates[cur][0];
     const worst=rows[rows.length-1];
-    return rows.slice(0,showAll?999:10).map((e,i)=>{const r=e.rates[cur],v=val(e),diff=st?(v/st.last-1)*100:0,tot=amt*v,sav=Math.abs(val(best)-v)*amt;
-      return '<tr class="'+(i===0?"best":"")+'"><td class="fxn"><span class="rk">'+(i+1)+'</span><div><b>'+esc(e.name)+'</b> <span class="tb">'+((e.type||"exchanger")==="bank"?t("Банк","Банк"):t("Обменник","Айырбастау"))+'</span><small>'+esc(e.addr)+'</small></div></td>'+
+    return rows.slice(0,showAll?999:LIM).map((e,i)=>{const r=e.rates[cur],v=val(e),diff=st?(v/st.last-1)*100:0,tot=amt*v,sav=Math.abs(val(best)-v)*amt;
+      return '<tr class="'+(i===0?"best":"")+'"><td class="fxn"><span class="rk">'+(i+1)+'</span><div><b>'+avatar(e.name)+esc(e.name)+'</b> <span class="tb">'+((e.type||"exchanger")==="bank"?t("Банк","Банк"):t("Обменник","Айырбастау"))+'</span><small>'+esc(e.addr)+'</small></div></td>'+
       '<td class="fxr'+(mode==="sell"?" hot":"")+'">'+dc(r[0])+'</td><td class="fxr'+(mode==="buy"?" hot":"")+'">'+dc(r[1])+'</td>'+
       '<td class="fxd">'+(st?'<em class="'+(diff>0?"up":"dn")+'">'+f1(diff)+'</em>':'')+'</td><td class="fxtot">'+num(Math.round(tot))+' ₸'+(i>0?(sav>=1?'<small>'+(mode==="buy"?'+':'−')+num(Math.round(sav))+' ₸ '+t("к лучшему","үздікке қарағанда")+'</small>':''):'<small class="ok">'+t("лучший вариант","үздік нұсқа")+'</small>')+'</td>'+
       '<td class="fxu">'+esc(e.upd.slice(11))+'</td><td><a class="fxgo'+(i===0?" pri":"")+'" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+t("Сайт","Сайт")+' ↗</a></td></tr>'}).join("");
   }
-  app.innerHTML=crumbs([[HOME(),"#/"],[t("Валюта и металлы","Валюта және металдар")]])+
-   '<h1>'+t("Валюта и металлы в Алматы","Алматыдағы валюта және металдар")+'</h1><p class="sub">'+t("Сравниваем обменники и банки: валюты, золото и серебро. Показываем, где выгоднее купить и продать. Данные Нацбанка на ","Айырбастау пункттері мен банктерді салыстырамыз: валюта, алтын және күміс. Қайда сатып алу және сату тиімді екенін көрсетеміз. Ұлттық банк деректері: ")+esc(FX&&FX.updated||TODAY)+'.</p>'+
+  app.innerHTML=crumbs([[HOME(),"#/"],[t("Валюта","Валюта")]])+
+   '<h1>'+t("Курсы валют в Алматы","Алматыдағы валюта бағамдары")+'</h1><p class="sub">'+t("Сравниваем обменники и банки: валюты, золото и серебро. Показываем, где выгоднее купить и продать. Данные Нацбанка на ","Айырбастау пункттері мен банктерді салыстырамыз: валюта, алтын және күміс. Қайда сатып алу және сату тиімді екенін көрсетеміз. Ұлттық банк деректері: ")+esc(FX&&FX.updated||TODAY)+'.</p>'+
    (FX&&FX.demo?'<div class="demo">'+t("Демо-данные: обменники и курсы на странице выдуманы для макета. Реальные появятся после подключения источника.","Демо-деректер: беттегі айырбастау пункттері мен бағамдар макет үшін ойдан шығарылған. Нақтылары дереккөз қосылғаннан кейін шығады.")+'</div>':'')+
    '<section class="card fxpick" id="fxp"><div class="fxq"><span class="ql">'+t("1. Что хотите сделать","1. Не істегіңіз келеді")+'</span><div class="seg big" id="fxm"><button data-m="buy" class="'+(mode==="buy"?"on":"")+'">'+t("Хочу купить","Сатып алғым келеді")+'</button><button data-m="sell" class="'+(mode==="sell"?"on":"")+'">'+t("Хочу продать","Сатқым келеді")+'</button></div></div>'+
     '<div class="fxq"><span class="ql">'+t("2. Выберите валюту или металл","2. Валюта немесе металды таңдаңыз")+'</span><div class="fxt" role="tablist">'+fxAvail().map(k=>{const s2=fxStat(k);return '<button type="button" role="tab" aria-selected="'+(k===cur)+'" class="'+(k===cur?"on":"")+'" data-c="'+k+'"><span class="fxs">'+FXC[k].s+'</span><b>'+t(FXC[k].n[0],FXC[k].n[1])+'</b>'+(s2?'<span>'+dc(s2.last)+' ₸</span>':'')+'</button>'}).join("")+'</div></div>'+
     '<div class="fxq"><span class="ql">'+t("3. Где","3. Қайда")+'</span><div class="seg" id="fxg">'+[["all",t("Все","Барлығы")],["exchanger",t("Обменники","Айырбастау")],["bank",t("Банки","Банктер")]].map(g=>'<button data-g="'+g[0]+'" class="'+(FXGRP===g[0]?"on":"")+'">'+g[1]+' <small>'+(g[0]==="all"?exAll.length:exAll.filter(e=>(e.type||"exchanger")===g[0]).length)+'</small></button>').join("")+(M?'<button disabled class="soonb2" title="'+t("Скоро: б/у золото","Жақында: қолданыстағы алтын")+'">'+t("Ломбарды","Ломбардтар")+' <small>'+t("скоро","жақында")+'</small></button>':'')+'</div></div>'+
     '<div class="fxq"><span class="ql">'+t("4. Где выгоднее всего","4. Қайда ең тиімді")+': '+(mode==="buy"?t("купить ","сатып алу ")+(M?t(C.n[0],C.n[1]).toLowerCase():cur):t("продать ","сату ")+(M?t(C.n[0],C.n[1]).toLowerCase():cur))+(st?' <span class="mut">· '+t("цена Нацбанка ","ҰБ бағасы ")+dc(st.last)+' ₸'+(M?t(" за 1 г"," 1 г үшін"):"")+', <em class="'+(st.ch>0?"up":"dn")+'">'+f1(st.ch)+'</em> '+t("за 30 дней","30 күнде")+'</span>':'')+'</span>'+
-    '<div class="fxt3">'+ex.slice().sort((x,y)=>mode==="buy"?x.rates[cur][1]-y.rates[cur][1]:y.rates[cur][0]-x.rates[cur][0]).slice(0,3).map((e,i)=>{const v=mode==="buy"?e.rates[cur][1]:e.rates[cur][0];return '<div class="fxo3'+(i===0?" first":"")+'"><span class="rk">'+(i+1)+'</span><div class="o3n"><b>'+esc(e.name)+'</b><small>'+esc(e.addr)+'</small></div><div class="o3p"><b>'+dc(v)+' ₸</b><small>'+(mode==="buy"?t("за 1 ","1 ")+U:t("за 1 ","1 ")+U)+' · '+t("разница ","айырма ")+f1((e.rates[cur][1]/e.rates[cur][0]-1)*100).replace('+','')+'</small></div><a class="fxgo'+(i===0?" pri":"")+'" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+t("Сайт","Сайт")+' ↗</a></div>'}).join("")+'</div></div></section>'+
+    '<div class="fxt3">'+ex.slice().sort((x,y)=>mode==="buy"?x.rates[cur][1]-y.rates[cur][1]:y.rates[cur][0]-x.rates[cur][0]).slice(0,3).map((e,i)=>{const v=mode==="buy"?e.rates[cur][1]:e.rates[cur][0];return '<div class="fxo3'+(i===0?" first":"")+'"><span class="rk">'+(i+1)+'</span><div class="o3n"><b>'+avatar(e.name)+esc(e.name)+'</b><small>'+esc(e.addr)+'</small></div><div class="o3p"><b>'+dc(v)+' ₸</b><small>'+(mode==="buy"?t("за 1 ","1 ")+U:t("за 1 ","1 ")+U)+' · '+t("разница ","айырма ")+f1((e.rates[cur][1]/e.rates[cur][0]-1)*100).replace('+','')+'</small></div><a class="fxgo'+(i===0?" pri":"")+'" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer">'+t("Сайт","Сайт")+' ↗</a></div>'}).join("")+'</div></div></section>'+
    '<div class="card fxbox"><div class="fxtool"><h2 style="margin:0;font-size:18px">'+(M?t("Все банки","Барлық банктер"):t("Все обменники","Барлық айырбастау пункттері"))+'</h2>'+
    '<label class="fxamt">'+t("Количество","Мөлшері")+', '+U+' <input id="fxa" inputmode="numeric" value="'+amt+'" aria-label="'+t("Сумма в валюте","Валюта сомасы")+'"></label></div>'+
    '<div class="fxwrap"><table class="fxtb"><thead><tr><th>'+(M?t("Банк","Банк"):t("Обменник","Айырбастау пункті"))+'</th><th>'+(M?t("Выкупает у вас","Сізден сатып алады"):t("Покупает у вас","Сізден сатып алады"))+'</th><th>'+t("Продает вам","Сізге сатады")+'</th><th>'+t("К курсу НБ","ҰБ бағамына")+'</th><th id="fxth">'+t("Вы заплатите","Сіз төлейсіз")+'</th><th>'+t("Обновлен","Жаңартылды")+'</th><th></th></tr></thead><tbody id="fxb"></tbody></table></div>'+
-   (ex.length>10&&!showAll?'<button type="button" class="fxmore" id="fxmore">'+t("Показать все ("+ex.length+")","Барлығын көрсету ("+ex.length+")")+'</button>':'')+'<p class="mut fxnote">'+t("Источники: ifin.kz, сайт ЦентрКредит. ","Дереккөздер: ifin.kz, ЦентрКредит сайты. ")+t("Курсы обменников меняются в течение дня, перед визитом проверьте на сайте. Мы не проводим операции, только сравниваем.","Айырбастау пункттерінің бағамы күн ішінде өзгереді, барар алдында сайтта тексеріңіз. Біз операция жасамаймыз, тек салыстырамыз.")+'</p></div>'+
+   (ex.length>LIM&&!showAll?'<button type="button" class="fxmore" id="fxmore">'+t("Показать все ("+ex.length+")","Барлығын көрсету ("+ex.length+")")+'</button>':'')+'<p class="mut fxnote">'+t("Источники: ifin.kz, сайт ЦентрКредит. ","Дереккөздер: ifin.kz, ЦентрКредит сайты. ")+t("Курсы обменников меняются в течение дня, перед визитом проверьте на сайте. Мы не проводим операции, только сравниваем.","Айырбастау пункттерінің бағамы күн ішінде өзгереді, барар алдында сайтта тексеріңіз. Біз операция жасамаймыз, тек салыстырамыз.")+'</p></div>'+
    '<h2>'+(M?t("Когда цена может вырасти: ","Баға қашан өсуі мүмкін: "):t("Когда курс может вырасти: ","Бағам қашан өсуі мүмкін: "))+t(FXC[cur].n[0],FXC[cur].n[1])+'</h2>'+
    '<div class="fxan">'+
     '<div class="card"><h3>'+t("Что показывают цифры сейчас","Қазір сандар не көрсетеді")+'</h3>'+(st?'<div class="chrt">'+fxChart(st.h)+'</div><div class="fxv '+vt+'"><b>'+(vt==="buy"?t("Для покупки момент удачный","Сатып алуға сәті түсті"):vt==="sell"?t("Для продажи момент удачный","Сатуға сәті түсті"):t("Ждать или нет: без явного перекоса","Күту керек пе: айқын ауытқу жоқ"))+'</b><span>'+verdict+'</span>'+(cur==="USD"&&seasNote?'<span>'+seasNote+'</span>':'')+'</div>':'<p class="mut">'+t("История цен копится с первого сбора, график и вывод появятся через несколько дней."+(cur==="XAG"?" Для серебра это цены ЦентрКредит, официальной цены Нацбанка нет.":""),"Баға тарихы алғашқы жинаудан бастап жиналады, график пен қорытынды бірнеше күннен кейін пайда болады.")+'</p>')+'</div>'+
@@ -650,7 +661,7 @@ function hub(){
   const cats=[["phone",t("Телефоны","Телефондар"),t("Цены в магазинах, история и когда брать","Дүкендердегі бағалар, тарих және қашан алу"),"#/smartphones",nOn+" "+t("моделей с ценой","модельдің бағасы бар")],
     ["car",t("Машины","Көліктер"),t("Официальные цены, дилеры Алматы и цены б/у","Ресми бағалар, Алматы дилерлері және қолданылған көлік бағасы"),"#/cars",CARS().brands.length?CARS().brands[0].models.length+" "+t("моделей Toyota","Toyota моделі"):""],
     ["home",t("Квартиры","Пәтерлер"),t("Цена за м², первый взнос, рассрочка и акции от застройщиков","Бір м² бағасы, алғашқы жарна, бөліп төлеу және құрылысшылар акциялары"),"#/apartments",APT().complexes.length?APT().complexes.length+" "+t("ЖК","ТК"):""],
-    ["cash",t("Валюта и металлы","Валюта және металдар"),t("Доллар, евро, рубль, юань, фунт, золото, серебро: где выгодно","Доллар, еуро, рубль, юань, фунт, алтын, күміс: қайда тиімді"),"#/currency",fxAvail().length?fxAvail().length+" "+t("позиций","позиция"):t("скоро","жақында")]];
+    ["cash",t("Валюта","Валюта"),t("Доллар, евро, рубль, юань, фунт: где выгодно","Доллар, еуро, рубль, юань, фунт: қайда тиімді"),"#/currency",fxAvail().length?fxAvail().length+" "+t("позиций","позиция"):t("скоро","жақында")]];
   const soonBox=(ic,name,what,ex)=>'<div class="card hsoon"><span class="ci2">'+sv(ic)+'</span><div><b>'+name+'</b><span>'+what+'</span><em>'+t("Скоро","Жақында")+': '+ex+'</em></div></div>';
   app.innerHTML=
   '<div id="bwrap">'+bannersHtml(sale,nBlack)+'</div>'+
@@ -763,7 +774,7 @@ function home(){
   tickCd();{const iv2=setInterval(()=>{if(!document.getElementById("pg")){clearInterval(iv2);return}tickCd()},1000)}
   function bindBanner(){const bt=document.getElementById("btrack");if(!bt)return;let bpause=false;
   const bstep=d=>{const w=bt.children[0].offsetWidth+14;if(d>0&&bt.scrollLeft+bt.clientWidth>=bt.scrollWidth-6)bt.scrollTo({left:0,behavior:"smooth"});else if(d<0&&bt.scrollLeft<=2)bt.scrollTo({left:bt.scrollWidth,behavior:"smooth"});else bt.scrollBy({left:d*w,behavior:"smooth"})};
-  document.querySelector(".bnr .prev").onclick=()=>bstep(-1);document.querySelector(".bnr .next").onclick=()=>bstep(1);
+  {const pv=document.querySelector(".bnr .prev"),nx=document.querySelector(".bnr .next");if(pv)pv.onclick=()=>bstep(-1);if(nx)nx.onclick=()=>bstep(1)}
   ["pointerenter","touchstart","focusin"].forEach(ev=>bt.addEventListener(ev,()=>bpause=true,{passive:true}));
   ["pointerleave","touchend","focusout"].forEach(ev=>bt.addEventListener(ev,()=>bpause=false,{passive:true}));
   if(!(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches)){const iv=setInterval(()=>{if(!document.body.contains(bt)){clearInterval(iv);return}if(!bpause&&!document.hidden)bstep(1)},5000)}
@@ -1372,14 +1383,68 @@ function carPage(sel){
    (cur.note&&!cur.used?'<p class="mut" style="margin:6px 0 0">'+esc(cur.note)+'</p>':'')+
    '<h3>'+t("Сколько стоит с пробегом и насколько дешевле новой","Пробегпен қанша тұрады және жаңадан қаншаға арзан")+'</h3>'+used(cur)+
    '<h3>'+t("Что говорят владельцы","Иелері не дейді")+'</h3>'+rv(cur)+'</section>'+
-   '<h2>'+t("Официальные дилеры Toyota в Алматы","Алматыдағы ресми Toyota дилерлері")+'</h2><div class="cdl">'+B.dealers.map(d=>'<article class="card"><b>'+esc(d.name)+'</b><span>'+esc(d.addr)+'</span><a href="tel:'+d.tel.replace(/[^+\d]/g,"")+'">'+esc(d.tel)+'</a><a class="fxgo pri" href="'+esc(d.url)+'" target="_blank" rel="noopener noreferrer">'+t("Сайт дилера","Дилер сайты")+' ↗</a></article>').join("")+'</div>'+
+   '<h2>'+t("Официальные дилеры Toyota в Алматы","Алматыдағы ресми Toyota дилерлері")+'</h2><div class="cdl">'+B.dealers.map(d=>'<article class="card"><b>'+avatar(d.name)+esc(d.name)+'</b><span>'+esc(d.addr)+'</span><a href="tel:'+d.tel.replace(/[^+\d]/g,"")+'">'+esc(d.tel)+'</a><a class="fxgo pri" href="'+esc(d.url)+'" target="_blank" rel="noopener noreferrer">'+t("Сайт дилера","Дилер сайты")+' ↗</a></article>').join("")+'</div>'+
    '<p class="mut" style="font-size:13px">'+t("Цены с официального сайта","Ресми сайттағы бағалар")+' <a href="'+esc(B.site)+'" target="_blank" rel="noopener noreferrer">toyotakz.com</a> ('+t("рекомендованная розничная цена базовой комплектации, на ","базалық жиынтықтың ұсынылатын бөлшек бағасы, ")+dmy(C.updated)+'). '+t("Цена у дилера может отличаться: уточняйте перед покупкой. Агрегаторы (newauto.kz, carguru.kz) показывают другие цифры для Land Cruiser и RAV4.","Дилердегі баға өзгеше болуы мүмкін: сатып алар алдында нақтылаңыз. Агрегаторлар (newauto.kz, carguru.kz) Land Cruiser және RAV4 үшін басқа сандарды көрсетеді.")+'</p>';
   app.onclick=e=>{const b=e.target.closest("[data-rem]");if(!b)return;const m=M.find(x=>x.id===b.dataset.rem),i=CAR_REM.findIndex(r=>r.k===key(m));
     if(i>=0)CAR_REM.splice(i,1);else CAR_REM.push({k:key(m),price:m.price,d:new Date().toISOString().slice(0,10)});saveRem();const y=window.scrollY;carPage(cur.id);window.scrollTo(0,y)};
 }
 
+function catalogPage(){
+  const A=APT(),C=CARS().brands[0],bs=BRANDS.filter(b=>b.ready);
+  const row=(ic,name,sub,href,items)=>'<details class="cgrp"><summary><span class="ci2">'+sv(ic)+'</span><b>'+name+'</b><small>'+sub+'</small></summary><div class="cgl">'+items.map(i=>'<a href="'+i[1]+'">'+esc(i[0])+'</a>').join("")+'<a class="all" href="'+href+'">'+t("Смотреть все","Барлығын көру")+' ›</a></div></details>';
+  app.innerHTML=crumbs([[HOME(),"#/"],[t("Каталог","Каталог")]])+'<h1>'+t("Каталог","Каталог")+'</h1><p class="lead">'+t("Все, что можно сравнить: выберите раздел и откройте то, что нужно.","Салыстыруға болатын барлығы: бөлімді таңдап, керегін ашыңыз.")+'</p>'+
+   row("phone",t("Телефоны","Телефондар"),t("цены в магазинах","дүкендердегі бағалар"),"#/smartphones",(bs.length?bs.map(b=>[b.name,"#/smartphones/"+b.id]):[[t("Все телефоны","Барлық телефондар"),"#/smartphones"]]))+
+   row("car",t("Машины","Көліктер"),t("новые и с пробегом","жаңа және пробегпен"),"#/cars",C?C.models.map(m=>[C.name+" "+m.name,"#/cars/"+C.id+"/"+m.id]):[])+
+   row("home",t("Квартиры","Пәтерлер"),t("ЖК и условия застройщиков","ТК және құрылысшы шарттары"),"#/apartments",(A.developers||[]).map(d=>[d.name||d.id,"#/apartments"]))+
+   row("cash",t("Валюта","Валюта"),t("где выгодно купить и продать","қайда тиімді сатып алу және сату"),"#/currency",FXA.map(k=>[FXC[k].n[LANG==="kk"?1:0],"#/currency/"+k]));
+}
+function minePage(){
+  const ph=FAV.map(id=>famById(id)).filter(f=>f&&f.category==="smartphones"),C=CARS().brands[0];
+  const cars=C?C.models.filter(m=>CAR_REM.find(r=>r.k===C.id+"-"+m.id)):[];
+  const empty=!ph.length&&!cars.length;
+  app.innerHTML=crumbs([[HOME(),"#/"],[t("Мои","Менің"),""]])+'<h1>'+t("Мои запомненные","Менің есте сақтағандарым")+'</h1><p class="lead">'+t("Здесь собрано то, что вы отметили сердечком или запомнили. Хранится в вашем браузере.","Мұнда жүрекшемен белгілегенің немесе есте сақтағаның жиналған. Браузеріңде сақталады.")+'</p>'+
+   (empty?'<div class="card"><p style="margin:0">'+t("Пока пусто. Нажмите ♡ у телефона или "+"\"Запомнить цену\" у машины.","Әзірге бос. Телефондағы ♡ немесе көліктегі \"Бағаны есте сақтау\" түймесін басыңыз.")+'</p><p style="margin:10px 0 0"><a class="fxgo pri" href="#/smartphones">'+t("Телефоны","Телефондар")+'</a> <a class="fxgo pri" href="#/cars">'+t("Машины","Көліктер")+'</a></p></div>':'')+
+   (ph.length?'<h2>'+t("Телефоны","Телефондар")+'</h2><div class="cdl">'+ph.map(f=>'<a class="card minec" href="#/smartphones/'+brandOf(f)+'/'+f.id+'"><b>'+esc(f.name)+'</b><span class="mut">'+t("Открыть цены и историю","Бағалар мен тарихты ашу")+' ›</span></a>').join("")+'</div>':'')+
+   (cars.length?'<h2>'+t("Машины","Көліктер")+'</h2><div class="cdl">'+cars.map(m=>{const r=CAR_REM.find(x=>x.k===C.id+"-"+m.id),d=m.price-r.price;return '<a class="card minec" href="#/cars/'+C.id+'/'+m.id+'"><b>'+C.name+' '+esc(m.name)+'</b><span>'+t("Запомнили","Есте сақтадық")+' '+num(r.price)+' ₸ ('+dmy(r.d)+')</span><span class="'+(d<0?"cdn":d>0?"cup":"cok")+'">'+t("Сейчас","Қазір")+' '+num(m.price)+' ₸ '+(d<0?"▼":d>0?"▲":"· "+t("без изменений","өзгермеген"))+'</span></a>'}).join("")+'</div>':'');
+}
+function bottomBar(){
+  const h=location.hash,on=r=>r.test(h)?" on":"";
+  let el=document.getElementById("btab");if(!el){el=document.createElement("nav");el.id="btab";el.className="btab";el.setAttribute("aria-label",t("Основное меню","Негізгі мәзір"));document.body.appendChild(el)}
+  const it=(href,ic,l,cls)=>'<a class="'+cls.trim()+'" href="'+href+'"'+(cls.includes("on")?' aria-current="page"':'')+'>'+sv(ic)+'<span>'+l+'</span></a>';
+  el.innerHTML=it("#/","home2",t("Главная","Басты"),(h===""||h==="#/"||h==="#")?"on":"")+it("#/catalog","phone",t("Каталог","Каталог"),/^#\/catalog/.test(h)?"on":"")+it("#/currency","cash",t("Валюта","Валюта"),/^#\/currency/.test(h)?"on":"")+it("#/mine","heart",t("Мои","Менің"),/^#\/mine/.test(h)?"on":"")+'<a href="#" id="btsearch">'+sv("search")+'<span>'+t("Поиск","Іздеу")+'</span></a>';
+  const b=document.getElementById("btsearch");if(b)b.onclick=e=>{e.preventDefault();const q=document.getElementById("q");if(q){q.scrollIntoView({block:"center"});q.focus()}};
+}
+
+function mobileCollapse(){
+  if(innerWidth>700)return;
+  const mk=(head,body,open)=>{const d=document.createElement("details");d.className="mcol";if(open)d.open=true;const sm=document.createElement("summary");sm.textContent=head.textContent;d.appendChild(sm);head.parentNode.insertBefore(d,head);d.appendChild(body);head.remove()};
+  const af=app.querySelector(".aptf");if(af&&!af.closest(".mcol")){const d=document.createElement("details");d.className="mcol";const sm=document.createElement("summary");sm.textContent=LANG==="kk"?"Сүзгілер":"Фильтры";d.appendChild(sm);af.parentNode.insertBefore(d,af);d.appendChild(af)}
+  const ag=app.querySelector(".aptg");if(ag&&!ag.dataset.m){ag.dataset.m="1";const cs=[...ag.children];if(cs.length>3){cs.slice(3).forEach(c=>c.classList.add("mhide"));const b=document.createElement("button");b.type="button";b.className="fxmore";b.textContent=(LANG==="kk"?"Барлығын көрсету":"Показать все")+" ("+cs.length+")";b.onclick=()=>{ag.querySelectorAll(".mhide").forEach(c=>c.classList.remove("mhide"));b.remove()};ag.after(b)}}
+  app.querySelectorAll("h3.fxh3").forEach(h=>{const b=h.nextElementSibling;if(b)mk(h,b,false)});
+  app.querySelectorAll(":scope > h2").forEach(h=>{if(/Ближайшие|Что влияет|Условия рассрочки|Что проверить|Официальные дилеры|Что добавим/i.test(h.textContent)){const b=h.nextElementSibling;if(b&&b.tagName!=="H2")mk(h,b,false)}});
+}
+
+function gsList(q){
+  q=q.trim().toLowerCase();if(q.length<2)return[];const R=[];
+  D.families.filter(f=>f.category==="smartphones"&&f.name.toLowerCase().includes(q)).slice(0,5).forEach(f=>R.push([t("Телефон","Телефон"),f.name,"#/smartphones/"+brandOf(f)+"/"+f.id]));
+  BRANDS.filter(b=>b.ready&&b.name.toLowerCase().includes(q)).forEach(b=>R.push([t("Бренд","Бренд"),b.name,"#/smartphones/"+b.id]));
+  const C=CARS().brands[0];if(C)C.models.filter(m=>(C.name+" "+m.name).toLowerCase().includes(q)).forEach(m=>R.push([t("Машина","Көлік"),C.name+" "+m.name,"#/cars/"+C.id+"/"+m.id]));
+  APT().complexes.filter(c=>(c.name+" "+(c.district||"")).toLowerCase().includes(q)).forEach(c=>R.push([t("ЖК","ТК"),c.name,"#/apartments"]));
+  FXK.filter(k=>(FXC[k].n[0]+" "+FXC[k].n[1]+" "+k).toLowerCase().includes(q)).forEach(k=>R.push([t("Валюта","Валюта"),FXC[k].n[LANG==="kk"?1:0],"#/currency/"+k]));
+  if(/квар|жк|пәтер/.test(q))R.push([t("Раздел","Бөлім"),t("Квартиры","Пәтерлер"),"#/apartments"]);
+  if(/маш|авто|көлік|тойота|toyota/.test(q))R.push([t("Раздел","Бөлім"),t("Машины","Көліктер"),"#/cars"]);
+  if(/курс|валю|доллар|usd|еуро|евро/.test(q))R.push([t("Раздел","Бөлім"),t("Валюта","Валюта"),"#/currency"]);
+  return R.slice(0,8);
+}
+function gsShow(){
+  let b=document.getElementById("gs");const L=gsList(SEARCH_Q);
+  if(!L.length){if(b)b.remove();return}
+  if(!b){b=document.createElement("div");b.id="gs";b.className="gs";document.querySelector(".sbox2").appendChild(b)}
+  b.innerHTML=L.map(x=>'<a href="'+x[2]+'"><i>'+esc(x[0])+'</i><b>'+esc(x[1])+'</b></a>').join("");
+}
+
 function route(){
-  renderTop();
+  renderTop();bottomBar();
   const p=location.hash.replace(/^#\/?/,"").split("/").filter(Boolean);
   redraw=null;onSearch=null;onEnter=null;window.scrollTo(0,0);
   if(!p.length)return hub();
@@ -1389,7 +1454,9 @@ function route(){
   if(p[0]==="compare")return compare();
   if(p[0]==="apartments")return aptPage();
   if(p[0]==="cars")return carPage(p[2]);
-  if(p[0]==="currency")return fxPage((p[1]||"USD").toUpperCase());
+  if(p[0]==="catalog")return catalogPage();
+  if(p[0]==="mine")return minePage();
+  if(p[0]==="currency"){const k=(p[1]||"USD").toUpperCase();return fxPage(FXK.includes(k)?k:"USD")}
   if(p.length===1)return brands(p[0]);
   if(p.length===2)return models(p[0],p[1]);
   const f=famById(p[2]);if(!f||f.category!==p[0]||brandOf(f)!==p[1])return notFound();
@@ -1423,6 +1490,7 @@ function showWelcome(force){
   draw();
 }
 
+let __mc=0;new MutationObserver(()=>{if(__mc)return;__mc=1;try{mobileCollapse()}catch(e){}__mc=0}).observe(app,{childList:true});
 function route2(){document.body.style.removeProperty("--tint");app.onclick=null;route();favBar()}
 window.addEventListener("hashchange",route2);
 route2();

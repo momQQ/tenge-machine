@@ -1,17 +1,82 @@
 {
  "iphone18pro": {
-  "url": "https://prod-cdn.prod.asbis.io/s3/cms/product/13/80/1380844efa310402322615442537a74f/261014100025022763.webp",
-  "title": "iPhone 18 Pro, 256 ГБ, Серебристый",
-  "page": "https://ispace.kz/product/iphone-18-pro-256-gb-serebristyi-mjrq4af-a"
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_13114_0_1_5ST9U2.webp",
+  "title": "iPhone 18 Pro, 256 ГБ, Black",
+  "page": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-256gb-black-mjrp4hxa"
  },
  "iphone18promax": {
-  "url": "https://prod-cdn.prod.asbis.io/s3/cms/product/a5/d8/a5d80bd5e664060a1d1cd024fb3848c8/261014100023295696.webp",
-  "title": "iPhone 18 Pro Max, 256 ГБ, Чёрный",
-  "page": "https://ispace.kz/product/iphone-18-pro-max-256-gb-cernyi-mjxn4af-a"
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_13130_0_6_46dbCl.webp",
+  "title": "iPhone 18 Pro Max, 256 ГБ, Black",
+  "page": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-18-pro-max-256gb-black-mjxn4hxa"
  },
  "iphoneduo": {
-  "url": "https://prod-cdn.prod.asbis.io/s3/cms/product/6b/87/6b874433b8df33f318ebcee18cc0c782/261026170010365029.webp",
-  "title": "iPhone Duo, 256 ГБ, Night Sky",
-  "page": "https://ispace.kz/product/iphone-duo-256-gb-night-sky-mk2e4af-a"
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_13156_0_1_aOUklI.webp",
+  "title": "iPhone Duo, 256 ГБ, Star White",
+  "page": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-duo-256gb-star-white-mk2d4hxa"
+ },
+ "iphone16": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_6098_0_1_bbSS6O.webp",
+  "title": "iPhone 16, 128 ГБ, Black",
+  "page": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-16-128gb-black-mye73hxa"
+ },
+ "iphone17": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_7208_0_1_kWgtHj.webp",
+  "title": "iPhone 17, 256 ГБ, Black",
+  "page": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-17-256gb-black-mg6j4hxa"
+ },
+ "iphone17pro": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_7220_0_1_wsYAZt.webp",
+  "title": "iPhone 17 Pro, 256 ГБ, Deep Blue",
+  "page": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-17-pro-256gb-deep-blue-mg8j4hxa"
+ },
+ "iphone17promax": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_7228_0_1_1HRhd0.webp",
+  "title": "iPhone 17 Pro Max, 256 ГБ, Cosmic Orange",
+  "page": "https://www.sulpak.kz/g/smartfoniy-apple-iphone-17-pro-max-256gb-cosmic-orange-mfyn4hxa"
+ },
+ "galaxys26ultra": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_7639_0_1_KYyFVh.webp",
+  "title": "Galaxy S26 Ultra, 256 ГБ, Black",
+  "page": "https://www.sulpak.kz/g/smartfoniy-samsung-galaxy-s26-ultra-5g-256gb-black-sm-s948bzkbskz"
+ },
+ "galaxys26": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_7623_0_1_ONf4l9.webp",
+  "title": "Galaxy S26, 256 ГБ, Black",
+  "page": "https://www.sulpak.kz/g/smartfoniy-samsung-galaxy-s26-5g-256gb-black-sm-s942bzkcskz"
+ },
+ "galaxyzfold8": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_12923_0_6_pFSJY7.webp",
+  "title": "Galaxy Z Fold8, 512 ГБ, Cream",
+  "page": "https://www.sulpak.kz/g/smartfoniy-samsung-galaxy-z-fold8-5g-512gb-cream-sm-f971bzwcskz"
+ },
+ "galaxyzflip8": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_12915_0_6_julrJu.webp",
+  "title": "Galaxy Z Flip8, 256 ГБ, Graphite",
+  "page": "https://www.sulpak.kz/g/smartfoniy-samsung-galaxy-z-flip8-5g-256gb-graphite-sm-f776bzkgskz"
+ },
+ "galaxya57": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_12138_0_1_KVwyhH.webp",
+  "title": "Galaxy A57, 256 ГБ, Gray",
+  "page": "https://www.sulpak.kz/g/smartfoniy-samsung-galaxy-a57-5g-256gb-gray-sm-a576bzafskz"
+ },
+ "galaxya17": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_7186_0_1_WUjMYU.webp",
+  "title": "Galaxy A17, 128 ГБ, Black",
+  "page": "https://www.sulpak.kz/g/smartfoniy-samsung-galaxy-a17-128gb-black-sm-a175fzkcskz"
+ },
+ "pura80pro": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_7160_0_1_IrpLVb.webp",
+  "title": "HUAWEI Pura 80 Pro, Black",
+  "page": "https://www.sulpak.kz/g/smartfoniy-huawei-pura-80-pro-black"
+ },
+ "pura80ultra": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_7157_0_1_cCBdBG.webp",
+  "title": "HUAWEI Pura 80 Ultra, Black",
+  "page": "https://www.sulpak.kz/g/smartfoniy-huawei-pura-80-ultra-black"
+ },
+ "mate80pro": {
+  "url": "https://object.pscloud.io/cms/cms/Photo/img_0_77_12151_0_1_lO64hx.webp",
+  "title": "HUAWEI Mate 80 Pro, 512 ГБ, Black",
+  "page": "https://www.sulpak.kz/g/smartfoniy-huawei-mate-80-pro-16512gb-black"
  }
 }
