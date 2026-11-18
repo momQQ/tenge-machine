@@ -1,0 +1,28 @@
+// Ставки и условия банков. Собрано 18.11.2026 из публичных статей (ссылки в поле src). Это ориентир, уточняйте в банке.
+window.TM_FIN={"updated":"2026-11-18","base":{"rate":15.75,"date":"23 октября 2026","src":"https://finratings.kz/news/17386-banki-kazakhstana-urezali-stavki-po-depozitam-gde-eshche-daiut-20-21-godovykh/"},
+"mortgage":[
+["Отбасы банк, жилищный заем","3,5–5%","от 50% накоплений","депозит от 3 лет","https://finratings.kz/news/17597-top-5-ipotek-v-kazakhstane-gde-kupit-kvartiru-za-25-mln-tenge-i-skolko-platit/"],
+["Отбасы банк, Наурыз","7% / 9%","от 20%","конкурс, набор не подтвержден","https://finratings.kz/news/17597-top-5-ipotek-v-kazakhstane-gde-kupit-kvartiru-za-25-mln-tenge-i-skolko-platit/"],
+["Отбасы банк, Свой дом","7%, затем 3,5–5%","от 20%","только объекты из списка партнеров","https://finratings.kz/news/17597-top-5-ipotek-v-kazakhstane-gde-kupit-kvartiru-za-25-mln-tenge-i-skolko-platit/"],
+["Freedom Bank + BI Group, Көркем","10–14,5%","от 8 млн ₸ (30%)","после накопления 50% ставка 10%","https://finratings.kz/news/17290-kazakhstantsy-smogut-kupit-kvartiru-bi-group-so-vznosom-ot-2-8-mln-tenge/"],
+["BI Group, BIG Qadam","от 8,5%","от 2,8 млн ₸","до 7 лет, платеж от 140 тыс. ₸","https://finratings.kz/news/17290-kazakhstantsy-smogut-kupit-kvartiru-bi-group-so-vznosom-ot-2-8-mln-tenge/"],
+["Altyn Bank (BI Group)","12,2%","от 6 млн ₸","акция 23–26 октября","https://finratings.kz/news/17290-kazakhstantsy-smogut-kupit-kvartiru-bi-group-so-vznosom-ot-2-8-mln-tenge/"],
+["Bereke Bank, под залог денег","13,9%","30%","до 15 лет","https://krisha.kz/content/articles/2026/ipoteka-v-kazahstane-stavki-i-usloviya-vseh-bankov"],
+["Alatau City Bank, новостройки","16,25%","от 20%","до 20 лет","https://krisha.kz/content/articles/2026/ipoteka-v-kazahstane-stavki-i-usloviya-vseh-bankov"],
+["Нурбанк, новостройки","16,9%","от 20%","до 20 лет","https://krisha.kz/content/articles/2026/ipoteka-v-kazahstane-stavki-i-usloviya-vseh-bankov"],
+["Halyk Bank (BI Group)","17,55%","от 5,4 млн ₸","платеж от 339 тыс. ₸","https://finratings.kz/news/17290-kazakhstantsy-smogut-kupit-kvartiru-bi-group-so-vznosom-ot-2-8-mln-tenge/"],
+["ЦентрКредит (BI Group)","17,35%","от 5,4 млн ₸","платеж от 336 тыс. ₸","https://finratings.kz/news/17290-kazakhstantsy-smogut-kupit-kvartiru-bi-group-so-vznosom-ot-2-8-mln-tenge/"],
+["Freedom Bank, стандартная","24%","от 20%","до 20 лет","https://krisha.kz/content/articles/2026/ipoteka-v-kazahstane-stavki-i-usloviya-vseh-bankov"]],
+"deposits":[
+["Bereke Bank, премиум","21%","ГЭСВ","от 10 млн ₸ и половина суммы в других продуктах банка"],
+["Bereke Bank, Салем","20%, затем 19%","ГЭСВ","3 мес., для новых клиентов, первый месяц 20%"],
+["Altyn Bank, Reserve+","19,56%","ГЭСВ","3 мес., без частичного снятия"],
+["Малые банки, 6 мес.","до 19%","ГЭСВ","доход с 1 млн ≈ 91 тыс. ₸"],
+["Малые банки, 12 мес.","до 17%","ГЭСВ","доход с 1 млн ≈ 170 тыс. ₸"],
+["Крупные банки, 3 мес.","16,45–16,7%","номинал","без частичного снятия"],
+["Kaspi, сберегательный","18%","ГЭСВ","снижен с 19% в октябре"],
+["Halyk, QORJIN","17,75%","ГЭСВ","на сентябрь, было 19,5% в мае"],
+["Крупные банки, 12 мес.","14–14,5%","номинал","ГЭСВ около 15%"],
+["Доллар, 24 мес.","до 2,5%","ГЭСВ","предел с 1 октября, в одном банке"]],
+"srcDep":"https://www.zakon.kz/finansy/6537099-depozity-v-kazakhstane-stavki-padayut-no-poluchit-do-20-godovykh-eshche-mozhno.html",
+"ins":"Тенговые сберегательные вклады застрахованы КФГД до 20 млн ₸ в каждом банке"};

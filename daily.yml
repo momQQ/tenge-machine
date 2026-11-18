@@ -1,4 +1,4 @@
-name: daily-prices
+name: daily-fx
 
 on:
   schedule:
@@ -19,13 +19,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Собрать цены
-        env:
-          TG_TOKEN: ${{ secrets.TG_TOKEN }}
-          TG_CHAT: ${{ secrets.TG_CHAT }}
-        run: python collector/collect.py
-
-      - name: Собрать курсы валют и золото
+      - name: Собрать курсы валют
         env:
           TG_TOKEN: ${{ secrets.TG_TOKEN }}
           TG_CHAT: ${{ secrets.TG_CHAT }}

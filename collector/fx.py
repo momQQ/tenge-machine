@@ -1,6 +1,6 @@
 """Курсы валют и золото: Нацбанк (официальные) и Банк ЦентрКредит (наличные, приложение, FX-обменник).
 
-Запускается после collect.py. Пишет data/fx.js (window.TM_FX) и копит историю в data/fx_nbk.csv.
+Пишет data/fx.js (window.TM_FX) и копит историю в data/fx_nbk.csv.
 Если источник не ответил или разметка изменилась, прошлые данные остаются, а в Telegram уходит предупреждение.
 Серебро: берется со страницы ЦентрКредит (приложение и FX-обменник), история копится с первого запуска.
 """
@@ -8,7 +8,7 @@ import csv, datetime as dt, html, json, re, sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from collect import fetch, tg_send, NBK_URL  # noqa: E402
+from common import fetch, tg_send, NBK_URL  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -19,8 +19,8 @@ BCC_GOLD = "https://www.bcc.kz/personal/savings/gold-operations/"
 NBK_GOLD = "https://nationalbank.kz/ru/gold/zoloto"
 CUR = ["USD", "EUR", "RUB", "CNY", "GBP"]
 RANGE = {"USD": (300, 800), "EUR": (350, 900), "RUB": (2, 15), "CNY": (40, 110), "GBP": (400, 1000), "XAU": (20000, 150000), "XAG": (150, 4000)}
-BACKFILL = 25          # сколько недостающих дней Нацбанка докачивать за один запуск
-KEEP = 90              # сколько дней истории отдавать сайту
+BACKFILL = 120         # сколько недостающих дней Нацбанка докачивать за один запуск
+KEEP = 400             # сколько дней истории отдавать сайту
 
 
 def log(*a):
