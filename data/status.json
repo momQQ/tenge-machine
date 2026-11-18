@@ -8,9 +8,9 @@
   "avail": false
  },
  "iphone18pro-256|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 849990,
   "avail": false
@@ -24,19 +24,19 @@
   "avail": null
  },
  "iphone18pro-256|Technodom": {
-  "state": "ok",
+  "state": "site_down",
   "checked": "2026-11-18",
-  "note": "разметка страницы",
+  "note": "сайт не ответил",
   "last_ok": "2026-11-18",
   "price": 849990,
   "avail": false
  },
  "iphone18pro-256|Kaspi": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "продавцов: 5",
   "last_ok": "2026-11-18",
-  "price": 843387,
+  "price": 839998,
   "avail": true
  },
  "iphone18pro-512|iSpace": {
@@ -48,9 +48,9 @@
   "avail": false
  },
  "iphone18pro-512|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 993990,
   "avail": false
@@ -64,9 +64,9 @@
   "avail": false
  },
  "iphone18pro-1tb|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 1275990,
   "avail": false
@@ -80,9 +80,9 @@
   "avail": false
  },
  "iphone18pro-2tb|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 1698990,
   "avail": false
@@ -96,9 +96,9 @@
   "avail": false
  },
  "iphone18promax-256|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 909990,
   "avail": false
@@ -112,9 +112,9 @@
   "avail": false
  },
  "iphone18promax-512|Sulpak": {
-  "state": "site_down",
+  "state": "no_data",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "цена на странице не найдена",
   "last_ok": null,
   "price": null,
   "avail": null
@@ -128,12 +128,12 @@
   "avail": false
  },
  "iphone18promax-1tb|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
-  "last_ok": null,
-  "price": null,
-  "avail": null
+  "note": "разметка страницы",
+  "last_ok": "2026-11-18",
+  "price": 1345990,
+  "avail": false
  },
  "iphone18promax-2tb|iSpace": {
   "state": "ok",
@@ -152,9 +152,9 @@
   "avail": false
  },
  "iphoneduo-256|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 1399990,
   "avail": false
@@ -184,105 +184,105 @@
   "avail": false
  },
  "iphoneduo-2tb|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 2273990,
   "avail": false
  },
  "iphone17-256|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 633990,
   "avail": false
  },
  "iphone17pro-256|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 746990,
   "avail": false
  },
  "iphone17promax-256|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 805990,
   "avail": false
  },
  "galaxys26ultra-256|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 649890,
   "avail": false
  },
  "galaxys26-256|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 499890,
   "avail": false
  },
  "galaxyzfold8-512|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 1069890,
   "avail": false
  },
  "galaxyzflip8-256|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 639890,
   "avail": false
  },
  "galaxya57-256|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 279890,
   "avail": false
  },
  "galaxya17-128|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 139890,
   "avail": false
  },
  "pura80pro-256|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 419890,
   "avail": false
  },
  "pura80ultra-512|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 529890,
   "avail": false
  },
  "mate80pro-512|Sulpak": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 499890,
   "avail": false
