@@ -648,6 +648,40 @@ button:active,.btn:active,.brow:active,.apt3:active,.ac3:active,.btab a:active,.
 
 @media (pointer:coarse){.perb button{min-height:40px;padding-left:14px;padding-right:14px}.lang button,#lang button,.lg button{min-height:38px;min-width:48px}.afc button{padding-top:11px;padding-bottom:11px}.crumbs a,.hsec3 a,.h3x a,.rng a,.fxdis a,.nfnote a{display:inline-block;padding:10px 4px;margin:-10px -4px}}
 .sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* v11 chart scrub */
+.bc{touch-action:pan-y;cursor:crosshair}
+.bc i{transition:left 90ms cubic-bezier(.23,1,.32,1),top 90ms cubic-bezier(.23,1,.32,1);animation:bcp 2s ease-out infinite;z-index:2}
+.bc.act i{animation:none;box-shadow:0 0 0 7px rgba(52,211,153,.35);background:#fff;border:3px solid #34d399;width:14px;height:14px}
+.bcv{position:absolute;top:0;bottom:0;width:1.5px;background:rgba(255,255,255,.55);opacity:0;transition:opacity 120ms,left 90ms cubic-bezier(.23,1,.32,1);transform:translateX(-50%);pointer-events:none}
+.bc.act .bcv{opacity:1}
+.bct{position:absolute;top:2px;transform:translateX(-50%);background:#fff;color:#10131a;font-style:normal;font-weight:700;font-size:13px;line-height:1;padding:7px 10px;border-radius:10px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity 120ms,left 90ms cubic-bezier(.23,1,.32,1);z-index:3}
+.bc.act .bct{opacity:1}
+@keyframes bcp{0%{box-shadow:0 0 0 0 rgba(52,211,153,.55)}70%{box-shadow:0 0 0 12px rgba(52,211,153,0)}100%{box-shadow:0 0 0 0 rgba(52,211,153,0)}}
+@media (prefers-reduced-motion:reduce){.bc i{animation:none}}
+
+/* v12 polish */
+.fxcalx{display:none!important}
+.brow .bn b small{font-weight:600;font-size:12.5px;color:var(--mute);margin-left:4px}
+.brow .bn .bt{display:flex;gap:6px;align-items:center;white-space:nowrap;font-size:13px;color:var(--mute)}
+.brow .bn .bt em{font-style:normal;font-weight:800;font-size:12px;padding:2px 7px;border-radius:99px}
+.brow .bn .bt em.up{background:#fde8e5;color:#c23a2b}.brow .bn .bt em.dn{background:#e3f6ea;color:#14783f}
+@media(max-width:700px){.hsec3 h2{font-size:19px;line-height:1.2}.hsec3 a{font-size:14px}.ac3{display:flex;flex-direction:column}.ac3 .abd{flex:1}.mqv strong.sm{font-size:15px;line-height:1.2}}
+
+.brow .bn{display:flex!important;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;gap:3px;align-self:center;min-width:0}
+.brow .bn b{display:block;line-height:1.2}.brow .bn .bt{margin:0;line-height:1.2}
+@media(max-width:700px){.hs3{align-items:flex-start}}
+
+.brow .bn .bt{padding:0!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;width:auto!important}
+.brow .bn .bt em{padding:2px 7px!important}
+
+.brow .bn .bt{flex-wrap:nowrap!important;flex-direction:row!important;gap:5px!important;font-size:12.5px!important;text-indent:0!important;margin-left:0!important}
+.brow .bn{flex-wrap:nowrap!important}
+
+.brow .bn .bt em{display:inline-block!important;white-space:nowrap;flex:none}
+@media(max-width:400px){.brow .bn b small{display:block;margin:0}}
+
+@media(max-width:400px){.brow .bn .bt{font-size:0!important}.brow .bn .bt em{font-size:12px!important}}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
