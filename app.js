@@ -159,9 +159,10 @@ function fxPage(cur){
     const pk=document.getElementById("fxp"),bx=document.querySelector(".fxbox");
     const chips=fxAvail().map(k=>'<button type="button" data-c="'+k+'" class="mch'+(k===cur?" on":"")+'">'+flag(k,24)+k+'</button>').join("");
     const SR=fxSer(cur);const hero=st?'<div class="mh"><div class="mh1"><span>'+t("Официальный курс Нацбанка","Ұлттық банк бағамы")+'</span><em class="'+(st.ch>0?"up":"dn")+'">'+(st.ch>0?"▲ ":"▼ ")+f1(st.ch)+' · 30 '+t("дн.","күн")+'</em></div><b class="mh2">'+dc(st.last)+' ₸</b>'+perBar()+bigChart(SR.h.map(x=>x[1]),perLab())+'<div class="mmm"><span>'+t("мин ","мин ")+dc(Math.min(...SR.h.map(x=>x[1])))+'</span><span>'+t("макс ","макс ")+dc(Math.max(...SR.h.map(x=>x[1])))+'</span></div>'+(SR.note?'<p class="pnote">'+SR.note+'</p>':'')+'<p class="mh3 '+vt+'">'+(vt==="buy"?t("Сейчас курс в нижней трети за 3 месяца: хороший момент покупать.","Қазір бағам 3 айдың төменгі үштен біріндe: сатып алуға жақсы сәт."):vt==="sell"?t("Курс в верхней трети за 3 месяца: выгоднее продавать, покупку отложите.","Бағам жоғарғы үштен бірінде: сату тиімді, сатып алуды кейінге қалдырыңыз."):t("Курс в середине диапазона за 3 месяца: явного преимущества нет.","Бағам диапазон ортасында: айқын артықшылық жоқ."))+'</p></div>':'';
-    if(pk)pk.outerHTML='<section class="mfx" id="fxp">'+hero+'<div class="mchs">'+chips+'</div><div class="seg big" id="fxm"><button data-m="buy" class="'+(mode==="buy"?"on":"")+'">'+t("Купить","Сатып алу")+'</button><button data-m="sell" class="'+(mode==="sell"?"on":"")+'">'+t("Продать","Сату")+'</button></div><div class="seg" id="fxg">'+[["all",t("Все","Барлығы")],["exchanger",t("Обменники","Айырбастау")],["bank",t("Банки","Банктер")]].map(g=>'<button data-g="'+g[0]+'" class="'+(FXGRP===g[0]?"on":"")+'">'+g[1]+'</button>').join("")+'</div><label class="mamt"><span>'+t("Сумма в ","Сома ")+U+'</span><span class="amw"><input id="fxa" inputmode="numeric" value="'+amt+'" aria-label="'+t("Сумма в валюте","Валюта сомасы")+'"><i id="fxs">'+(SYM[cur]||cur)+'</i></span></label></section>';
+    if(pk)pk.outerHTML='<section class="mfx" id="fxp">'+hero+'<div class="mchs">'+chips+'</div><div class="mfxs"><div class="seg big" id="fxm"><button data-m="buy" class="'+(mode==="buy"?"on":"")+'">'+t("Купить","Сатып алу")+'</button><button data-m="sell" class="'+(mode==="sell"?"on":"")+'">'+t("Продать","Сату")+'</button></div></div><div class="seg" id="fxg">'+[["all",t("Все","Барлығы")],["exchanger",t("Обменники","Айырбастау")],["bank",t("Банки","Банктер")]].map(g=>'<button data-g="'+g[0]+'" class="'+(FXGRP===g[0]?"on":"")+'">'+g[1]+'</button>').join("")+'</div><label class="mamt"><span>'+t("Сумма в ","Сома ")+U+'</span><span class="amw"><input id="fxa" inputmode="numeric" value="'+amt+'" aria-label="'+t("Сумма в валюте","Валюта сомасы")+'"><i id="fxs">'+(SYM[cur]||cur)+'</i></span></label></section>';
     if(bx)bx.outerHTML='<section class="mlist"><div id="fxcards"></div>'+(ex.length>LIM&&!showAll?'<button type="button" class="fxmore" id="fxmore">'+t("Показать все ("+ex.length+")","Барлығын көрсету ("+ex.length+")")+'</button>':'')+'<p class="mut fxnote">'+t("Источники: ifin.kz, сайт ЦентрКредит. Курсы меняются в течение дня, перед визитом проверьте на сайте. Мы не проводим операции, только сравниваем.","Дереккөздер: ifin.kz, ЦентрКредит сайты. Бағамдар күн ішінде өзгереді, барар алдында сайттан тексеріңіз. Біз операция жасамаймыз, тек салыстырамыз.")+'</p></section>';
   }
+  if(MOB){const sec=document.getElementById("fxp"),ml=document.querySelector(".mlist");if(sec&&ml)sec.appendChild(ml)}
   const draw=()=>{if(MOB){document.getElementById("fxcards").innerHTML=mcards();return}document.getElementById("fxb").innerHTML=tbl();document.getElementById("fxth").textContent=mode==="buy"?t("Вы заплатите","Сіз төлейсіз"):t("Вы получите","Сіз аласыз")};
   draw();
   document.getElementById("fxp").onclick=e=>{const m=e.target.closest("[data-m]"),c=e.target.closest("[data-c]");
@@ -172,7 +173,9 @@ function fxPage(cur){
   const mo=document.getElementById("fxmore");if(mo)mo.onclick=()=>{FXALL=true;const y=window.scrollY;fxPage(cur);window.scrollTo(0,y)};
   document.getElementById("fxa").oninput=e=>{amt=parseInt(String(e.target.value).replace(/\D/g,""),10)||0;draw()};
   onSearch=()=>{};onEnter=()=>{location.hash="#/smartphones"};
+  if(window.__goList){window.__goList=0;const tg=MOB?document.querySelector(".mchs"):document.querySelector(".fxbox");if(tg)setTimeout(()=>{const th=parseInt(getComputedStyle(document.documentElement).getPropertyValue("--toph"))||0;window.scrollTo(0,Math.max(0,tg.getBoundingClientRect().top+window.scrollY-th-10))},30)}
 }
+document.addEventListener("click",e=>{if(e.target.closest(".bmore"))window.__goList=1});
 
 // ---------- квартиры ----------
 const QEND={I:3,II:6,III:9,IV:12};
@@ -189,7 +192,7 @@ function aptTop(list){
   const lowDown=cs.filter(c=>c.mort).sort((a,b)=>a.mort.pct-b.mort.pct||a.m2-b.m2)[0];
   const longInst=cs.filter(c=>c.inst).sort((a,b)=>b.inst.months-a.inst.months||a.m2-b.m2)[0];
   const soon=cs.filter(c=>c.status==="done"||c.first[0]<=2026).sort((a,b)=>a.m2-b.m2)[0];
-  const card=(tt,c,line,ic)=>c?'<a class="card apt3" href="#/apartments"><span class="a3i">'+ic+'</span><small>'+tt+'</small><em>'+line+'</em><b>'+esc(c.name)+'</b><span class="mut">'+esc(dn(c.dev))+'</span></a>':"";
+  const card=(tt,c,line,ic)=>c?'<a class="card apt3" href="#apt-'+c.id+'" data-goto="'+c.id+'"><span class="a3i">'+ic+'</span><small>'+tt+'</small><b class="a3n">'+t("ЖК ","ТК ")+esc(c.name)+'</b><em>'+line+'</em><span class="a3d">'+esc(dn(c.dev))+'</span><span class="a3d">'+esc((c.district||"").split(",")[0])+'</span><span class="a3g">'+t("Показать карточку","Карточканы көрсету")+' ↓</span></a>':"";
   return '<div class="apt3r">'+card(t("Самая низкая цена за м²","Ең төмен баға (м²)"),cheap,num(cheap.m2)+' ₸/м²',"₸")+
    card(t("Самый маленький первый взнос","Ең аз алғашқы жарна"),lowDown,t("от ","бастап ")+(lowDown&&lowDown.mort.pct)+'% '+t("по ипотеке","ипотека бойынша"),"%")+
    card(t("Самая длинная рассрочка","Ең ұзақ бөліп төлеу"),longInst,(longInst&&longInst.inst.pct)+'% '+t("взнос, ","жарна, ")+(longInst&&longInst.inst.months)+' '+t("мес","ай"),"◷")+
@@ -215,6 +218,18 @@ function aptArt(c){
   g+='<rect y="132" width="560" height="18" fill="'+(done?"#b8c9a8":"#0f1630")+'" opacity="'+(done?".9":".55")+'"/></svg>';
   return g;
 }
+const likes=()=>{try{return JSON.parse(localStorage.getItem("tm_like")||"[]").filter(id=>APT().complexes.some(c=>c.id===id)).slice(-2)}catch(e){return[]}};
+const setLikes=a=>{try{localStorage.setItem("tm_like",JSON.stringify(a))}catch(e){}window.__lk=a};
+function cmpBar(){
+  let el=document.getElementById("cmpbar");const L=window.__lk||likes(),A=APT().complexes;
+  if(!/^#\/apartments/.test(location.hash)||!L.length){if(el)el.remove();return}
+  if(!el){el=document.createElement("div");el.id="cmpbar";document.body.appendChild(el)}
+  const nm=id=>(A.find(c=>c.id===id)||{}).name||id;
+  el.innerHTML=L.length>1?'<div class="cb2"><div><b>'+t("Сравнить два ЖК?","Екі ТК салыстыру керек пе?")+'</b><span>'+esc(nm(L[0]))+' и '+esc(nm(L[1]))+'</span></div><a href="#/duel/'+L[0]+'/'+L[1]+'">'+t("Сравнить","Салыстыру")+'</a><button type="button" id="cbx" aria-label="'+t("Сбросить","Тазарту")+'">×</button></div>':'<div class="cb2 one"><div><b>'+esc(nm(L[0]))+'</b><span>'+t("Отметьте сердечком еще один ЖК, чтобы сравнить","Салыстыру үшін тағы бір ТК-ны жүрекшемен белгілеңіз")+'</span></div><button type="button" id="cbx" aria-label="'+t("Сбросить","Тазарту")+'">×</button></div>';
+  document.getElementById("cbx").onclick=()=>{setLikes([]);document.querySelectorAll(".lk.on").forEach(b=>{b.classList.remove("on");b.setAttribute("aria-pressed","false")});cmpBar()};
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-like]");if(!b)return;e.preventDefault();let L=likes();const id=b.dataset.like;L=L.includes(id)?L.filter(x=>x!==id):L.concat(id).slice(-2);setLikes(L);document.querySelectorAll("[data-like]").forEach(x=>{const on=L.includes(x.dataset.like);x.classList.toggle("on",on);x.setAttribute("aria-pressed",on)});cmpBar()});
+document.addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(!g)return;e.preventDefault();const el=document.getElementById("apt-"+g.dataset.goto);if(!el){APT_DEV="all";APT_DIST="all";APT_CLS="all";APT_ONLY.clear();aptPage();aptHero()}const c=document.getElementById("apt-"+g.dataset.goto);if(!c)return;c.classList.remove("mhide");c.scrollIntoView({behavior:"smooth",block:"center"});c.classList.add("pulse");setTimeout(()=>c.classList.remove("pulse"),1800)});
 function aptCard(c){
   const A=APT(),dev=A.developers.find(d=>d.id===c.dev)||{name:c.dev},P=c.m2*APT_AREA,mn=t("мес","ай");
   const kf=(lab,val,sub,off)=>'<div class="kf'+(off?" off":"")+'"><small>'+lab+'</small><b>'+val+'</b><span>'+sub+'</span></div>';
@@ -225,8 +240,8 @@ function aptCard(c){
    kf(t("Сдача","Тапсыру"),c.status==="done"?t("Сдан","Тапсырылған"):c.delivery[0].split(": ").pop(),c.status==="done"?"":(dpast(c.delivery[0].split(": ").pop())!==c.delivery[0].split(": ").pop()?'<i class="late">'+t("срок прошел","мерзімі өтті")+'</i> ':"")+(c.delivery.length>1?c.delivery.length+" "+t("очереди","кезек"):t("одна очередь","бір кезек")));
   const pay=(c.mort||c.inst)?'<div class="apay">'+(c.mort?'<div><small>'+t("Ипотека, взнос ≈ ","Ипотека, жарна ≈ ")+mln(P*c.mort.pct/100)+'</small><b>≈ '+num(mortPay)+' ₸/'+mn+'</b></div>':'')+(c.inst?'<div><small>'+t("Рассрочка, взнос ≈ ","Бөліп төлеу, жарна ≈ ")+mln(P*c.inst.pct/100)+'</small><b>≈ '+num(instPay)+' ₸/'+mn+'</b></div>':'')+'</div>':'<p class="mut anone">'+t("Условия взноса и рассрочки не указаны, уточняйте у застройщика.","Жарна мен бөліп төлеу шарттары көрсетілмеген, құрылысшыдан нақтылаңыз.")+'</p>';
   const sale=c.units[0]&&c.units[1]?'<div class="abar"><div><i style="width:'+Math.round(c.units[1]/c.units[0]*100)+'%"></i></div><span>'+t("в продаже ","сатылымда ")+c.units[1]+' '+t("из ","/ ")+c.units[0]+'</span></div>':(c.units[0]?'<div class="abar"><span>'+t("Квартир: ","Пәтер: ")+c.units[0]+'</span></div>':'');
-  return '<article class="card aptc"><div class="aimg">'+aptArt(c)+(c.img?'<img class="aphoto" src="'+esc(c.img)+'" alt="'+esc(c.name)+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">':'')+'<span class="adev2 '+c.dev+'">'+esc(dev.name)+'</span><div class="atag"><span class="cl '+c.cls+'">'+t(CLSN[c.cls][0],CLSN[c.cls][1])+'</span><span class="st '+c.status+'">'+(c.status==="done"?t("Сдан","Тапсырылған"):t("Строится","Салынуда"))+'</span></div></div>'+
-   '<div class="abody"><h3>'+esc(c.name)+'</h3><small class="mut">'+esc(c.district)+'</small>'+
+  return '<article class="card aptc" id="apt-'+c.id+'"><div class="aimg">'+aptArt(c)+(c.img?'<img class="aphoto" src="'+esc(c.img)+'" alt="'+esc(c.name)+'" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">':'')+'<span class="adev2 '+c.dev+'">'+esc(dev.name)+'</span><div class="atag"><span class="cl '+c.cls+'">'+t(CLSN[c.cls][0],CLSN[c.cls][1])+'</span><span class="st '+c.status+'">'+(c.status==="done"?t("Сдан","Тапсырылған"):t("Строится","Салынуда"))+'</span></div></div>'+
+   '<div class="abody"><div class="aname"><h3>'+esc(c.name)+'</h3><button type="button" class="lk'+(likes().includes(c.id)?" on":"")+'" data-like="'+c.id+'" aria-pressed="'+likes().includes(c.id)+'" aria-label="'+t("Добавить к сравнению","Салыстыруға қосу")+'"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 2.7 5 6 5c2 0 3.4 1.1 4.3 2.4h3.4C14.6 6.1 16 5 18 5c3.3 0 5.1 3.4 3.6 6.8C19.5 16.4 12 21 12 21z"/></svg></button></div><small class="mut">'+esc(c.district)+'</small>'+
    '<div class="ap"><div><small>'+(c.resale?t("от (не от застройщика)","бастап (құрылысшыдан емес)"):t("Цена от","Бағасы бастап"))+'</small><b>'+num(c.m2)+' ₸<i>/м²</i></b></div><div><small>'+APT_AREA+' м² '+t("от","бастап")+'</small><b>≈ '+mln(P)+'</b></div></div>'+
    '<div class="akf">'+keys+'</div>'+pay+
    (c.promos.length?'<div class="ach">'+c.promos.map(p=>'<span class="pr">'+esc(p)+'</span>').join("")+'</div>':'')+
@@ -237,14 +252,18 @@ function aptCard(c){
 const DMAP={alatau:{d:"M20 28q0-8 8-8h169q8 0 8 8v109q0 8-8 8H28q-8 0-8-8z",x:112,y:82},zhetysu:{d:"M215 28q0-8 8-8h134q8 0 8 8v79q0 8-8 8H223q-8 0-8-8z",x:290,y:66},turksib:{d:"M375 28q0-8 8-8h149q8 0 8 8v79q0 8-8 8H383q-8 0-8-8z",x:458,y:66},nauryz:{d:"M20 163q0-8 8-8h79q8 0 8 8v159q0 8-8 8H28q-8 0-8-8z",x:68,y:240},auezov:{d:"M125 163q0-8 8-8h104q8 0 8 8v79q0 8-8 8H133q-8 0-8-8z",x:185,y:205},almaly:{d:"M255 133q0-8 8-8h109q8 0 8 8v74q0 8-8 8H263q-8 0-8-8z",x:318,y:170},medeu:{d:"M390 133q0-8 8-8h134q8 0 8 8v124q0 8-8 8H398q-8 0-8-8z",x:465,y:197},bostandyk:{d:"M125 268q0-8 8-8h122v-33q0-8 8-8h109q8 0 8 8v95q0 8-8 8H133q-8 0-8-8z",x:255,y:285}};
 function aptLeaf(){
   const el=document.getElementById("lmap");if(!el||!window.L)return;
-  const A=APT(),m=L.map(el,{scrollWheelZoom:false,zoomSnap:.5}).setView([43.2220,76.8512],11);
+  const A=APT(),m=L.map(el,{scrollWheelZoom:false,zoomSnap:.5,tap:false}).setView([43.2220,76.8512],11);
   m.attributionControl.setPrefix(false);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{subdomains:"abcd",maxZoom:19,detectRetina:true,attribution:"© OpenStreetMap, © CARTO"}).addTo(m);
+  const cd=L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{subdomains:"abcd",maxZoom:19,detectRetina:true,attribution:"© OpenStreetMap, © CARTO"}).addTo(m);
+  let fb=false;cd.on("tileerror",()=>{if(fb)return;fb=true;m.removeLayer(cd);L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m)});
   const b=[];
   A.complexes.filter(c=>c.ll).forEach(c=>{b.push(c.ll);
-    const ic=L.divIcon({className:"lpin d-"+c.dev,html:"<span>"+Math.round(c.m2/1000)+"k</span>",iconSize:[46,26],iconAnchor:[23,13]});
+    const ic=L.divIcon({className:"lpin d-"+c.dev,html:"<span>"+Math.round(c.m2/1000)+"k</span>",iconSize:[54,28],iconAnchor:[27,14]});
     L.marker(c.ll,{icon:ic}).addTo(m).bindPopup("<b>"+esc(c.name)+"</b><br>"+esc(c.district||"")+"<br>"+num(c.m2)+" ₸/м²<br><a href=\"https://2gis.kz/almaty/search/"+encodeURIComponent(c.name+" ЖК")+"\" target=\"_blank\" rel=\"noopener noreferrer\">2ГИС</a>")});
-  if(b.length>1)m.fitBounds(b,{padding:[30,30]});
+  const fit=()=>{m.invalidateSize();if(b.length>1)m.fitBounds(b,{padding:[30,30]})};
+  fit();setTimeout(fit,300);setTimeout(fit,1200);
+  if(window.ResizeObserver){let first=true;new ResizeObserver(()=>{m.invalidateSize();if(first){first=false;fit()}}).observe(el)}
+  addEventListener("orientationchange",()=>setTimeout(fit,300));
 }
 function aptMap(){
   const A=APT(),dn=id=>{const d=(A.districts||[]).find(x=>x[0]===id);return d?t(d[1],d[2]):id};
@@ -287,20 +306,21 @@ function aptPage(){
   list=list.slice().sort((a,b)=>APT_SORT==="m2"?a.m2-b.m2:APT_SORT==="down"?((a.mort?a.mort.pct:99)-(b.mort?b.mort.pct:99)||a.m2-b.m2):(a.first[0]*10+a.first[1])-(b.first[0]*10+b.first[1]));
   const cnt=id=>A.complexes.filter(c=>id==="all"||c.dev===id).length;
   const chip=(k,lab)=>'<button type="button" class="ach2'+(APT_ONLY.has(k)?" on":"")+'" data-o="'+k+'">'+lab+'</button>';
+  const MOBA=innerWidth<=700;
   app.innerHTML=crumbs([[HOME(),"#/"],[t("Квартиры","Пәтерлер")]])+
    '<h1>'+t("Квартиры от застройщиков в Алматы","Алматыдағы құрылысшылардан пәтерлер")+'</h1><p class="sub">'+t("Сравниваем жилые комплексы: цена за м², первый взнос, рассрочка, ипотека, акции и сроки сдачи. Данные krisha.kz и kn.kz на ","Тұрғын үй кешендерін салыстырамыз: м² бағасы, алғашқы жарна, бөліп төлеу, ипотека, акциялар және тапсыру мерзімі. krisha.kz және kn.kz деректері: ")+esc(A.updated)+'.</p>'+
    '<div class="hsec"><h2>'+t("Где выгодно сейчас","Қазір қайда тиімді")+'</h2></div>'+aptTop()+aptMap()+
-   '<section class="card aptf" id="aptf"><div class="fxq"><span class="ql">'+t("Застройщик","Құрылысшы")+'</span><div class="seg" id="aptd">'+[["all",t("Все","Барлығы")]].concat(A.developers.map(d=>[d.id,d.name])).map(d=>'<button data-d="'+d[0]+'" class="'+(APT_DEV===d[0]?"on":"")+'">'+esc(d[1])+' <small>'+cnt(d[0])+'</small></button>').join("")+'</div></div>'+
+   (MOBA?'<div class="aprm"><label class="fxamt">'+t("Площадь, м²","Ауданы, м²")+' <input id="apa" inputmode="numeric" value="'+APT_AREA+'"></label><label class="fxamt">'+t("Сначала","Алдымен")+' <select id="aps"><option value="m2"'+(APT_SORT==="m2"?" selected":"")+'>'+t("дешевле","арзан")+'</option><option value="down"'+(APT_SORT==="down"?" selected":"")+'>'+t("меньше взнос","жарна аз")+'</option><option value="date"'+(APT_SORT==="date"?" selected":"")+'>'+t("раньше сдача","ертерек тапсыру")+'</option></select></label></div><section class="alist"><div class="afbar" id="aptf"><div class="afc" id="aptd">'+[["all",t("Все","Барлығы")]].concat(A.developers.map(d=>[d.id,d.name])).map(d=>'<button type="button" data-d="'+d[0]+'" class="'+(APT_DEV===d[0]?"on":"")+'">'+esc(d[1])+' <small>'+cnt(d[0])+'</small></button>').join("")+'</div><div class="afc" id="aptc">'+[["all",t("Любой","Кез келген")],["comfort",t("Комфорт","Комфорт")],["business",t("Бизнес","Бизнес")]].map(x=>'<button type="button" data-c="'+x[0]+'" class="cl-'+x[0]+(APT_CLS===x[0]?" on":"")+'">'+x[1]+'</button>').join("")+'<i class="afd"></i>'+chip("inst",t("Рассрочка","Бөліп төлеу"))+chip("mort",t("Ипотека","Ипотека"))+chip("promo",t("Акция","Акция"))+chip("soon",t("Сдан или 2026","Тапсырылған немесе 2026"))+'</div></div>':'<section class="card aptf" id="aptf"><div class="fxq"><span class="ql">'+t("Застройщик","Құрылысшы")+'</span><div class="seg" id="aptd">'+[["all",t("Все","Барлығы")]].concat(A.developers.map(d=>[d.id,d.name])).map(d=>'<button data-d="'+d[0]+'" class="'+(APT_DEV===d[0]?"on":"")+'">'+esc(d[1])+' <small>'+cnt(d[0])+'</small></button>').join("")+'</div></div>'+
    '<div class="aptrow"><label class="fxamt">'+t("Площадь квартиры, м²","Пәтер ауданы, м²")+' <input id="apa" inputmode="numeric" value="'+APT_AREA+'"></label>'+
     '<div class="seg" id="aptc">'+[["all",t("Любой класс","Кез келген сынып")],["comfort",t("Комфорт","Комфорт")],["business",t("Бизнес","Бизнес")]].map(x=>'<button data-c="'+x[0]+'" class="'+(APT_CLS===x[0]?"on":"")+'">'+x[1]+'</button>').join("")+'</div>'+
     '<label class="fxamt">'+t("Сначала","Алдымен")+' <select id="aps"><option value="m2"'+(APT_SORT==="m2"?" selected":"")+'>'+t("дешевле","арзан")+'</option><option value="down"'+(APT_SORT==="down"?" selected":"")+'>'+t("меньше взнос","жарна аз")+'</option><option value="date"'+(APT_SORT==="date"?" selected":"")+'>'+t("раньше сдача","ертерек тапсыру")+'</option></select></label></div>'+
-   '<div class="ach">'+chip("inst",t("Есть рассрочка","Бөліп төлеу бар"))+chip("mort",t("Ипотека от 20%","Ипотека 20%-дан"))+chip("promo",t("Есть акция","Акция бар"))+chip("soon",t("Сдан или 2026","Тапсырылған немесе 2026"))+'</div></section>'+
+   '<div class="ach">'+chip("inst",t("Есть рассрочка","Бөліп төлеу бар"))+chip("mort",t("Ипотека от 20%","Ипотека 20%-дан"))+chip("promo",t("Есть акция","Акция бар"))+chip("soon",t("Сдан или 2026","Тапсырылған немесе 2026"))+'</div></section>')+
    '<p class="mut" style="margin:6px 2px 10px">'+t("Показано ЖК: ","Көрсетілген ТК: ")+list.length+'. '+t("Сумма по площади это оценка по минимальной цене за м² в ЖК, реальная цена зависит от планировки и этажа.","Аудан бойынша сома ТК-дегі м²-дің ең төмен бағасы бойынша бағалау, нақты баға жоспарлау мен қабатқа байланысты.")+'</p>'+
-   '<div class="aptg">'+(list.length?list.map(aptCard).join(""):'<div class="card"><p class="lead" style="margin:0">'+t("Ничего не нашли, снимите часть фильтров.","Ештеңе табылмады, кейбір сүзгілерді алып тастаңыз.")+'</p></div>')+'</div>'+
+   '<div class="aptg">'+(list.length?list.map(aptCard).join(""):'<div class="card"><p class="lead" style="margin:0">'+t("Ничего не нашли, снимите часть фильтров.","Ештеңе табылмады, кейбір сүзгілерді алып тастаңыз.")+'</p></div>')+'</div>'+(MOBA?'</section>':'')+
    finBlock("mort")+'<h2>'+t("Условия рассрочки застройщиков","Құрылысшылардың бөліп төлеу шарттары")+'</h2><div class="aptpl">'+A.developers.map(d=>'<div class="card"><h3>'+esc(d.name)+'</h3><p class="mut" style="margin:0 0 8px">'+esc(d.note)+'</p>'+d.plans.map(p=>'<div class="al"><b>'+esc(p[0])+'</b><span>'+esc(p[1])+'</span></div>').join("")+'<p class="mut apromo">'+esc(d.promo)+'</p></div>').join("")+'</div>'+
    finBlock("dep")+'<h2>'+t("Что проверить перед покупкой","Сатып алар алдында не тексеру керек")+'</h2><div class="card"><ul class="achk">'+[t("Цену до акции и итоговую цену за м² после скидки.","Акцияға дейінгі бағаны және жеңілдіктен кейінгі м² бағасын."),t("Действует ли скидка при ипотеке или только при полной оплате.","Жеңілдік ипотекада ма, әлде толық төлемде ғана жұмыс істейді ме."),t("К каким этажам и планировкам привязана скидка.","Жеңілдік қай қабаттар мен жоспарларға байланысты."),t("Есть ли надбавка за рассрочку и какие обязательные доплаты.","Бөліп төлеу үшін үстеме және міндетті қосымша төлемдер бар ма."),t("Срок сдачи очереди и репутацию застройщика, разрешение на строительство.","Кезекті тапсыру мерзімі және құрылысшының беделі, құрылыс рұқсаты.")].map(x=>'<li>'+x+'</li>').join("")+'</ul></div>'+
    '<p class="mut fxdis">'+t("Цены и условия берутся с публичных страниц и могут отличаться от итоговых, уточняйте у застройщика. Это не предложение и не финансовый совет. Платеж по ипотеке и рассрочке приблизительный, без страховок и комиссий.","Бағалар мен шарттар ашық беттерден алынады және соңғысынан өзгеше болуы мүмкін, құрылысшыдан нақтылаңыз. Бұл ұсыныс та, қаржылық кеңес те емес. Ипотека мен бөліп төлеу төлемі шамамен, сақтандыру мен комиссиясыз.")+'</p>'+FOOT();
-  const rd=()=>{const y=window.scrollY;aptPage();aptHero();window.scrollTo(0,y)};
+  const rd=()=>{const y=window.scrollY,sl=[...document.querySelectorAll(".afc")].map(x=>x.scrollLeft);aptPage();aptHero();document.querySelectorAll(".afc").forEach((x,i)=>{x.scrollLeft=sl[i]||0});window.scrollTo(0,y)};
   aptLeaf();
   document.querySelectorAll("[data-dist]").forEach(x=>{const go=()=>{const v=x.dataset.dist;APT_DIST=APT_DIST===v&&v!=="all"?"all":v;rd();const l=document.querySelector(".aptg");if(l)l.scrollIntoView({behavior:"smooth",block:"start"})};x.onclick=go;x.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}}});
   document.querySelectorAll("[data-pin]").forEach(x=>{const go=e=>{e.stopPropagation();const c=APT().complexes.find(q=>q.id===x.dataset.pin);APT_DIST=c&&c.dist?c.dist:"all";APT_DEV="all";rd()};x.onclick=go});
@@ -393,7 +413,7 @@ function aptHero(){
   const d=document.createElement("section");d.className="ahero";
   d.innerHTML='<span class="ahl">'+t("Новостройки Алматы","Алматы жаңа құрылыстары")+'</span><div class="ahn">'+num(min.m2)+'<i>₸/м²</i></div><div class="ahs">'+t("минимальная цена за м² среди "+L.length+" ЖК","м² бойынша ең төмен баға, "+L.length+" ТК арасында")+'</div>'+
    '<div class="aht"><div><small>'+t("Ипотека от","Ипотека бастап")+'</small><b>'+(mort?mort.mort.rate+'%':'—')+'</b></div><div><small>'+t("Рассрочка до","Бөліп төлеу")+'</small><b>'+(inst?inst.inst.months+' '+t("мес.","ай"):'—')+'</b></div><div><small>'+t("Застройщиков","Құрылысшы")+'</small><b>'+A.developers.length+'</b></div></div>'+
-   '<a class="ahc" href="#/duel">'+t("Сравнить два ЖК","Екі ТК салыстыру")+'<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>';
+   '';
   h.classList.add("sr");h.insertAdjacentElement("beforebegin",d);
   if(sub)sub.classList.add("sr");
 }
@@ -453,7 +473,7 @@ function notFound(){app.innerHTML=crumbs([[HOME(),"#/"]])+'<h1>'+t("Страни
 function route(){
   renderTop();bottomBar();
   const p=location.hash.replace(/^#\/?/,"").split("/").filter(Boolean);
-  onSearch=null;onEnter=null;window.scrollTo(0,0);
+  onSearch=null;onEnter=null;window.scrollTo(0,0);setTimeout(cmpBar,0);
   if(!p.length)return home();
   if(p[0]==="about")return about();
   if(p[0]==="duel")return duelPage(p[1],p[2]);
