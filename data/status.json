@@ -24,9 +24,9 @@
   "avail": null
  },
  "iphone18pro-256|Technodom": {
-  "state": "site_down",
+  "state": "ok",
   "checked": "2026-11-18",
-  "note": "сайт не ответил",
+  "note": "разметка страницы",
   "last_ok": "2026-11-18",
   "price": 849990,
   "avail": false
@@ -36,7 +36,7 @@
   "checked": "2026-11-18",
   "note": "продавцов: 5",
   "last_ok": "2026-11-18",
-  "price": 839998,
+  "price": 839977,
   "avail": true
  },
  "iphone18pro-512|iSpace": {
