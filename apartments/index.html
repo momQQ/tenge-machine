@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <base href="../">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Новостройки Алматы: цены ЖК ведущих застройщиков, рассрочка, ипотека | Тиімді сәт</title>
 <meta name="description" content="Сравнение жилых комплексов Алматы на карте: цена за м2, сроки сдачи, рассрочка и ипотека ведущих застройщиков.">
 <meta property="og:title" content="Новостройки Алматы: цены ЖК ведущих застройщиков, рассрочка, ипотека">
@@ -41,9 +41,9 @@ h2{font-family:var(--disp);font-weight:500;font-size:19px;margin:34px 0 4px;lett
 .lead{color:var(--mute);font-size:14px;margin:0 0 12px;max-width:62ch}
 .sub{color:var(--mute);margin:0 0 20px;max-width:56ch}
 .crumbs{font-size:14px;margin:6px 0 10px;color:var(--mute)}
-.crumbs a{color:var(--mute);text-decoration:none}.crumbs a:hover{color:var(--ink);text-decoration:underline}
+.crumbs a{color:var(--mute);text-decoration:none}@media (hover:hover) and (pointer:fine){.crumbs a:hover{color:var(--ink);text-decoration:underline}}
 .tile{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;text-decoration:none;color:var(--ink);transition:border-color .15s}
-a.tile:hover,a.tile:focus-visible{border-color:var(--info)}
+@media (hover:hover) and (pointer:fine){a.tile:hover,a.tile:focus-visible{border-color:var(--info)}}
 .tile .ic{width:44px;height:44px;border-radius:12px;background:var(--soft);color:var(--info);display:grid;place-items:center;margin-bottom:10px;font-family:var(--disp);font-weight:600;font-size:18px}
 .tile .ic svg{width:24px;height:24px}
 .tile .ic.img{background:#fff;border:1px solid var(--line)}
@@ -67,7 +67,7 @@ a.tile:hover,a.tile:focus-visible{border-color:var(--info)}
 .note{border-left:4px solid var(--time);background:var(--card);padding:9px 13px;margin:10px 0 0;font-size:14px;border-radius:0 10px 10px 0}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px}
 .btn{display:inline-block;background:var(--time);color:#201500;text-decoration:none;font-weight:700;border-radius:11px;padding:11px 20px;font-size:15px;margin-top:12px;min-height:44px}
-.btn:hover{filter:brightness(1.06)}
+@media (hover:hover) and (pointer:fine){.btn:hover{filter:brightness(1.06)}}
 .verdict .vt{font-family:var(--disp);font-weight:600;font-size:19px;margin:0 0 8px;padding:6px 12px;border-radius:10px;display:inline-block}
 .verdict ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
 .verdict li{display:flex;gap:10px;font-size:14.5px;line-height:1.45}
@@ -101,7 +101,7 @@ table.d td:nth-child(n+3),table.d th:nth-child(n+3){text-align:right}
 .sbox input{border:0;outline:0;background:transparent;flex:1;padding:15px 0;font-size:16px;color:#181c3a;min-width:0}
 .bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin:26px 0 10px}
 .pc{position:relative;display:block;background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;text-decoration:none;color:var(--ink);transition:transform .15s,box-shadow .15s}
-.pc:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(30,40,110,.14)}
+@media (hover:hover) and (pointer:fine){.pc:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(30,40,110,.14)}}
 .pc .art.big{height:170px;margin:0;border-radius:0;background:linear-gradient(180deg,#f3f4fc,#fff)}
 .pc .art.ill{background:linear-gradient(180deg,var(--soft),var(--card))}
 .pm{display:flex;justify-content:space-between;align-items:center;margin:6px 0 10px;font-size:14px;color:var(--mute);min-height:26px}
@@ -342,7 +342,7 @@ body{background-color:var(--bg);background-image:linear-gradient(180deg,color-mi
 .amw{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;align-items:start}.amap{width:100%;height:auto;background:linear-gradient(180deg,#eef3fb,#f8fafd);border-radius:14px}
 .amap .md path{fill:#fff;stroke:#c9d3e6;stroke-width:1.5;cursor:pointer;transition:fill .15s}.amap .md.has path{fill:#fff9e8;stroke:#f0c768}.amap .md:hover path,.amap .md.on path{fill:#ffe9a8;stroke:var(--time);stroke-width:2.2}
 .amap .dn{font-size:11px;font-weight:600;fill:#47506b;pointer-events:none}.amap .mtx{font-size:10.5px;fill:#7a87a8}
-.amap .pin{cursor:pointer}.amap .pin path{fill:#2742c9;stroke:#fff;stroke-width:1.5}.amap .pin.bz path{fill:#d1590b}.amap .pin text{font-size:9.5px;font-weight:700;fill:#fff;pointer-events:none}.amap .pin:hover path{filter:brightness(1.15)}
+.amap .pin{cursor:pointer}.amap .pin path{fill:#2742c9;stroke:#fff;stroke-width:1.5}.amap .pin.bz path{fill:#d1590b}.amap .pin text{font-size:9.5px;font-weight:700;fill:#fff;pointer-events:none}@media (hover:hover) and (pointer:fine){.amap .pin:hover path{filter:brightness(1.15)}}
 .amap g:focus{outline:none}.amap g:focus-visible path{stroke:#000;stroke-width:2.5}
 .amside{display:flex;flex-direction:column;gap:8px}.amleg{font-size:13px;color:var(--mute);display:flex;align-items:center;gap:6px;flex-wrap:wrap}.lg{width:12px;height:12px;border-radius:50%;display:inline-block}.lg.bi{background:#2742c9}.lg.bz{background:#d1590b;margin-left:8px}
 .amrow{display:flex;flex-direction:column;gap:2px;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:10px 12px;font:inherit;color:var(--ink);cursor:pointer}.amrow.on{border-color:var(--time);background:#fff9e8}.amrow span{font-size:12.5px;color:var(--mute)}
@@ -623,6 +623,32 @@ body{background:var(--bg)!important;background-image:none!important}
 .mfxs{margin-left:-16px;margin-right:-16px}
 .brow .bn,.brow .bn *{min-width:0}
 @media(max-width:700px){.h3t em{white-space:normal!important;overflow:visible!important;line-height:1.3}h1{font-size:26px;line-height:1.15;overflow-wrap:anywhere}.sub{font-size:15px;line-height:1.45}h2{overflow-wrap:anywhere}.lead,p{overflow-wrap:break-word}}
+
+/* v9 map */
+.lpin{background:none!important;border:0!important}
+.lpin i{display:block;width:16px;height:16px;border-radius:50%;background:#0f8f84;border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.45);box-sizing:border-box}
+.lpin.d-bi i{background:#2742c9}.lpin.d-bazis i{background:#d1590b}
+.lpin span{display:none!important}
+.lbl .lpin i{display:none}
+.lbl .lpin span{display:block!important;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:auto!important;height:auto!important;min-width:34px;padding:0 8px;line-height:24px!important;font-size:12px!important;border-radius:12px!important;white-space:nowrap}
+.lpl{display:flex;gap:6px;margin-top:8px}.lpl a{flex:1;text-align:center;padding:8px 6px;border-radius:10px;background:#10131a;color:#fff!important;font-weight:700;text-decoration:none}.lpl a+a{background:#e8eaf0;color:#10131a!important}
+.leaflet-popup-content{font-size:14px;line-height:1.4;margin:12px 14px}
+.leaflet-control-attribution{font-size:10px}
+
+/* v10 native feel */
+html{-webkit-text-size-adjust:100%;overscroll-behavior-y:none}
+a,button,[role=button],label,select,summary,.card,.apt3,.brow{touch-action:manipulation}
+button,[role=button],.afc button,.seg button,.btab a{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+@media (pointer:coarse){input,select,textarea{font-size:16px!important}}
+button,.btn,.brow,.apt3,.ac3,.btab a,.afc button,.seg button,.h3cta,.bmore,.lk{transition:transform 140ms cubic-bezier(.23,1,.32,1),background-color 140ms}
+button:active,.btn:active,.brow:active,.apt3:active,.ac3:active,.btab a:active,.h3cta:active,.bmore:active,.lk:active{transform:scale(.97)}
+.btab{bottom:calc(10px + env(safe-area-inset-bottom,0px))}
+#cmpbar{bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+#top{padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-reduced-motion:reduce){button:active,.btn:active,.brow:active,.apt3:active,.ac3:active{transform:none}}
+
+@media (pointer:coarse){.perb button{min-height:40px;padding-left:14px;padding-right:14px}.lang button,#lang button,.lg button{min-height:38px;min-width:48px}.afc button{padding-top:11px;padding-bottom:11px}.crumbs a,.hsec3 a,.h3x a,.rng a,.fxdis a,.nfnote a{display:inline-block;padding:10px 4px;margin:-10px -4px}}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
