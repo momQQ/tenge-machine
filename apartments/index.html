@@ -520,8 +520,8 @@ body{background:var(--bg)!important;background-image:none!important}
 .k5{display:flex;align-items:center;gap:8px;margin-top:12px;padding:11px 14px;border:1px solid var(--line);border-radius:14px;background:var(--soft);color:var(--ink);text-decoration:none;font-size:14px}
 .k5 svg{margin:0;color:#1faa59}.k5 span{flex:1;min-width:0;overflow-wrap:anywhere}.k5 b{flex:none;color:#1faa59;font-size:13.5px;font-weight:800}
 .mlist .fxmore{margin-top:2px}
-.amw{display:inline-flex;align-items:center;justify-content:flex-end;gap:2px;width:55%}.amw input{flex:1;min-width:0;width:auto!important}.amw i{font-style:normal;font-weight:800;font-size:22px;color:var(--ink);padding-right:10px}
-.fxamt .amw{width:auto}.fxamt .amw i{font-size:17px;padding:0 6px}
+.fxaw{display:inline-flex;align-items:center;justify-content:flex-end;gap:2px;width:55%}.fxaw input{flex:1;min-width:0;width:auto!important}.fxaw i{font-style:normal;font-weight:800;font-size:22px;color:var(--ink);padding-right:10px}
+.fxamt .fxaw{width:auto}.fxamt .fxaw i{font-size:17px;padding:0 6px}
 .perb{display:flex;gap:6px;margin:10px 0 2px;flex-wrap:wrap}.perb button{border:0;border-radius:99px;padding:7px 14px;font:700 13.5px var(--text);background:var(--soft);color:var(--ink);cursor:pointer}.perb button.on{background:var(--ink);color:#fff}
 .mh .perb button,.hero3 .perb button{background:rgba(255,255,255,.14);color:#fff}.mh .perb button.on,.hero3 .perb button.on{background:#fff;color:#0e1a2b}
 .pnote{font-size:12px;margin:4px 2px 0;opacity:.7}
@@ -601,6 +601,28 @@ body{background:var(--bg)!important;background-image:none!important}
 .afbar .afc,.afbar #aptd.afc{flex-wrap:nowrap!important;overflow-x:auto!important;display:flex!important;background:none!important;box-shadow:none!important;padding:2px 0!important}
 .afbar .afc button{font-size:14px!important;padding:9px 14px!important;line-height:1.2!important;min-height:0!important;flex:0 0 auto!important}
 .aprm .fxamt{align-items:flex-start;text-align:left}
+
+/* v8 finance */
+.mqin{margin:0 0 12px;font-size:15px;line-height:1.45;color:var(--mute)}
+.mqc{background:#fff;border-radius:22px;padding:16px;margin:0 0 12px;box-shadow:0 1px 2px rgba(16,19,26,.06)}
+.mqf{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mqf label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:var(--mute);min-width:0}
+.mqf input,.mqf select{width:100%;min-width:0;box-sizing:border-box;height:46px;border:1.5px solid var(--line);border-radius:14px;background:#fff;padding:0 10px;font:700 16px inherit;color:var(--ink);text-overflow:ellipsis}
+.mqf label:first-child,.mqf label:last-child{grid-column:1/-1}
+.mqo{margin-top:14px;background:#10131a;color:#fff;border-radius:18px;padding:14px 16px}.mqo span{font-size:13px;opacity:.7}.mqo strong{display:block;font-size:32px;line-height:1.15;margin:2px 0 6px}.mqo em{display:block;font-style:normal;font-size:13px;line-height:1.45;opacity:.8}
+.mql{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 1px 2px rgba(16,19,26,.06)}
+.mqi{display:flex;gap:12px;align-items:center;padding:14px 16px;border-top:1px solid var(--line)}.mqi:first-child{border-top:0}
+.mqt{flex:1;min-width:0}.mqn{font-weight:800;font-size:16px;line-height:1.25}.mqd{font-size:13px;line-height:1.4;color:var(--mute);margin-top:3px}.mqd b{color:var(--ink);font-weight:700}
+.mqv{flex:0 0 92px;text-align:right}.mqv strong{display:block;font-size:22px;line-height:1.1;font-weight:800}.mqv strong.sm{font-size:16px}.mqv span{display:block;font-size:12px;color:var(--mute);margin-top:2px;line-height:1.3}
+.mqv.g strong{color:#14783f}.mqv.y strong{color:#a66a00}.mqv.r strong{color:#c23a2b}
+
+/* v8 how + fixes */
+.how{background:#fff;border-radius:22px;padding:18px 16px;margin:12px 0;box-shadow:0 1px 2px rgba(16,19,26,.06)}.how h2{margin:0 0 10px;font-size:20px}
+.how ol{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:12px}.how li{counter-increment:s;display:grid;grid-template-columns:32px 1fr;gap:2px 12px}
+.how li::before{content:counter(s);grid-row:1/3;width:32px;height:32px;border-radius:50%;background:#10131a;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.how li b{font-size:16px;align-self:end}.how li span{font-size:14px;line-height:1.45;color:var(--mute)}
+.mfxs{margin-left:-16px;margin-right:-16px}
+.brow .bn,.brow .bn *{min-width:0}
+@media(max-width:700px){.h3t em{white-space:normal!important;overflow:visible!important;line-height:1.3}h1{font-size:26px;line-height:1.15;overflow-wrap:anywhere}.sub{font-size:15px;line-height:1.45}h2{overflow-wrap:anywhere}.lead,p{overflow-wrap:break-word}}
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
