@@ -1,4 +1,4 @@
-const C="tm-v9",S=["./","index.html","app.js","manifest.webmanifest","icons/icon-192.png"];
+const C="tm-v23",S=["./","index.html","app.js","data/rates.js","data/fx.js","data/apts.js","data/fin.js","data/aptprice.js","data/site.js","data/geo.js","manifest.webmanifest","icons/icon-192.png"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(S)).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",e=>{if(e.request.method!=="GET")return;

@@ -354,7 +354,7 @@ def main():
     elif bex or bbanks:
         ex, banks = bex or ex, bbanks or banks
     nbk = {c: [[d, v] for d, v in sorted(hist.get(c, {}).items())[-KEEP:]] for c in list(CUR) + ["XAU", "XAG"] if hist.get(c)}
-    js = {"updated": today, "demo": False, "nbk": nbk, "exchangers": ex, "banks": banks}
+    js = {"updated": today, "updated_at": dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "demo": False, "nbk": nbk, "exchangers": ex, "banks": banks}
     FX_JS.write_text("// Файл создается автоматически скриптом collector/fx.py, руками не править.\nwindow.TM_FX = "
                      + json.dumps(js, ensure_ascii=False) + ";\n", encoding="utf-8")
     if problems:
