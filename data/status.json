@@ -1,23 +1,23 @@
 {
  "iphone18pro-256|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 849990,
   "avail": false
  },
  "iphone18pro-256|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 849990,
   "avail": false
  },
  "iphone18pro-256|Mechta": {
   "state": "no_data",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "ссылка на карточку не указана",
   "last_ok": null,
   "price": null,
@@ -25,95 +25,95 @@
  },
  "iphone18pro-256|Technodom": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 849990,
   "avail": false
  },
  "iphone18pro-256|Kaspi": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "продавцов: 5",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 836700,
   "avail": true
  },
  "iphone18pro-512|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 993990,
   "avail": false
  },
  "iphone18pro-512|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 993990,
   "avail": false
  },
  "iphone18pro-1tb|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1275990,
   "avail": false
  },
  "iphone18pro-1tb|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1275990,
   "avail": false
  },
  "iphone18pro-2tb|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1698990,
   "avail": false
  },
  "iphone18pro-2tb|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1698990,
   "avail": false
  },
  "iphone18promax-256|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 909990,
   "avail": false
  },
  "iphone18promax-256|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 909990,
   "avail": false
  },
  "iphone18promax-512|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1063990,
   "avail": false
  },
  "iphone18promax-512|Sulpak": {
   "state": "no_data",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "цена на странице не найдена",
   "last_ok": null,
   "price": null,
@@ -121,169 +121,169 @@
  },
  "iphone18promax-1tb|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1345990,
   "avail": false
  },
  "iphone18promax-1tb|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1345990,
   "avail": false
  },
  "iphone18promax-2tb|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1769990,
   "avail": false
  },
  "iphoneduo-256|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1399990,
   "avail": false
  },
  "iphoneduo-256|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1399990,
   "avail": false
  },
  "iphoneduo-512|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1564990,
   "avail": false
  },
  "iphoneduo-1tb|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1847990,
   "avail": false
  },
  "iphoneduo-2tb|iSpace": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "заголовок страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 2273990,
   "avail": false
  },
  "iphoneduo-2tb|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 2273990,
   "avail": false
  },
  "iphone17-256|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 633990,
   "avail": false
  },
  "iphone17pro-256|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 746990,
   "avail": false
  },
  "iphone17promax-256|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 805990,
   "avail": false
  },
  "galaxys26ultra-256|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 649890,
   "avail": false
  },
  "galaxys26-256|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 499890,
   "avail": false
  },
  "galaxyzfold8-512|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 1069890,
   "avail": false
  },
  "galaxyzflip8-256|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 639890,
   "avail": false
  },
  "galaxya57-256|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 279890,
   "avail": false
  },
  "galaxya17-128|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 139890,
   "avail": false
  },
  "pura80pro-256|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 419890,
   "avail": false
  },
  "pura80ultra-512|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 529890,
   "avail": false
  },
  "mate80pro-512|Sulpak": {
   "state": "ok",
-  "checked": "2026-11-21",
+  "checked": "2026-11-22",
   "note": "разметка страницы",
-  "last_ok": "2026-11-21",
+  "last_ok": "2026-11-22",
   "price": 474890,
   "avail": false
  }
